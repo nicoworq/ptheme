@@ -117,6 +117,76 @@ a:active{text-decoration: none !important;}
     height: 100vh;
 }
 
+
+/* -----------
+ *  AJAXING
+ * ----------- */
+
+
+.ajaxing {
+    position: absolute;
+    z-index: 1000;
+    background: rgba(238, 238, 238, 0.86);
+    text-align: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+    border-radius: 4px;
+    right: 0;
+}
+
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+.ajaxing span {
+    -webkit-animation: rotating 1s linear infinite;
+    -moz-animation: rotating 1s linear infinite;
+    -ms-animation: rotating 1s linear infinite;
+    -o-animation: rotating 1s linear infinite;
+    animation: rotating 1s linear infinite;
+
+    width: 32px;
+    height: 32px;
+    background: url(../images/sitio/loader.png);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -16px;
+    margin-left: -16px;
+
+}
+
 /* -----------
  *  SITE UI
  * ----------- */
@@ -162,7 +232,7 @@ header{
     float: left;
     padding-left: 1px;
 }
-.secondary-navigation{}
+
 
 /* -----------
 *  LOGO
@@ -193,7 +263,7 @@ header{
 #site-navigation{
     text-align: right;
     position: relative;
-    padding-right: 190px;
+    padding-right: 210px;
 }
 
 .menu-toggle{ display: none;}
@@ -215,15 +285,25 @@ header{
 }
 #nav-primary li.login-menu-item {
     position: absolute;
+    right: 134px;
+    top: 0;
+}
+#nav-primary li.login-menu-item a{
+    width: 82px;
+    text-align: center;
+}
+
+#nav-primary li.blog-menu-item {
+    position: absolute;
     right: 95px;
     top: 0;
 }
-
-#nav-primary li.login-menu-item a{
-    background: #efca01;
+#nav-primary li.blog-menu-item a{
+    background: #82277f;
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
-    width: 82px;
+    width: auto;
+    color: white;
     text-align: center;
 }
 
@@ -516,15 +596,13 @@ header .site-search {
     left: 0;
     top: 101px;
     width: 100%;
-    z-index: 1;
+    z-index: 100;
     padding-top: 40px;
     padding-bottom: 27px;
-    visibility: hidden;
-    opacity: 0;
+    display: none;
 }
 #secondary-navigation.visible{
-    visibility: visible;
-    opacity: 1;
+
 }
 
 .nav-secondary{
@@ -595,6 +673,7 @@ header .site-search {
     width: 25%;
     float: left;
     margin-right: 0;
+    display: none;
 }
 
 
@@ -805,6 +884,86 @@ header .site-search {
     color: #505050;
 }  
 
+
+/* -----------
+ *  HOME BLOG
+ * ----------- */
+
+#home-blog{
+    padding: 50px 0 60px;
+    background: white;
+    border-bottom: 1px solid #f4f4f4;
+
+}
+#home-blog h2{
+    color: #909090;
+    font-size: 34px;
+    font-weight: 300;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-top: 85px;
+}
+#home-blog h2 span{display: inline-block; position: relative;}
+#home-blog h2 span.style1{
+    padding-left: 10px;
+
+}
+#home-blog h2 span.style1:before{
+    content: ' ';
+    background: #909090;
+    height: 2px;
+    left: 0;
+    right: 0;
+    border: 1px solid #dcdcdc;
+    position: absolute;
+    bottom: 0;
+    display: block;
+}
+
+#home-blog h2 span.style2{
+    color: #82277f;
+    border-color: #82277f;
+}
+#home-blog h2 span.style2:before{
+    content: ' ';
+    display: block;
+    background: #82277f;
+    height: 2px;
+    left: 0;
+    right: 0;
+    border: 1px solid #d8bbd7;
+    position: absolute;
+    bottom: 0;
+}
+
+.news-home{
+    display: block;
+
+    border-bottom: 2px solid #fed700;
+}
+.news-home .news-home-thumbnail{
+    overflow: hidden;
+    max-height: 149px;
+    margin-bottom: 10px;
+}
+.news-home .news-home-thumbnail img{
+    transition: .15s transform ease-in-out;
+}
+.news-home:hover{
+
+}
+.news-home:hover .news-home-thumbnail img{
+    transform: scale(1.08); 
+}
+.news-home h3.news-home-title{
+    margin: 0;
+    font-size: 17px;
+    color: #000;
+    font-weight: 400;
+    margin-bottom: 35px;
+    max-height: 48px;
+}
+
 /* -----------
  *  MARCAS HOME
  * ----------- */
@@ -899,6 +1058,18 @@ header .site-search {
 
 .destacado-home{
     float: left;
+    position: relative;
+}
+.destacado-home-img-hover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: .1s opacity ease-in;
+    z-index: 2;
+}
+.destacado-home:hover .destacado-home-img-hover{
+    opacity: 1;
 }
 .destacado-home img{
     max-width: 100%;
@@ -981,6 +1152,9 @@ header .site-search {
 #home-products-bottom .category-preview-all{
     margin: 55px 0;
 }
+
+
+
 
 /* -----------
  *  INSTITUCIONAL MODULE
@@ -1499,9 +1673,13 @@ FORM CART
 #offices{
     position: relative;
 }
+#offices .ajaxing{
+    display: block;
+}
 
 #offices-map{
     height: 70vh;
+    min-height: 570px;
     width: 100%;
 }
 
@@ -1510,11 +1688,9 @@ FORM CART
     top: 0;
     left: 0;
     z-index: 10;   
-    padding-top: 20px;
+    padding-top: 48px;
+    padding-left: 42px;
 }
-
-
-
 
 
 #offices-description{
@@ -1522,10 +1698,12 @@ FORM CART
     background: url(../images/sitio/offices-bg.jpg) 50% no-repeat;
     background-size: cover;
     color: white;
-    padding: 40px;
-    color: #fff;
+    padding: 34px 38px;
     border-radius: 3px;
     float:left;
+    z-index: 10;
+    position: relative;
+    display: none;
 }
 
 #offices-description h2{
@@ -1544,15 +1722,19 @@ FORM CART
     max-width: 350px;
     font-size: 18px;
     margin-bottom: 25px;
+    margin-top: 34px;
+    line-height: 27px;
 }
 #offices-description h4{
     font-size: 18px;
     font-weight: 400;
+    margin: 0;
+    margin-top: 41px;
 }
 
 #offices-description h4 span{
     background: white;
-    width: 44px;
+    width: 42px;
     height: 44px;
     display: block;
     float: left;
@@ -1560,9 +1742,15 @@ FORM CART
     color: #582e7c;
     padding: 10px;
     margin-top: -10px;
-    margin-right: 10px
+    margin-right: 10px;
+    border: 1px solid white;
 }
-#offices-description h4 span svg{}
+#offices-description h4 span svg{
+    width: 19px;
+    margin-top: 2px;
+    margin-left: 2px;
+
+}
 
 .office-data{
     position: relative;
@@ -1572,9 +1760,13 @@ FORM CART
     float: left;
     margin-left: 15px;
     display: none;
+    height: 407px;
+    opacity: 0;
+    display: none;   
 }
 .office-data.visible{
-    display: block
+
+
 }
 
 .office-data-close{
@@ -1593,21 +1785,269 @@ FORM CART
     background-color: #eee;
 }
 
-.office-data h3{
-    color: #582e7c;
-    font-size: 21px;
-    font-weight: 400;
-}
+
 .office-data-img{
-    background: url(../images/sitio/sucursal1.jpg) 50% no-repeat;
+    background-image: url(../images/sitio/sucursal1.jpg);
+    background-repeat: no-repeat;
+    background-position: 50%;
     background-size: cover;
     height: 187px;
     width: 100%;
     box-shadow: inset 0px 0px 12px #3e3b3b;
 }
+
+.office-data-text{
+    padding: 32px 15px 0;
+}
+
+.office-data h3{
+    color: #582e7c;
+    font-size: 21px;
+    font-weight: 400;   
+    margin: 0;
+}
 .office-data-hours{
     color: #282828;
     font-size: 14px;
+    margin-top: 31px;
+    line-height: 18px;
 }
-.office-data-hours span{color: #582e7c;}
-.office-data-tel{}
+.office-data-hours span.title{color: #582e7c;}
+.office-data-tel{
+    margin-top: 14px;
+    line-height: 17px;
+}
+
+/* -----------
+ *  NARANJA
+ * ----------- */
+
+#naranja-view{
+    background:white;
+    padding: 80px 0 44px;
+}
+
+#naranja-view h3{
+    font-weight: 300;
+    font-size: 37px;
+    color: #3d3d3d;
+    line-height: 46px;
+    margin: 0;
+    margin-bottom: 12px;
+}
+
+.naranja-view{
+    margin-bottom: 24px;
+
+}
+.naranja-view2{
+    margin-top: -12px;
+}
+
+/* -----------
+ *  BLOG
+ * ----------- */
+
+#header-blog{
+    background: url(../images/sitio/header-blog-bg.jpg) 50% #fed700 no-repeat;
+    background-size: cover;
+    height: 379px;
+    width: 100%;
+}
+
+.blog .container.breadcrumbs{
+    display: none;
+}
+
+
+#header-blog h2{
+    color: white;
+    font-size: 60px;
+    font-weight: 300;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-top: 85px;
+}
+#header-blog h2 span{display: inline-block; position: relative;}
+#header-blog h2 span.style1{
+    padding-left: 10px;
+
+}
+#header-blog h2 span.style1:before{
+    content: ' ';
+    background: #ffffff;
+    height: 3px;
+    left: 0;
+    right: 0;
+
+    position: absolute;
+    bottom: 0;
+    display: block;
+}
+
+#header-blog h2 span.style2{
+    color: #82277f;
+    border-color: #82277f;
+}
+#header-blog h2 span.style2:before{
+    content: ' ';
+    display: block;
+    background: #82277f;
+    height: 3px;
+    left: 0;
+    right: 0;
+    border:none;
+    border-top: 1px solid #f0c620;
+    position: absolute;
+    bottom: 0;
+}
+
+#header-blog p{
+    font-size: 17px;
+    color: #2f2f2f;
+    font-weight: 300;
+}
+
+
+#blog-suscribe{
+    padding: 10px 0 ;
+    background: url(../images/sitio/blog-suscribir-bg.jpg) #51437c 50% no-repeat;
+    background-size: cover;
+}
+#blog-suscribe h4{
+    float: left;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    text-transform: uppercase;
+    margin: 0;
+    margin-top: 7px;
+}
+#blog-suscribe h4 span{
+    color: #fed700;
+}
+
+
+
+#form-suscribir-blog{
+    background: white;
+    float: right;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+
+}
+#form-suscribir-blog input[name=sex]{
+    position: absolute;
+    top: -99999px;
+    right: -99999px;
+}
+
+#form-suscribir-blog input{
+    border: none;
+    padding-left: 15px;
+    outline: none;
+    float: left;
+    padding: 11px 40px 5px 15px;
+
+}
+#form-suscribir-blog button{
+    color: #3e3e3e;
+    font-size: 14px;
+    background: #f7c600;
+    border: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    float: right;
+
+}
+
+/* -----------
+ *  BLOG COLS
+ * ------------ */
+.blog #content{
+    background: white;
+   
+}
+
+.blog-page{background: white; }
+
+.blog #primary.blog-page{
+    width: 77.67%;
+    float: left;
+    padding-right: 50px;
+     padding-top: 55px;
+}
+
+.blog #secondary{
+    width: 22.33%;
+    float: left;
+     padding-top: 55px;
+}
+
+
+/* -----------
+ *  NOTA BLOG
+ * ----------- */
+article.post{
+    clear: both;
+}
+
+
+.posted-on{
+    color: #6d6d6d;
+    font-size: 14px;
+}
+.posted-on a{
+    color: #343434;
+}
+header.entry-header{
+    background: white;
+}
+.entry-title{
+    border-bottom: 1px solid #fed700;
+    margin: 0;
+    line-height: 45px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    
+}
+.entry-title a{
+    color: #000000;    
+    font-size: 42px;
+    font-weight: 400;
+    display: block;
+}
+
+aside.entry-meta{
+    width: 24%;
+    float:left;
+    margin: 0;
+}
+
+aside.entry-meta > div{
+    margin-bottom: 20px
+}
+
+aside.entry-meta .author{
+   
+}
+aside.entry-meta .author img{
+    width: 87px;
+    height: 87px;
+    border-radius: 3px;
+     margin-bottom: 20px;
+}
+
+aside.entry-meta .label{
+    font-size: 14px;
+    color: #9c9c9c;
+}
+aside.entry-meta a{
+    color: #a500a0;
+}
+.entry-content{
+    width: 76%;
+    float: left;
+    margin: 0;
+}

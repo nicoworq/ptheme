@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,7 +9,9 @@ get_header();
 ?>
 
 <section id="offices">
-
+    <div class="ajaxing">
+        <span></span>
+    </div>
     <div id="offices-description-container">
         <div id="offices-description">
 
@@ -36,19 +37,22 @@ get_header();
 
 
         </div>
-        <div class="office-data visible">
+        <div class="office-data">
             <div class="office-data-close"></div>
             <div class="office-data-img">
 
             </div>
-            <h3>Sucursal: Entre Rios 658</h3>
+            <div class="office-data-text">
+                <h3>Sucursal: Entre Rios 658</h3>
 
-            <p class="office-data-tel">4242129 / 4493917<br/>
-                ventas@pascalonline.com.ar</p>
+                <p class="office-data-tel"><span id="office-tel">4242129 / 4493917</span><br/>
+                    <span id="office-email">ventas@pascalonline.com.ar</span></p>
 
-            <p class="office-data-hours"><span>Horarios de atencion:</span> <br/>
-                Lunes a viernes: De 9 a 19:30 hs.
-                Sábados: De 9 a 13 hs.</p>
+                <p class="office-data-hours"><span class="title">Horarios de atencion:</span> <br/>
+                    <span id="office-hours">Lunes a viernes: De 9 a 19:30 hs.<br/>
+                        Sábados: De 9 a 13 hs.</span> </p>
+            </div>
+
         </div>
     </div>
 
@@ -60,11 +64,28 @@ get_header();
 
 </section>
 
+<section id="naranja-view">
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Ahora podes conocernos por dentro,
+                    y explorar nuestra sucursal desde</h3>
+                <img class='naranja-view' src="<?php echo get_template_directory_uri() . '/assets/images/sitio/tienda-naranja.jpg' ?>" alt='Tienda Naranja'/>
+
+                <a target="blank" href='http://naranjaview.tiendanaranja.com/comercio/pascal/290' class='bt-site bt-site-violet'>Explorar en Naranja View</a>
+            </div>
+            <div class="col-md-6">
+                <img class='naranja-view2' src="<?php echo get_template_directory_uri() . '/assets/images/sitio/tienda-naranja2.jpg' ?>" alt='Tienda Naranja View'/>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDTCJD4YGJl8JCUN9tqmGUyh1aLUHRJz7Y"></script>
-<?php
 
+<?php
 get_footer();
 
 

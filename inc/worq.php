@@ -1,5 +1,13 @@
 <?php
 
+
+/*
+ * IMAGE SIZE BLOG
+ */
+
+add_image_size('blog-thumbnail', 280, 150,TRUE);
+
+
 /*
  * LOGIN MENU
  */

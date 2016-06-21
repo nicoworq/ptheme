@@ -19,7 +19,7 @@ module.exports = {
             "port": 8080
         }
     },
-    "files": ['*.php','*.css','assets/css/main.css','woocommerce/*.php','woocommerce/**/*.php'],
+    "files": ['*.php','*.css','assets/css/main.css','woocommerce/*.php','woocommerce/**/*.php','assets/js/main.js'],
     "watchOptions": {},
     "server": false,
     "proxy": 'localhost/pascalCommerce',

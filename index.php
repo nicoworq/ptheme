@@ -11,28 +11,50 @@
  * @package storefront
  */
 get_header();
+
+$class = '';
+//is blog 
+if (is_home()) {
+    get_header('blog'); //header-blog.php
+    $class = 'blog-page';
+    ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <?php
+            }
+            ?>
+
+            <div id="primary" class="content-area <?php echo $class; ?>">
+                <main id="main" class="site-main" role="main">
+
+                    <?php
+                    if (have_posts()) :
+
+                        get_template_part('loop');
+
+                    else :
+
+                        get_template_part('content', 'none');
+
+                    endif;
+                    ?>
+
+                </main><!-- #main -->
+            </div><!-- #primary -->
+
+
+
+            <?php
+            do_action('storefront_sidebar');
+
+            if (is_home()) {
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php
+}
 ?>
 
-<div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
-
-        <?php
-        if (have_posts()) :
-
-            get_template_part('loop');
-
-        else :
-
-            get_template_part('content', 'none');
-
-        endif;
-        ?>
-
-    </main><!-- #main -->
-</div><!-- #primary -->
-
-
-
-<?php
-do_action('storefront_sidebar');
 get_footer();

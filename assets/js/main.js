@@ -19,7 +19,7 @@
                 titulo: 'Entre Rios 658',
                 telefonos: '4242129 / 4493917',
                 email: 'ventas@pascalonline.com.ar',
-                horarios: 'Lunes a viernes: De 9 a 19:30 hs <br/> Sábados: De 9 a 13 hs.'
+                horarios: 'Lunes a viernes: De 9 a 19:30hs Sábados: De 9 a 13 hs.'
             },
             {
                 id: 2,
@@ -27,7 +27,7 @@
                 titulo: 'Galería Rosario local 79',
                 telefonos: '4493522',
                 email: 'galeria@pascalonline.com.ar',
-                horarios: 'Lunes a viernes: De 9 a 13hs y de 15  a 19:30hs <br/> Sábados: De 9 a 13 hs.'
+                horarios: 'Lunes a viernes: De 9 a 13hs y de 15 a 19:30hs Sábados: De 9 a 13 hs.'
             },
             {
                 id: 3,
@@ -35,7 +35,7 @@
                 titulo: 'San Martin 3151',
                 telefonos: ' 4728490 / 4448680',
                 email: 'sanmartin@pascalonline.com.ar',
-                horarios: ' Lunes a viernes: De 9 a 13hs y de 15  a 19:30hs<br/> Sábados: De 9 a 13 hs.'
+                horarios: ' Lunes a viernes: De 9 a 13hs y de 15 a 19:30hs Sábados: De 9 a 13 hs.'
             },
             {
                 id: 4,
@@ -43,7 +43,7 @@
                 titulo: 'Cordoba 5541',
                 telefonos: '4577177 / 4580888',
                 email: 'ventasoeste@pascalonline.com.ar',
-                horarios: ' Lunes a viernes: De 9 a 13hs y de  14:30 a 19hs<br/> Sábados: De 9 a 13 hs.'
+                horarios: ' Lunes a viernes: De 9 a 13hs y de 14:30 a 19hs Sábados: De 9 a 13 hs.'
             },
             {
                 id: 5,
@@ -51,7 +51,7 @@
                 titulo: 'Alberdi 999',
                 telefonos: '4724950',
                 email: 'alberdi@pascalonline.com.ar',
-                horarios: 'Lunes a viernes: De 9 a 13hs y de 15  a 19:30hs <br/> Sábados: De 9 a 13 hs.'
+                horarios: 'Lunes a viernes: De 9 a 13hs y de 15 a 19:30hs Sábados: De 9 a 13 hs.'
             },
             {
                 id: 6,
@@ -59,29 +59,83 @@
                 titulo: 'Francia 1102',
                 telefonos: '5571612',
                 email: 'ventasfrancia@pascalonline.com.ar',
-                horarios: ' Lunes a viernes: De 8 a 18:30hs <br/> Sabado: De 9 a 13 hs.'
+                horarios: ' Lunes a viernes: De 8 a 18:30hs Sabado: De 9 a 13 hs.'
             }
 
 
         ];
 
         if ($('#offices-map').length > 0) {
-            var mapOptions = {center: new google.maps.LatLng(-32.9396285, -60.6543727), zoom: 14, mapTypeId: google.maps.MapTypeId.ROADMAP, scrollwheel: false};
+            var mapOptions = {center: new google.maps.LatLng(-32.9484227, -60.6848268), zoom: 13, mapTypeId: google.maps.MapTypeId.ROADMAP, scrollwheel: false, disableDefaultUI: true};
             var map = new google.maps.Map(document.getElementById("offices-map"), mapOptions);
 
+            var markers = [];
+            google.maps.event.addListenerOnce(map, 'idle', function () {
 
-            var latLngMarker = new google.maps.LatLng(-32.935774, -60.670562, 17);
-            var marker = new google.maps.Marker({
-                position: latLngMarker,
-                map: map,
-                icon: Pascal.themeUrl + '/assets/images/sitio/map_pin.png',
-                scrollwheel: false
+                setTimeout(function () {
+                    $('#offices .ajaxing').velocity('transition.fadeOut', 100);
+                    $('#offices-description').velocity('transition.flipXIn', {delay: 500, duration: 450});
+                }, 200);
+
+
             });
 
-            google.maps.event.addListener(marker, 'click', function () {
-                map.setZoom(16);
-                map.setCenter(marker.getPosition());
+            for (var i = 0; i < sucursales.length; i++) {
+                var sucursalActual = sucursales[i];
+                var latLng = sucursalActual.coord.split(',');
+                var latLngMarker = new google.maps.LatLng(latLng[0], latLng[1], 17);
+                var marker = new google.maps.Marker({
+                    position: latLngMarker,
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    icon: Pascal.themeUrl + '/assets/images/sitio/map_pin.png',
+                    scrollwheel: false
+                });
+                marker['sucursal'] = sucursalActual;
+                markers.push(marker);
+                google.maps.event.addListener(marker, 'click', function () {
+                    showOfficeData(this.sucursal);
+                    toggleBounce(this);
+                });
+
+            }
+            function disableBounce() {
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setAnimation(null);
+                }
+            }
+            function toggleBounce(marker) {
+                disableBounce();
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+
+
+
+            $('.office-data-close').click(function () {
+                disableBounce();
+                $('.office-data').stop().velocity('transition.slideLeftOut', 150, function () {
+                    $('.office-data').removeClass('visible');
+                });
+
             });
+
+
+            function showOfficeData(sucursal) {
+
+                if (!$('.office-data').hasClass('visible')) {
+                    $('.office-data').stop().velocity('transition.slideLeftIn', 250, function () {
+                        $('.office-data').addClass('visible');
+                    });
+
+                }
+                $('.office-data-img').css('background-image', 'url(' + Pascal.themeUrl + '/assets/images/sitio/sucursal' + sucursal.id + '.jpg)');
+                $('.office-data h3').html(sucursal.titulo);
+                $('#office-tel').html(sucursal.telefonos);
+                $('#office-email').html(sucursal.email);
+                $('#office-hours').html(sucursal.horarios);
+            }
+
+
 
         }
 
@@ -108,7 +162,38 @@
 
         $('#nav-secondary-toggle-bt').click(function () {
 
-            $('#secondary-navigation').toggleClass('visible');
+            var secondaryNav = $('#secondary-navigation')
+            var navCols = secondaryNav.find('.col-nav-menu');
+            var navColsLi = navCols.find('.sub-menu li');
+            if (!secondaryNav.hasClass('visible')) {
+
+                secondaryNav.velocity('transition.slideDownIn', 200, function () {
+                    secondaryNav.addClass('visible');
+                });
+
+                navCols.velocity('transition.expandIn', {
+                    delay: 50,
+                    duration: 100,
+                    stagger: 200,
+                    drag:true,
+                    easing: "easeInOutBounce"
+                });
+                /*
+                 navColsLi.velocity('transition.expandIn', {
+                 delay: 0,
+                 duration: 30,
+                 stagger: 20,
+                 easing: "easeInOut"
+                 });
+                 */
+            } else {
+                secondaryNav.velocity('transition.slideUpOut', 200, function () {
+                    secondaryNav.removeClass('visible');
+                });
+
+                navCols.velocity('reverse');
+            }
+
 
         });
 
@@ -124,7 +209,10 @@
             var slug = $(this).attr('data-category-slug');
             $('#home-category-preview .category-list-products').removeClass('active');
 
-            $($('#home-category-preview .category-list-products[data-category-slug=' + slug + ']')).addClass('active');
+            $('#home-category-preview .category-list-products[data-category-slug=' + slug + ']').addClass('active');
+            
+            $('#home-category-preview .category-list-products.active .pascal-product').velocity('transition.slideUpIn', {stagger: 100,duration:250,drag:true});
+            
         });
 
 

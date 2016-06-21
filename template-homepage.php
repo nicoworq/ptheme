@@ -27,8 +27,6 @@ wc_get_template_part('content', 'credit-cards');
         <div class="row">
             <div class="col-md-15">
                 <ul class="category-list">
-
-
                     <?php
                     //excluir marcas
                     $marcas = get_term_by('slug', 'marcas', 'product_cat');
@@ -82,6 +80,44 @@ wc_get_template_part('content', 'credit-cards');
     </div>
 </section>
 
+<section id="home-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2><span class="style1">#Pascal</span><span class="style2">Trends</span></h2>
+            </div>
+            <?php
+            $blogArgs = array(
+                'posts_per_page' => 3,
+                'category_name' => 'noticias'
+            );
+            $blogHome = new WP_Query($blogArgs);
+
+
+            if ($blogHome->have_posts()) {
+                while ($blogHome->have_posts()) {
+                    $blogHome->the_post();
+
+                    $thumbUrl = wp_get_attachment_image_url(get_post_thumbnail_id(), 'blog-thumbnail');
+                    ?>
+                    <div class="col-md-3">
+                        <a class="news-home" href="<?php the_permalink(); ?>">
+                            <div class="news-home-thumbnail">
+                                <img src="<?php echo $thumbUrl ?>" alt="<?php the_title(); ?>" />
+                            </div>
+                            <h3 class="news-home-title"><?php the_title(); ?></h3>
+                        </a>
+
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+
+    </div>
+</section>
+
 <section id="home-brands">
     <div id="home-brands-list">
         <?php
@@ -106,11 +142,11 @@ wc_get_template_part('content', 'credit-cards');
 
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="0 0 477.175 477.175" style="enable-background:new 0 0 477.175 477.175;" xml:space="preserve">
-                <g>
-                    <path d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5
-                          c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z
-                          "/>
-                </g>
+            <g>
+            <path d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5
+                  c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z
+                  "/>
+            </g>
 
             </svg>
 
@@ -118,10 +154,10 @@ wc_get_template_part('content', 'credit-cards');
         <div id="brand-arrow-prev" class="brand-arrow">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="0 0 477.175 477.175" style="enable-background:new 0 0 477.175 477.175;" xml:space="preserve">
-                <g>
-                    <path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
-                          c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"/>
-                </g>
+            <g>
+            <path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
+                  c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"/>
+            </g>
             </svg>
         </div>
     </div>
@@ -133,7 +169,7 @@ wc_get_template_part('content', 'credit-cards');
 
     <div class="destacado-primario-col1">
         <?php
-        //destacado primario1
+//destacado primario1
 
         $primario1Args = array(
             'post_type' => 'destacado_home',
@@ -159,9 +195,17 @@ wc_get_template_part('content', 'credit-cards');
             while ($primario1->have_posts()) {
                 $primario1->the_post();
                 $image = get_field('imagen');
+                $image_hover = get_field('imagen_hover');
                 ?>
 
                 <a class="destacado-home" id="destacado-primario1" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                    <?php
+                    if ($image_hover) {
+                        ?>
+                        <div class="destacado-home-img-hover">
+                            <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                        </div>
+                    <?php } ?>
                     <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
                 </a>
 
@@ -177,7 +221,7 @@ wc_get_template_part('content', 'credit-cards');
         <div class="destacado-primario-row">
             <div class="destacado-primario-col3">
                 <?php
-                //destacado primario2
+//destacado primario2
 
                 $primario2Args = array(
                     'post_type' => 'destacado_home',
@@ -203,9 +247,17 @@ wc_get_template_part('content', 'credit-cards');
                     while ($primario2->have_posts()) {
                         $primario2->the_post();
                         $image = get_field('imagen');
+                        $image_hover = get_field('imagen_hover');
                         ?>
 
                         <a class="destacado-home" id="destacado-primario2" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                            <?php
+                            if ($image_hover) {
+                                ?>
+                                <div class="destacado-home-img-hover">
+                                    <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                                </div>
+                            <?php } ?>
                             <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
                         </a>
 
@@ -217,7 +269,7 @@ wc_get_template_part('content', 'credit-cards');
             </div>
             <div class="destacado-primario-col3">
                 <?php
-                //destacado primario3
+//destacado primario3
 
                 $primario3Args = array(
                     'post_type' => 'destacado_home',
@@ -243,9 +295,17 @@ wc_get_template_part('content', 'credit-cards');
                     while ($primario3->have_posts()) {
                         $primario3->the_post();
                         $image = get_field('imagen');
+                        $image_hover = get_field('imagen_hover');
                         ?>
 
                         <a class="destacado-home" id="destacado-primario3" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                            <?php
+                            if ($image_hover) {
+                                ?>
+                                <div class="destacado-home-img-hover">
+                                    <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                                </div>
+                            <?php } ?>
                             <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
                         </a>
 
@@ -259,7 +319,7 @@ wc_get_template_part('content', 'credit-cards');
         <div class="destacado-primario-row">
             <div class="destacado-primario-col3">
                 <?php
-                //destacado primario4
+//destacado primario4
 
                 $primario4Args = array(
                     'post_type' => 'destacado_home',
@@ -285,9 +345,17 @@ wc_get_template_part('content', 'credit-cards');
                     while ($primario4->have_posts()) {
                         $primario4->the_post();
                         $image = get_field('imagen');
+                        $image_hover = get_field('imagen_hover');
                         ?>
 
                         <a class="destacado-home" id="destacado-primario4" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                            <?php
+                            if ($image_hover) {
+                                ?>
+                                <div class="destacado-home-img-hover">
+                                    <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                                </div>
+                            <?php } ?>
                             <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
                         </a>
 
@@ -299,7 +367,7 @@ wc_get_template_part('content', 'credit-cards');
             </div>
             <div class="destacado-primario-col3">
                 <?php
-                //destacado primario5
+//destacado primario5
 
                 $primario5Args = array(
                     'post_type' => 'destacado_home',
@@ -325,9 +393,17 @@ wc_get_template_part('content', 'credit-cards');
                     while ($primario5->have_posts()) {
                         $primario5->the_post();
                         $image = get_field('imagen');
+                        $image_hover = get_field('imagen_hover');
                         ?>
 
                         <a class="destacado-home" id="destacado-primario5" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                            <?php
+                            if ($image_hover) {
+                                ?>
+                                <div class="destacado-home-img-hover">
+                                    <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                                </div>
+                            <?php } ?>
                             <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
                         </a>
 
@@ -433,7 +509,7 @@ wc_get_template_part('content', 'credit-cards');
 
 
                     <?php
-                    //destacado secundario1
+//destacado secundario1
 
                     $secundario1Args = array(
                         'post_type' => 'destacado_home',
@@ -476,7 +552,7 @@ wc_get_template_part('content', 'credit-cards');
                     <div class="destacado-secundario-row">
                         <div class="destacado-secundario-col3">
                             <?php
-                            //destacado secundario2
+//destacado secundario2
 
                             $secundario2Args = array(
                                 'post_type' => 'destacado_home',
@@ -516,7 +592,7 @@ wc_get_template_part('content', 'credit-cards');
                         </div>
                         <div class="destacado-secundario-col3">
                             <?php
-                            //destacado secundario3
+//destacado secundario3
 
                             $secundario3Args = array(
                                 'post_type' => 'destacado_home',
@@ -557,7 +633,7 @@ wc_get_template_part('content', 'credit-cards');
                     </div>
                     <div class="destacado-secundario-row">
                         <?php
-                        //destacado secundario3
+//destacado secundario3
 
                         $secundario4Args = array(
                             'post_type' => 'destacado_home',
