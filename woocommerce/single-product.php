@@ -21,7 +21,6 @@ if (!defined('ABSPATH')) {
 get_header('shop');
 ?>
 
-
 <?php
 /**
  * woocommerce_before_main_content hook.
@@ -55,7 +54,7 @@ do_action('woocommerce_after_main_content');
  */
 //do_action('woocommerce_sidebar');
 ?>
-
+<div class="clearfix"></div>
 
 
 <?php

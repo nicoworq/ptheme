@@ -4,29 +4,39 @@
  *
  * @package storefront
  */
+get_header();
+?>
 
-get_header(); ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <section id="primary" class="content-area">
+                <main id="main" class="site-main" role="main">
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+                    <?php if (have_posts()) : ?>
 
-		<?php if ( have_posts() ) : ?>
+                        <header class="page-header">
+                            <h1 class="page-title"><?php printf(esc_attr__('Search Results for: %s', 'storefront'), '<span>' . get_search_query() . '</span>'); ?></h1>
+                        </header><!-- .page-header -->
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( esc_attr__( 'Search Results for: %s', 'storefront' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
+                        <?php
+                        get_template_part('loop');
 
-			<?php get_template_part( 'loop' );
+                    else :
 
-		else :
+                        get_template_part('content', 'none');
 
-			get_template_part( 'content', 'none' );
+                    endif;
+                    ?>
 
-		endif; ?>
+                </main><!-- #main -->
+            </section><!-- #primary -->
+            <?php do_action('storefront_sidebar');?>
+        </div>
+    </div>
+</div>
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
 
 <?php
-do_action( 'storefront_sidebar' );
+
 get_footer();

@@ -152,8 +152,19 @@ if (!class_exists('Storefront')) :
                 'before_title' => '<h3 class="widget-title">',
                 'after_title' => '</h3>',
             ));
-
-            $footer_widget_regions = apply_filters('storefront_footer_widget_regions', 4);
+       
+            register_sidebar(array(
+                'name' => 'Subcategorías',
+                'id' => 'sidebar-subcategorias',
+                'description' => 'Los widgets añadidos a este sidebar, seran mostrados en el listado de productos con subcategorías',
+                'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+                'after_widget' => '</aside>',
+                'before_title' => '<h3 class="widget-title">',
+                'after_title' => '</h3>',
+            ));
+            
+            /*
+            $footer_widget_regions = apply_filters('storefront_footer_widget_regions', 0);
 
             for ($i = 1; $i <= intval($footer_widget_regions); $i++) {
                 register_sidebar(array(
@@ -167,6 +178,7 @@ if (!class_exists('Storefront')) :
                         )
                 );
             }
+            */
         }
 
         /**

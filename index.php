@@ -55,6 +55,6 @@ if (is_home()) {
     </div>
     <?php
 }
-?>
-
 get_footer();
+
+

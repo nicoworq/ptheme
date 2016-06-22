@@ -23,8 +23,13 @@
     <header class="entry-header">
         <?php
         storefront_posted_on();
-        the_title('<h1 class="entry-title">', '</h1>');
         ?>
+        <a href="<?php the_permalink() ?>">
+            <?php
+            the_title('<h1 class="entry-title">', '</h1>');
+            ?>
+        </a>
+
     </header><!-- .entry-header -->
     <aside class="entry-meta">
         <?php if ('post' == get_post_type()) : // Hide category and tag text for pages on Search.
@@ -74,28 +79,33 @@
         <?php endif; ?>
     </aside>
 
-    <div class="entry-content carlos">
+    <div class="entry-content">
 
-        <a href="<?php the_permalink(); ?>" >
+        <?php
+        $urlThumb = wp_get_attachment_image_url(get_post_thumbnail_id(), 'full');
+        ?>
+
+        <a href="<?php the_permalink(); ?>" class="entry-thumbnail" style="background-image: url(<?php echo $urlThumb; ?>);">
+
+        </a>
+
+        <a href="<?php the_permalink(); ?>" class="entry-excerpt">
             <?php
-            storefront_post_thumbnail('full');
+            the_excerpt();
             ?>
         </a>
-        <?php
-        the_content(
-                sprintf(
-                        __('Continue reading %s', 'storefront'), '<span class="screen-reader-text">' . get_the_title() . '</span>'
-                )
-        );
 
+
+        <?php
         wp_link_pages(array(
             'before' => '<div class="page-links">' . __('Pages:', 'storefront'),
             'after' => '</div>',
         ));
         ?>
     </div><!-- .entry-content -->
-        <?php
-        storefront_init_structured_data();
-        ?>
+    <div class="clearfix"></div>
+    <?php
+    storefront_init_structured_data();
+    ?>
 
 </article><!-- #post-## -->

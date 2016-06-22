@@ -120,37 +120,83 @@ if (!defined('ABSPATH')) {
         <div class="row">
             <div class="col-md-12">
 
-                <?php
-                wc_get_template('single-product/tabs/tabs.php');
+                <div class="pascal-product-description">
+                    <?php
+                    the_content();
+                    ?>
+                </div>
+
+                <div class="pascal-product-info">
+                    <h2>Especificaciones</h2>
+                    <?php
+                    $product->list_attributes();
+                    ?>
+                </div>
 
 
-
-                $args = apply_filters('woocommerce_upsell_display_args', array(
-                    'posts_per_page' => 5,
-                    'orderby' => apply_filters('woocommerce_upsells_orderby', 'title'),
-                    'columns' => 5
-                ));
-
-                wc_get_template('single-product/up-sells.php', $args);
-
-                $args = array(
-                    'posts_per_page' => 4,
-                    'columns' => 4,
-                    'orderby' => 'rand'
-                );
-
-                woocommerce_related_products(apply_filters('woocommerce_output_related_products_args', $args));
-                ?>
 
                 <meta itemprop="url" content="<?php the_permalink(); ?>" />
 
             </div><!-- #product-<?php the_ID(); ?> -->
-
-
-
-
         </div>
     </div>
 </div>
+
+<div id="pascal-product-bottom">
+
+    <section id="pascal-related-products">
+
+        <?php
+        $args = array(
+            'posts_per_page' => 5,
+            'columns' => 5,
+            'orderby' => 'rand'
+        );
+
+        woocommerce_related_products($args);
+        ?>
+
+    </section>
+
+
+
+
+    <?php
+    $args = apply_filters('woocommerce_upsell_display_args', array(
+        'posts_per_page' => 5,
+        'orderby' => apply_filters('woocommerce_upsells_orderby', 'title'),
+        'columns' => 5
+    ));
+
+    wc_get_template('single-product/up-sells.php', $args);
+    ?>
+
+
+
+    <section id="home-navigation-bottom">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    wp_nav_menu(
+                            array(
+                                'theme_location' => 'secondary',
+                                'container' => '',
+                                'menu_id' => 'nav-secondary-bottom',
+                                'menu_class' => 'nav-secondary'
+                            )
+                    );
+                    ?>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+</div>
+
+
 
 <?php do_action('woocommerce_after_single_product'); ?>

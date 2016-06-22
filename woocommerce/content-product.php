@@ -86,7 +86,7 @@ $classes[] = 'pascal-product';
         wc_get_template('loop/rating.php');
         wc_get_template('loop/price.php');
 
-        if (is_front_page()) {
+        if (is_front_page() || is_single()) {
             //mostramos categorias
             ?>
             <div class="pascal-product-categories">
