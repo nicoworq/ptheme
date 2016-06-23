@@ -25,10 +25,10 @@ require 'inc/storefront-template-hooks.php';
 require 'inc/storefront-template-functions.php';
 
 
-require 'inc/worq.php';
-require 'inc/worq-slider.php';
-require 'inc/mobile-detect.php';
-//require 'inc/walker_nav.php';
+require 'inc/php/worq.php';
+require 'inc/php/ajax.php';
+require 'inc/php/worq-slider.php';
+require 'inc/php/mobile-detect.php';
 
 
 if (is_woocommerce_activated()) {

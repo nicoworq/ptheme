@@ -105,112 +105,117 @@
         </div>
     </section>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="footer-inner">
-                    <div class="row">
-                        <div class="col-md-6">
+    <section id="footer-bottom">
+        <div class="ajaxing"><span></span></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-inner">
+                        <div class="row">
+                            <div class="col-md-6">
 
-                            <h3 class="form-newsletter-title">Ofertas y descuentos</h3>
-                            <form id="form-suscribir-footer">
-                                <input type="text" name="sex"/>
-                                <input type="hidden" name="action" value="suscribir"/>
-                                <input type="email" placeholder="Ingresa tu email..." name="email"/>
-                                <button class="bt-site bt-site-violet">Suscribirme</button>
-                            </form><br/>
-                            <h5 id="form-suscribe-label">Recibí descuentos especiales y ofertas exclusivas en tu email.</h5>
+                                <h3 class="form-newsletter-title">Ofertas y descuentos</h3>
+                                <form id="form-suscribir-footer">
+                                    <input type="hidden" name="suscribir" value="<?php echo wp_create_nonce('news-nonce') ?>"/>
+                                    <input type="hidden" name="action" value="newsletter"/>
+                                    <input type="text" name="sexo" placeholder="Sexo" value=""/>
+                                    <input type="email" placeholder="Ingresa tu email..." name="email"/>
+                                    <button class="bt-site bt-site-violet">Suscribirme</button>
+                                </form><br/>
+                                <h5 id="form-suscribe-label">Recibí descuentos especiales y ofertas exclusivas en tu email.</h5>
 
-                            <a id="fiscal-data" href="#">
-                                <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/data-fiscal.jpg'; ?>" alt="Data Fiscal"/>
-                            </a>
+                                <a id="fiscal-data" href="#">
+                                    <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/data-fiscal.jpg'; ?>" alt="Data Fiscal"/>
+                                </a>
 
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="nav-footer color">
-                                <ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="nav-footer color">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Mis pedidos
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Carrito
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </ul><ul class="nav-footer">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                Institucional
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Cómo comprar
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Términos y condiciones
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Sucursales
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </ul>
+                                <ul class="nav-footer last-col">
                                     <li>
-                                        <a href="#">
-                                            Home
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Mis pedidos
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Carrito
+                                        <a href="" class="client-atention">
+                                            Atención al cliente
+                                            <span>0800-444-3567</span>
                                         </a>
                                     </li>
                                 </ul>
-                            </ul><ul class="nav-footer">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            Institucional
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Cómo comprar
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Términos y condiciones
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Sucursales
-                                        </a>
-                                    </li>
-                                </ul>
-                            </ul>
-                            <ul class="nav-footer last-col">
-                                <li>
-                                    <a href="" class="client-atention">
-                                        Atención al cliente
-                                        <span>0800-444-3567</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="copyright">
 
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="copyright">
-
-                    Copyright - 2000 - 2016 www.pascalonline.com.ar, TODOS LOS DERECHOS RESERVADOS.<br/>
-                    Está prohibida la reproducción total o parcial, sin la expresa autorización de la administradora de la tienda virtual.<br/>
-                    NS3 INTERNET S.A. - CUIT: 30-71164420-9 – Suipacha 1111 - Piso 11 (C1008AAW) Capital Federal – Argentina.
+                        Copyright - 2000 - 2016 www.pascalonline.com.ar, TODOS LOS DERECHOS RESERVADOS.<br/>
+                        Está prohibida la reproducción total o parcial, sin la expresa autorización de la administradora de la tienda virtual.<br/>
+                        NS3 INTERNET S.A. - CUIT: 30-71164420-9 – Suipacha 1111 - Piso 11 (C1008AAW) Capital Federal – Argentina.
 
 
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="worq">
+                        <a href="http://worq.com.ar">Desarrolla WORQ</a> -
+                        <a href="http://worq.com.ar">Impulsa Proyecto Beta</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="worq">
-                    <a href="http://worq.com.ar">Desarrolla WORQ</a> -
-                    <a href="http://worq.com.ar">Impulsa Proyecto Beta</a>
-                </div>
-            </div>
+            <?php
+            /**
+             * Functions hooked in to storefront_footer action
+             *
+             * @hooked storefront_footer_widgets - 10
+             * @hooked storefront_credit         - 20
+             */
+            //do_action('storefront_footer');
+            ?>
         </div>
-        <?php
-        /**
-         * Functions hooked in to storefront_footer action
-         *
-         * @hooked storefront_footer_widgets - 10
-         * @hooked storefront_credit         - 20
-         */
-        //do_action('storefront_footer');
-        ?>
-    </div>
+    </section>
+
 
 
 

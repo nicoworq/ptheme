@@ -9,6 +9,43 @@
 
 
         /* -----------
+         *  FORM SUSCRIBIR NEWS
+         * ----------- */
+
+
+        $('#form-suscribir-blog, #form-suscribir-footer').submit(function (event) {
+            event.preventDefault();
+
+            var form = $(this);
+
+            var emailInput = form.find('input[type=email]');
+
+            if (!validateEmail(emailInput.val())) {
+
+                emailInput.parent().addClass('input-error');
+                swal("Oops...", "Debe ingresar un Email Valido.", "error");
+                return false;
+            }
+
+            var url = Pascal.ajaxUrl;
+            form.parents().find('.ajaxing').first().fadeIn();
+
+            $.post(url, form.serialize(), function (json) {
+                form.parents().find('.ajaxing').first().fadeOut();
+                if (json.enviado) {
+                    swal("Gracias!", "Te has suscrito a nuestro newsletter!", "success");
+                    form.find('input[name=suscribir]').val('');
+                    form[0].reset();
+                } else {
+                    swal("Oops...", "Error al generar tu suscripcion!", "error");
+                }
+            });
+
+
+        });
+
+
+        /* -----------
          *  YOUTUBE RESIZE
          * ----------- */
 
@@ -276,6 +313,7 @@
             $('#home-products-bottom .category-list-products').removeClass('active');
             $($('#home-products-bottom .category-list-products[data-category-slug=' + slug + ']')).addClass('active');
 
+            $('#home-products-bottom .category-list-products.active .pascal-product').velocity('transition.slideDownIn', {stagger: 100, duration: 250, drag: true});
         });
 
     });

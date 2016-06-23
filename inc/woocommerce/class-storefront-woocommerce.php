@@ -77,6 +77,7 @@ if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
 			wp_style_add_data( 'storefront-woocommerce-style', 'rtl', 'replace' );
 
                         wp_enqueue_style( 'worq-style', get_template_directory_uri() . '/assets/css/main.css' );
+                        wp_enqueue_style( 'worq-style-ext', get_template_directory_uri() . '/assets/css/extCss.css' );
                         
 			wp_register_script( 'storefront-sticky-payment', get_template_directory_uri() . '/assets/js/woocommerce/checkout.min.js', 'jquery', $storefront_version, true );
 

@@ -84,7 +84,7 @@ wc_get_template_part('content', 'credit-cards');
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h2><span class="style1">#Pascal</span><span class="style2">Trends</span></h2>
+                <a href="<?php echo get_permalink(get_page_by_title('Blog')); ?>"><h2><span class="style1">#Pascal</span><span class="style2">Trends</span></h2></a>
             </div>
             <?php
             $blogArgs = array(

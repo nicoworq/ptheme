@@ -126,7 +126,7 @@ a:active{text-decoration: none !important;}
 .ajaxing {
     position: absolute;
     z-index: 1000;
-    background: rgba(238, 238, 238, 0.86);
+    background: rgba(238, 238, 238, 0.6);
     text-align: center;
     top: 0;
     left: 0;
@@ -522,6 +522,7 @@ header .site-search {
     float: left;
     padding: 0;
     text-indent: 9px;
+    outline: none;
 }
 #form-search-header button{
     width: 10%;
@@ -781,6 +782,7 @@ header .site-search {
     border-radius: 3px;
     padding-left: 30px;
     text-decoration: none !important;
+    transition: .2s all ease-in-out;
 }
 .category-list li  a:hover , .category-list li  a.active{
     background: #82277f;
@@ -1251,6 +1253,8 @@ header .site-search {
 /* -----------
  *  FOOTER
  * ----------- */
+
+#footer-bottom{position: relative;}
 
 footer{
     background: white;
@@ -2003,6 +2007,7 @@ FORM CART
     padding: 10px 0 ;
     background: url(../images/sitio/blog-suscribir-bg.jpg) #51437c 50% no-repeat;
     background-size: cover;
+    position: relative;
 }
 #blog-suscribe h4{
     float: left;
@@ -2027,7 +2032,7 @@ FORM CART
     position: relative;
 
 }
-#form-suscribir-blog input[name=sex]{
+#form-suscribir-blog input[name=sexo]{
     position: absolute;
     top: -99999px;
     right: -99999px;
@@ -2202,8 +2207,6 @@ aside.entry-meta a{
     margin-bottom: 25px;
 }
 
-
-
 /* -----------
  *  CARRO SIDEBAR
  * ----------- */
@@ -2211,7 +2214,7 @@ aside.widget .widget_shopping_cart_content{
     background: #f8f8f8;
     padding:10px;
 }
-
+aside.widget .widget_shopping_cart_content .triangle-header-cart{display: none;}
 aside.widget .cart_list.product_list_widget{
     width: 100%;
 }
