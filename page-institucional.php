@@ -27,19 +27,19 @@ get_header();
                 <h3>La atención <br/>
                     que buscabas</h3>
                 <p>En cada una de nuestras sucursales contamos con profesionales capacitados para poder brindarte soluciones de todo tipo en este mundo cambiante y dinámico, pero que tanto nos apasiona, y este es el mundo de la tecnología</p>
-                <a href="#" class="bt-site bt-site-violet">Nuestras sucursales</a>
+                <a href="<?php echo get_permalink(get_page_by_title('Sucursales')); ?>" class="bt-site bt-site-violet">Nuestras sucursales</a>
             </div>
             <div class="col-md-6">
                 <div id="institutional-quote">
                     <div id="institutional-quote-img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/quote-img.jpg' ?>"/>
+                        <div id="institutional-quote-img-inner" style="background-image: url(<?php echo get_template_directory_uri() . '/assets/images/sitio/quote-img.jpg' ?>);"></div>
+                        
                     </div>
                     <div id="institutional-quote-text">
-                        "Si la pasión, si la locura no pasaran <br/> alguna vez por las almas<br/>
-                        ¿Qué valdría la vida?"
+                        "Nuestra misión es hacer que el mundo sea más abierto y conectado"
                     </div>
                     <div id="institutional-quote-auth">
-                        Jacinto Benavente.
+                        Mark Zuckerberg.
                     </div>
                 </div>
             </div>

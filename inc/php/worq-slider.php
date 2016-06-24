@@ -75,7 +75,7 @@ function mostrar_slider_worq() {
 
     <?php if ($slides->have_posts()): ?>
         <div id="slider-worq">
-
+            <div class="ajaxing"><span></span></div>
             <div id="slider-worq-slides">
                 <?php
                 while ($slides->have_posts()) : $slides->the_post();

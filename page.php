@@ -35,7 +35,9 @@ get_header();
     </main><!-- #main -->
 </div><!-- #primary -->
 
-
+<div class="clearfix"></div>
 <?php
-do_action('storefront_sidebar');
+if (!is_cart()) {
+    do_action('storefront_sidebar');
+}
 get_footer();

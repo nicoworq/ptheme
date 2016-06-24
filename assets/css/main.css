@@ -199,6 +199,7 @@ a:active{text-decoration: none !important;}
     color: white;
     background: #ababab;
     padding: 10px 20px;
+    border:none;
 }
 
 
@@ -215,6 +216,10 @@ a:active{text-decoration: none !important;}
 
 .bt-site-violet{
     background: #582e7c;
+    color: white;
+}
+.bt-site-black{
+    background: #2d2d2d;
     color: white;
 }
 
@@ -245,6 +250,8 @@ header{
 }
 .site-branding a{
     display: inline-block;
+    width: 193px;
+    height: 69px;
 }
 
 /* -----------
@@ -606,8 +613,8 @@ header .site-search {
     padding-bottom: 27px;
     display: none;
 }
-#secondary-navigation.visible{
-
+.admin-bar #secondary-navigation{
+    top: 135px;
 }
 
 .nav-secondary{
@@ -721,6 +728,16 @@ header .site-search {
 
 #slider-worq{
     position: relative;
+    background: #d6d6d6;
+    min-height: 450px;
+}
+#slider-worq .ajaxing{
+    display: block;
+    z-index: 0;
+}
+#slider-worq-slides {
+    position: relative;
+    z-index: 10;
 }
 
 .slide-home{
@@ -735,6 +752,7 @@ header .site-search {
 .credit-card-promotions{
     border-bottom: 1px solid #d8d8d8;
     background: white;
+    height: 69px;
 }
 .credit-card-promotions h3{
     font-size: 14px;
@@ -763,6 +781,7 @@ header .site-search {
 #home-category-preview{
     padding-top: 38px;
     padding-bottom: 90px;
+    min-height: 496px;
 }
 
 .category-list{
@@ -844,10 +863,10 @@ header .site-search {
     padding-right: 10px;
     padding-left: 10px;
     margin: 0 !important;
-    
+
 }
 .pascal-product a{
-    background: white;
+    background: #adadad;
     display: block;
     border-radius: 3px;
     overflow: hidden;
@@ -855,6 +874,7 @@ header .site-search {
 }
 .pascal-product a:hover{
     box-shadow: 0px 0px 20px rgba(5,5,5,0.2);
+    transform: translateY(-3px);
 }
 
 .pascal-product-data{
@@ -1279,7 +1299,7 @@ footer h3{
 .form-newsletter-title{
     margin-bottom: 10px;
 }
-input[name=sex]{position: absolute; top: -2000px; left: -9999px}
+input[name=sexo]{position: absolute; top: -2000px; left: -9999px}
 
 #form-suscribir-footer{    
     border: 2px solid #e8e8e8;
@@ -1289,6 +1309,7 @@ input[name=sex]{position: absolute; top: -2000px; left: -9999px}
     background: white;
     width: auto;
     display: inline-block;
+    position: relative;
 
 }
 #form-suscribir-footer input[type=email]{
@@ -1744,6 +1765,16 @@ FORM CART
 #institutional-quote-img {
     margin: 30px 0 33px;
 }
+#institutional-quote-img-inner{
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+    display: inline-block;
+    background-size: 180px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
 #institutional-quote-text {
     font-size: 34px;
     color: #000;
@@ -2365,7 +2396,11 @@ aside.widget_shopping_cart p.buttons{
  * ----------- */
 
 #archive-header{
-    background: #e3e6eb;
+    background-color: #e3e6eb;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    min-height: 377px;
 }
 #archive-header h1{
     color: #40454a;
@@ -2374,12 +2409,25 @@ aside.widget_shopping_cart p.buttons{
     line-height: 72px;
 }
 
-.archive .woocommerce-breadcrumb{
+#archive-header .col-md-5{
+    min-height: 377px;
+    display: table;
+    width: 100%;
+}
+
+#archive-header-content{
+
+    vertical-align: middle;
+
+    display: table-cell;
+}
+.archive .woocommerce-breadcrumb, .archive .container.breadcrumbs{
     display: none;
 }
 
 #archive-filters{
     background: white;
+    padding: 3px 0;
 }
 
 .archive #archive-filters .woocommerce-breadcrumb{
@@ -2396,7 +2444,7 @@ aside.widget_shopping_cart p.buttons{
     text-decoration: none;
 }
 
-.archive-filter-order .woocommerce-result-count{
+.woocommerce-result-count{
     margin: 0;
     margin-right: 15px;
     color: #4d4d4d;
@@ -2405,13 +2453,16 @@ aside.widget_shopping_cart p.buttons{
 }
 .archive-filter-order{
     float: right;
+    margin-top: 8px;
 }
 
-.archive-filter-order .woocommerce-ordering {}
-.archive-filter-order .woocommerce-ordering  select{
+.woocommerce-ordering {
+    margin-right: 0;
+}
+.woocommerce-ordering  select{
     border: 2px solid #dadada;
     border-radius: 3px;
-    padding: 5px
+    padding: 8px 6px;
 }
 
 
@@ -2440,4 +2491,148 @@ aside.widget_shopping_cart p.buttons{
 }
 .archive #archive-products .pascal-product{
     margin-bottom: 20px !important;
+}
+
+/* -----------
+ *  CARTTT
+ * ----------- */
+
+.page.woocommerce-cart{
+    background: white;
+}
+
+#pascal-cart{}
+#pascal-cart-header{
+    border-bottom: 1px solid #e3ecf3;
+    padding: 23px 0;
+}
+
+#pascal-cart-header h1{
+    font-size: 48px;
+    color: #424242;
+    font-weight: 300;
+    vertical-align: middle;
+    background-image: url(../images/sitio/cart-header-bg.png);
+    background-repeat: no-repeat;
+    padding-left: 60px;
+    background-position: 0 50%;
+    margin: 0;
+}
+
+#pascal-cart-header h1 a{
+    margin-top: 13px;
+}
+
+#pascal-cart-body{
+    padding-top: 20px;
+}
+#pascal-cart-body table.cart{
+    margin: 0;
+    width: 100%;
+    border-left: 1px solid #e3ecf3;
+    border-right: 1px solid #e3ecf3;
+    border-bottom: 1px solid #e3ecf3;
+
+}
+#pascal-cart-body table.cart th{
+    border-top: 1px solid #e3ecf3;
+    border-bottom: 1px solid #e3ecf3;
+    font-size: 14px;
+    color: #2d2d2d;
+    font-weight: 400;
+    text-align: left;
+}
+
+#pascal-cart-body table.cart th.product-quantity , #pascal-cart-body table.cart th.product-price , #pascal-cart-body table.cart th.product-subtotal{
+    text-align: center;
+}
+
+
+#pascal-cart-body table.cart .cart_item td{
+    color: #453631;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: left
+}
+#pascal-cart-body table.cart td.product-quantity , #pascal-cart-body table.cart td.product-price , #pascal-cart-body table.cart td.product-subtotal{
+    text-align: center;
+}
+
+/* NOMBRE PRODUCT */
+
+
+#pascal-cart-body table.cart .cart_item .product-name a{
+    font-size:15px;
+    color: #525657;
+}
+
+#pascal-cart-body table.cart .cart_item .product-name .pascal-cart-thumbnail, #pascal-cart-body table.cart .cart_item .product-name .pascal-cart-name{
+    display: inline-block;
+}
+
+/* CANTIDAD */
+
+#pascal-cart-body table.cart .cart_item .product-quantity .quantity span{display: none;}
+#pascal-cart-body table.cart .cart_item .product-quantity .quantity input{
+    border: 2px solid #e2ebf2;
+    border-radius: 4px;
+}
+
+
+/* acciones */
+
+
+
+#pascal-cart-actions{
+    text-align: right;
+}
+
+
+#pascal-cart-update{
+    text-align: right;
+}
+
+
+/* cupones */
+#pascal-cart-coupons{
+    border: 1px solid #e3ecf3;
+    display: inline-block;
+    padding: 40px 30px 50px 30px;
+
+}
+#pascal-cart-coupons .coupon h4{
+    font-size: 24px;
+    line-height: 24px;
+    color: #2d2d2d;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin: 0;
+    
+}
+#pascal-cart-coupons .coupon h5{
+    font-size: 14px;
+    color: #453631;
+    text-align: left;
+    margin: 20px 0;
+}
+#pascal-cart-coupons .coupon input[type=text]{
+    border: solid 2px #f1ebd5;
+    background: #fff;
+    border-radius: 4px;
+    display: block;
+    box-shadow: none;
+    width: 80%;
+    margin-top: 15px;
+    color: #787878;
+    font-size: 13px;
+    letter-spacing: 0px;
+    padding: 10px;
+    margin-bottom: 17px;
+}
+
+#pascal-cart-total{
+    display: inline-block;
+       border: 1px solid #e3ecf3;
+    display: inline-block;
+    
 }

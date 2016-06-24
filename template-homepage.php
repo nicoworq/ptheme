@@ -40,6 +40,10 @@ wc_get_template_part('content', 'credit-cards');
                     $categories = get_terms($args);
                     $i = 0;
                     foreach ($categories as $cat) {
+                        $catEspecial = get_field('categoria_especial', $cat);
+                        if ($catEspecial) {
+                            continue;
+                        }
                         $linkClass = $i === 0 ? 'active' : '';
                         ?>
                         <li>
@@ -56,7 +60,10 @@ wc_get_template_part('content', 'credit-cards');
                 <?php
                 $i = 0;
                 foreach ($categories as $cat) {
-
+                    $catEspecial = get_field('categoria_especial', $cat);
+                    if ($catEspecial) {
+                        continue;
+                    }
                     $productsClass = $i === 0 ? 'active' : '';
                     ?>
                     <div class="category-list-products <?php echo $productsClass; ?>" data-category-slug="<?php echo $cat->slug; ?>">
@@ -431,6 +438,10 @@ wc_get_template_part('content', 'credit-cards');
                     $i = 0;
                     foreach ($categories as $cat) {
                         $linkClass = $i === 0 ? 'active' : '';
+                        $catEspecial = get_field('categoria_especial', $cat);
+                        if ($catEspecial) {
+                            continue;
+                        }
                         ?>
                         <li>
                             <a href="#" class="<?php echo $linkClass; ?>" data-category-slug="<?php echo $cat->slug; ?>"><?php echo $cat->name ?></a>
@@ -450,7 +461,10 @@ wc_get_template_part('content', 'credit-cards');
                     <?php
                     $i = 0;
                     foreach ($categories as $cat) {
-
+                        $catEspecial = get_field('categoria_especial', $cat);
+                        if ($catEspecial) {
+                            continue;
+                        }
                         $productsClass = $i === 0 ? 'active' : '';
                         ?>
                         <div class="category-list-products <?php echo $productsClass; ?>" data-category-slug="<?php echo $cat->slug; ?>">

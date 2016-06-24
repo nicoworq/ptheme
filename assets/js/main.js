@@ -237,7 +237,7 @@
          * ----------- */
 
 
-        $('#slider-worq-slides').slick({arrows: false, dots: true, appendDots: '#dots-container', slidesToShow: 1});
+        //$('#slider-worq-slides').slick({arrows: false, dots: true, appendDots: '#dots-container', slidesToShow: 1});
 
 
         /* -----------

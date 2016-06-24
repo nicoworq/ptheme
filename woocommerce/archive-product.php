@@ -53,17 +53,22 @@ function loop_columns() {
     return $category->parent === 0 ? 5 : 4;
 }
 
-$categoryImgThumbID = get_woocommerce_term_meta($category->term_id, 'thumbnail_id', true);
+$categoryImgThumbID = get_woocommerce_term_meta($idCategoryImg, 'thumbnail_id', true);
 $categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'shop_catalog');
+
+
 ?>
 
 
-<section id="archive-header" style="background-image: url(<?php echo $categoryImgSrc; ?>);">
+<section id="archive-header" style="background-image: url(<?php echo $categoryImgSrc[0]; ?>);">
 
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <h1><?php woocommerce_page_title(); ?></h1> 
+                <div id="archive-header-content">
+                     <h1><?php woocommerce_page_title(); ?></h1> 
+                </div>
+               
             </div>
         </div>
     </div>
