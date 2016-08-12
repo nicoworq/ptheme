@@ -18,8 +18,6 @@ require 'inc/class-storefront.php';
 //require 'inc/jetpack/class-storefront-jetpack.php';
 //require 'inc/customizer/class-storefront-customizer.php';
 
-
-
 require 'inc/storefront-functions.php';
 require 'inc/storefront-template-hooks.php';
 require 'inc/storefront-template-functions.php';

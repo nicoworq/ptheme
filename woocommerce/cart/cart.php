@@ -137,9 +137,6 @@ wc_print_notices();
 
             do_action('woocommerce_cart_contents');
             ?>
-
-
-
             <?php do_action('woocommerce_after_cart_contents'); ?>
         </tbody>
     </table>
@@ -159,8 +156,7 @@ wc_print_notices();
                     <?php do_action('woocommerce_cart_coupon'); ?>
                 </div>
             <?php } ?>
-        </div>
-        <div id="pascal-cart-total">
+        </div><div id="pascal-cart-total">
             <?php do_action('woocommerce_cart_actions'); ?>
 
             <?php do_action('woocommerce_cart_collaterals'); ?>
@@ -169,9 +165,7 @@ wc_print_notices();
     </div>
 
     <?php do_action('woocommerce_after_cart_table'); ?>
-
 </form>
-
 
 
 <?php do_action('woocommerce_after_cart'); ?>

@@ -33,52 +33,67 @@ get_header('shop');
 
 
 $category = get_queried_object();
-$catID = $category->term_id;
+
+if (isset($category->term_id)) {
+    $catID = $category->term_id;
+} else {
+    $catID = 0;
+}
 
 $isParent = TRUE;
-if ($category->parent === 0) {
+$isSpecial = FALSE;
+if (isset($category->parent) && $category->parent === 0) {
     //es padre
-
     $idCategoryImg = $category->term_id;
+
+    $isSpecial = get_field('categoria_especial', $category);
 } else {
     // no es padre
     $isParent = FALSE;
 
-    $idCategoryImg = $category->parent;
+    $idCategoryImg = isset($category->parent) ? $category->parent : 0;
 }
 add_filter('loop_shop_columns', 'loop_columns');
 
 function loop_columns() {
     $category = get_queried_object();
-    return $category->parent === 0 ? 5 : 4;
+    if (is_search()) {
+        return 5;
+    } else {
+        if (isset($category->parent)) {
+            return $category->parent === 0 ? 5 : 4;
+        } else {
+            return 4;
+        }
+    }
 }
 
-$categoryImgThumbID = get_woocommerce_term_meta($idCategoryImg, 'thumbnail_id', true);
-$categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'shop_catalog');
-
-
+if (is_search()) {
+    $background = "";
+} else {
+    $categoryImgThumbID = get_woocommerce_term_meta($idCategoryImg, 'thumbnail_id', true);
+    $categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'full');
+    $background = "background-image:url({$categoryImgSrc[0]})";
+}
 ?>
 
-
-<section id="archive-header" style="background-image: url(<?php echo $categoryImgSrc[0]; ?>);">
-
+<section id="archive-header" style="<?php echo $background; ?>">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
                 <div id="archive-header-content">
-                     <h1><?php woocommerce_page_title(); ?></h1> 
+                    <h1>
+                        <?php
+                        if (!$isSpecial) {
+                            worq_page_title();
+                        }
+                        ?>
+                    </h1> 
                 </div>
-               
             </div>
         </div>
     </div>
-
-
 </section>
-
-
-
-
 
 <?php
 /**
@@ -115,7 +130,6 @@ $categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'shop_catalog
                     <div class="archive-filter-order">
                         <?php
                         wc_get_template('loop/result-count.php');
-
                         woocommerce_catalog_ordering();
                         ?> 
                     </div>
@@ -162,9 +176,7 @@ $categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'shop_catalog
                      *
                      * @hooked woocommerce_get_sidebar - 10
                      */
-                    //do_action('woocommerce_sidebar');
-
-                    if (!$isParent) {
+                    if (!$isParent && !is_search()) {
                         get_sidebar('subcategorias');
                     }
                     ?>
@@ -172,7 +184,7 @@ $categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'shop_catalog
                     <div id="primary">
                         <?php woocommerce_product_loop_start(); ?>
 
-                        <?php //woocommerce_product_subcategories();     ?>
+                        <?php //woocommerce_product_subcategories();            ?>
 
 
 
@@ -180,7 +192,7 @@ $categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'shop_catalog
 
                             <?php wc_get_template_part('content', 'product'); ?>
 
-                        <?php endwhile; // end of the loop.         ?>
+                        <?php endwhile; // end of the loop.                ?>
 
                         <?php woocommerce_product_loop_end(); ?>
 
@@ -195,25 +207,25 @@ $categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'shop_catalog
 
                     </div>
 
-
-
-
-
                 </div>
             </div>
         </div>
-
-
-
     </section>
 
-
-
-
-
-
-
 <?php elseif (!woocommerce_product_subcategories(array('before' => woocommerce_product_loop_start(false), 'after' => woocommerce_product_loop_end(false)))) : ?>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="no-results-archive">
+                    <h2>Opss ! Lo sentimos</h2>
+                    <h3>No se han encontrado productos</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <?php wc_get_template('loop/no-products-found.php'); ?>
 

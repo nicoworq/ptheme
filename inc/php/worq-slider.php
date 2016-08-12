@@ -62,13 +62,51 @@ add_action('init', 'slide_home', 0);
 add_shortcode('slider-worq', 'mostrar_slider_worq');
 
 function mostrar_slider_worq() {
+
+    $isPromo = FALSE;
+
+    $slideClass = '';
+    if (is_page_template('template-homepage-promocional.php')) {
+        $isPromo = TRUE;
+        $slideClass = 'slide-promo';
+        $args = array(
+            'numberposts' => -1,
+            'post_type' => 'slide_home',
+            'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'activo',
+                    'value' => TRUE,
+                    'compare' => '=',
+                ),
+                array(
+                    'key' => 'home_promo',
+                    'value' => TRUE,
+                    'compare' => '=',
+                ),
+            )
+        );
+    } else {
+        $args = array(
+            'numberposts' => -1,
+            'post_type' => 'slide_home',
+            'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'activo',
+                    'value' => TRUE,
+                    'compare' => '=',
+                ),
+                array(
+                    'key' => 'home_promo',
+                    'value' => 0,
+                    'compare' => '=',
+                ),
+            )
+        );
+    }
+
     $detect = new Mobile_Detect;
-    $args = array(
-        'numberposts' => -1,
-        'post_type' => 'slide_home',
-        'meta_key' => 'activo',
-        'meta_value' => TRUE
-    );
 
     $slides = new WP_Query($args);
     ?>
@@ -85,12 +123,11 @@ function mostrar_slider_worq() {
                         $img_mobile = $img_desktop;
                     }
                     $imgBg = $detect->is_mobile() ? $img_mobile : $img_desktop;
-                    
+
                     $link = get_field('link_slide');
                     $linkHref = $link ? "href='{$link}'" : '#';
-                    
                     ?>
-                    <a href="<?php echo $linkHref ?>" class="slide-home" style="background-image: url(<?php echo $imgBg['url'] ?>);"></a>
+                    <a href="<?php echo $linkHref ?>" class="slide-home <?php echo $slideClass; ?>" style="background-image: url(<?php echo $imgBg['url'] ?>);"></a>
 
                 <?php endwhile; ?>
             </div>
@@ -139,7 +176,6 @@ if (function_exists("register_field_group")) {
                 'preview_size' => 'thumbnail',
                 'library' => 'all',
             ),
-     
             array(
                 'key' => 'field_56f971e196393',
                 'label' => 'Link slide',
@@ -153,14 +189,20 @@ if (function_exists("register_field_group")) {
                 'allow_null' => 0,
                 'multiple' => 0,
             ),
-           
-    
             array(
                 'key' => 'field_56f974b715091',
                 'label' => 'Activo',
                 'name' => 'activo',
                 'type' => 'true_false',
                 'message' => '',
+                'default_value' => 0,
+            ),
+            array(
+                'key' => 'field_home_promo_w',
+                'label' => 'Home Promocional',
+                'name' => 'home_promo',
+                'type' => 'true_false',
+                'message' => 'Tildar para mostrar en Home Promocional',
                 'default_value' => 0,
             ),
         ),

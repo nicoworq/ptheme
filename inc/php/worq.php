@@ -1,46 +1,163 @@
 <?php
 
+/*
+ * MOSTRAR % DESCUENTO
+ */
+
+add_filter('woocommerce_sale_price_html', 'woocommerce_custom_sales_price', 10, 2);
+
+function woocommerce_custom_sales_price($price, $product) {
+    $percentage = round(( ( $product->regular_price - $product->sale_price ) / $product->regular_price ) * 100);
+    return $price . sprintf(__('<span class="price-off"> %s off </span>', 'woocommerce'), $percentage . '%');
+}
+
+/*
+ * INPUT CREAR CUENTA CHEQUED
+ */
+
+add_filter('woocommerce_create_account_default_checked', function ($checked) {
+    return true;
+});
+
+/*
+ * CHECKOUT FIELDS
+ */
+
+add_filter('woocommerce_checkout_fields', 'editar_campos_checkout');
+
+function editar_campos_checkout($fields) {
+
+
+    unset($fields['billing']['billing_address_2']);
+    unset($fields['billing']['billing_country']);
+
+    unset($fields['shipping']['billing_address_2']);
+    unset($fields['shipping']['billing_country']);
+
+    /*
+      $order = array(
+      "billing_first_name",
+      "billing_last_name",
+      "billing_company",
+      "billing_email",
+      "billing_phone",
+      "billing_address_1",
+      "billing_city",
+      "billing_postcode",
+      "billing_state"
+      );
+      foreach ($order as $field) {
+      $ordered_fields[$field] = $fields["billing"][$field];
+      }
+
+      $fields["billing"] = $ordered_fields;
+     */
+
+    $fields['billing']['billing_state']['label'] = 'Provincia';
+    $fields['shipping']['billing_state']['label'] = 'Provincia';
+
+    //$fields['billing']['billing_email']['label'] = 'E-mail';
+    //$fields['shipping']['billing_email']['label'] = 'E-mail';
+    //$fields['billing']['billing_city']['class'] = array('form-row-first');
+    //$fields['shipping']['billing_city']['class'] = array('form-row-first');
+    //$fields['billing']['billing_postcode']['class'] = array('form-row-last');
+    //$fields['shipping']['billing_postcode']['class'] = array('form-row-last');
+    //$fields['billing']['billing_state']['class'] = array('form-row-wide');
+    //$fields['shipping']['billing_state']['class'] = array('form-row-wide');
+
+    return $fields;
+}
 
 /*
  * BREADCRUMBS
  */
 
 
-if ( ! function_exists( 'worq_breadcrumb' ) ) {
+if (!function_exists('worq_breadcrumb')) {
 
-	/**
-	 * Output the WooCommerce Breadcrumb.
-	 *
-	 * @param array $args
-	 */
-	function worq_breadcrumb( $args = array() ) {
-		$args = wp_parse_args( $args, apply_filters( 'woocommerce_breadcrumb_defaults', array(
-			'delimiter'   => '&nbsp;&#47;&nbsp;',
-			'wrap_before' => '<nav class="woocommerce-breadcrumb" ' . ( is_single() ? 'itemprop="breadcrumb"' : '' ) . '>',
-			'wrap_after'  => '</nav>',
-			'before'      => '',
-			'after'       => '',
-			'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' )
-		) ) );
+    /**
+     * Output the WooCommerce Breadcrumb.
+     *
+     * @param array $args
+     */
+    function worq_breadcrumb($args = array()) {
+        $args = wp_parse_args($args, apply_filters('woocommerce_breadcrumb_defaults', array(
+            'delimiter' => '&nbsp;&#47;&nbsp;',
+            'wrap_before' => '<nav class="woocommerce-breadcrumb" ' . ( is_single() ? 'itemprop="breadcrumb"' : '' ) . '>',
+            'wrap_after' => '</nav>',
+            'before' => '',
+            'after' => '',
+            'home' => _x('Home', 'breadcrumb', 'woocommerce')
+        )));
 
-		$breadcrumbs = new WC_Breadcrumb();
+        $breadcrumbs = new WC_Breadcrumb();
 
-		if ( $args['home'] ) {
-			$breadcrumbs->add_crumb( $args['home'], apply_filters( 'woocommerce_breadcrumb_home_url', home_url() ) );
-		}
+        if ($args['home']) {
+            $breadcrumbs->add_crumb($args['home'], apply_filters('woocommerce_breadcrumb_home_url', home_url()));
+        }
 
-		$args['breadcrumb'] = $breadcrumbs->generate();
+        $args['breadcrumb'] = $breadcrumbs->generate();
 
-		wc_get_template( 'global/breadcrumb-no-container.php', $args );
-	}
+        wc_get_template('global/breadcrumb-no-container.php', $args);
+    }
+
 }
+
+
+/*
+ * PAGE TITLE
+ */
+
+
+if (!function_exists('worq_page_title')) {
+
+    /**
+     * woocommerce_page_title function.
+     *
+     * @param  bool $echo
+     * @return string
+     */
+    function worq_page_title($echo = true) {
+
+        if (is_search()) {
+
+
+            if (have_posts()) {
+                $page_title = sprintf('Para tu búsqueda: <span> &ldquo;%s&rdquo; </span> encontramos los siguientes resultados:', get_search_query());
+            } else {
+                $page_title = sprintf('Lo sentimos, pero no encontramos resultados para tu búsqueda <span> &ldquo;%s&rdquo; </span>', get_search_query());
+            }
+
+
+
+            if (get_query_var('paged'))
+                $page_title .= sprintf(__('&nbsp;&ndash; Page %s', 'woocommerce'), get_query_var('paged'));
+        } elseif (is_tax()) {
+
+            $page_title = single_term_title("", false);
+        } else {
+
+            $shop_page_id = wc_get_page_id('shop');
+            $page_title = get_the_title($shop_page_id);
+        }
+
+        $page_title = apply_filters('woocommerce_page_title', $page_title);
+
+        if ($echo)
+            echo $page_title;
+        else
+            return $page_title;
+    }
+
+}
+
 
 
 /*
  * IMAGE SIZE BLOG
  */
 
-add_image_size('blog-thumbnail', 280, 150,TRUE);
+add_image_size('blog-thumbnail', 280, 150, TRUE);
 
 
 /*

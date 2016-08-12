@@ -14,10 +14,48 @@
  * @package 	WooCommerce/Templates
  * @version     2.0.0
  */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
 }
-
 ?>
-<p class="woocommerce-info"><?php _e( 'No products were found matching your selection.', 'woocommerce' ); ?></p>
+
+
+<div class="no-results">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+               <!-- <p class="woocommerce-info"><?php _e('No products were found matching your selection.', 'woocommerce'); ?></p>-->
+
+            </div>
+        </div>
+    </div>
+
+    <?php
+    global $categories;
+
+    //excluir marcas
+    $marcas = get_term_by('slug', 'marcas', 'product_cat');
+
+    //excluir promos
+    $promociones = get_term_by('slug', 'promociones', 'product_cat');
+
+
+    $args = array(
+        'taxonomy' => 'product_cat',
+        'hide_empty' => false,
+        'parent' => 0,
+        'exclude' => array($marcas->term_id, $promociones->term_id)
+    );
+    $categories = get_terms($args);
+       
+    ?>
+    
+    
+    <h2 class="no-results-title">Te recomendamos que busques por categorías</h2>
+    
+    <?php wc_get_template_part('content', 'products-bottom');?>
+    <?php wc_get_template_part('content', 'navigation-bottom'); ?>
+</div>
+
+
+

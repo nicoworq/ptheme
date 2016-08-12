@@ -246,31 +246,28 @@
 
         $('#nav-secondary-toggle-bt').click(function () {
 
+            var btMenu = $(this);
             var secondaryNav = $('#secondary-navigation')
-            var navCols = secondaryNav.find('.col-nav-menu');
+            var navCols = secondaryNav.find('.col-nav-menu , #secondary-nav-special-cats li');
             var navColsLi = navCols.find('.sub-menu li');
             if (!secondaryNav.hasClass('visible')) {
-
+                btMenu.addClass('active');
                 secondaryNav.velocity('transition.slideDownIn', 200, function () {
                     secondaryNav.addClass('visible');
                 });
 
                 navCols.velocity('transition.expandIn', {
                     delay: 50,
-                    duration: 100,
-                    stagger: 200,
+                    duration: 80,
+                    stagger: 100,
                     drag: true,
                     easing: "easeInOutBounce"
                 });
-                /*
-                 navColsLi.velocity('transition.expandIn', {
-                 delay: 0,
-                 duration: 30,
-                 stagger: 20,
-                 easing: "easeInOut"
-                 });
-                 */
+
             } else {
+
+                btMenu.removeClass('active');
+
                 secondaryNav.velocity('transition.slideUpOut', 200, function () {
                     secondaryNav.removeClass('visible');
                 });

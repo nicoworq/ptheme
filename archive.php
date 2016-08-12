@@ -37,7 +37,8 @@ get_header();
 
                 </main><!-- #main -->
             </section><!-- #primary -->
-            <?php do_action('storefront_sidebar'); ?>
+            <?php
+            do_action('storefront_sidebar'); ?>
         </div>
     </div>
 </div>

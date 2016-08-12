@@ -15,15 +15,14 @@
  * @package WooCommerce/Templates
  * @version 2.6.1
  */
-
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
 global $product;
 
 // Ensure visibility
-if ( empty( $product ) || ! $product->is_visible() ) {
+if (empty($product) || !$product->is_visible()) {
     return;
 }
 
@@ -94,7 +93,15 @@ $classes[] = 'pascal-product';
                 $categories = wp_get_post_terms(get_the_ID(), 'product_cat');
 
                 foreach ($categories as $cat) {
-                    echo "<span class='pascal-product-category'>{$cat->name}</span>";
+                    $catEspecial = get_field('categoria_especial', $cat);
+                    
+                    $classCat = '';
+                    if ($catEspecial) {                       
+                        $colorCat = get_field('color_categoria',$cat);
+                        echo "<span class='pascal-product-category special' style='background-color:{$colorCat}' title='{$cat->name}'></span>";
+                    } else {
+                        echo "<span class='pascal-product-category'>{$cat->name}</span>";
+                    }
                 }
                 ?>
             </div>

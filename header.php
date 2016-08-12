@@ -33,7 +33,7 @@
                                             'theme_location' => 'primary',
                                             'container' => '',
                                             'menu_id' => 'nav-primary',
-                                            //'walker'=> new example_nav_walker
+                                        //'walker'=> new example_nav_walker
                                         )
                                 );
                                 ?>
@@ -99,9 +99,6 @@
                                         <?php the_widget('WC_Widget_Cart', 'title='); ?>
                                     </li>
                                 </ul>
-
-
-
                             </div>
 
                         </div>
@@ -109,20 +106,45 @@
                     </div>
                 </div>
                 <nav id="secondary-navigation" role="navigation" aria-label="<?php esc_html_e('Secondary Navigation', 'storefront'); ?>">                    
+
+
                     <div class="container">
-                        <div class="nav-secondary-triangle"></div>
                         <div class="row">
                             <div class="col-md-12">
-                                <?php
-                                wp_nav_menu(
-                                        array(
-                                            'theme_location' => 'secondary',
-                                            'container' => '',
-                                            'menu_id' => 'nav-secondary-head',
-                                            'menu_class' => 'nav-secondary'
-                                        )
-                                );
-                                ?>
+                                <div id="secondary-nav-container">
+                                    <?php
+                                    wp_nav_menu(
+                                            array(
+                                                'theme_location' => 'secondary',
+                                                'container' => '',
+                                                'menu_id' => 'nav-secondary-head',
+                                                'menu_class' => 'nav-secondary'
+                                            )
+                                    );
+
+                                    $args = array(
+                                        'taxonomy' => 'product_cat',
+                                        'hide_empty' => 0
+                                    );
+                                    $c = get_categories($args);
+
+                                    $catsMagic = array();
+                                    foreach ($c as $cat) {
+                                        $catEspecial = get_field('categoria_especial', $cat);
+                                        if ($catEspecial) {
+                                            $catsMagic[] = $cat;
+                                        }
+                                    }
+                                    ?><ul id="secondary-nav-special-cats">
+                                        <?php
+                                        foreach ($catsMagic as $cat) {
+                                            $color = get_field('color_categoria', $cat);
+                                            $link = esc_url(get_term_link($cat));
+                                            echo "<li><a href='{$link}' style='background-color:{$color}'>{$cat->name}</a></li>";
+                                        }
+                                        ?>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -141,13 +163,13 @@
             ?>
 
             <div id="content" class="site-content" tabindex="-1">
-               
-            
-                    <?php
-                    /**
-                     * Functions hooked in to storefront_content_top
-                     *
-                     * @hooked woocommerce_breadcrumb - 10
-                     */
-                    do_action('storefront_content_top');
-                    
+
+
+                <?php
+                /**
+                 * Functions hooked in to storefront_content_top
+                 *
+                 * @hooked woocommerce_breadcrumb - 10
+                 */
+                do_action('storefront_content_top');
+                
