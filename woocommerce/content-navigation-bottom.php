@@ -11,7 +11,28 @@
                             'menu_class' => 'nav-secondary'
                         )
                 );
-                ?>
+                $args = array(
+                    'taxonomy' => 'product_cat',
+                    'hide_empty' => 0
+                );
+                $c = get_categories($args);
+
+                $catsMagic = array();
+                foreach ($c as $cat) {
+                    $catEspecial = get_field('categoria_especial', $cat);
+                    if ($catEspecial) {
+                        $catsMagic[] = $cat;
+                    }
+                }
+                ?><ul class="secondary-nav-special-cats">
+                    <?php
+                    foreach ($catsMagic as $cat) {
+                        $color = get_field('color_categoria', $cat);
+                        $link = esc_url(get_term_link($cat));
+                        echo "<li><a href='{$link}' style='background-color:{$color}'>{$cat->name}</a></li>";
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
     </div>

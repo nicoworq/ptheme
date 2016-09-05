@@ -91,7 +91,9 @@
         $urlThumb = wp_get_attachment_image_url(get_post_thumbnail_id(), 'full');
         ?>
 
-        <div class="entry-thumbnail" style="background-image: url(<?php echo $urlThumb; ?>);"></div>
+        <div class="entry-thumbnail">
+            <div class="entry-thumbnail-bg"  style="background-image: url(<?php echo $urlThumb; ?>);"></div>
+        </div>
 
         <?php
         the_content(
@@ -107,9 +109,9 @@
         ?>
     </div><!-- .entry-content -->
 
-<?php
-storefront_init_structured_data();
-?>
+    <?php
+    storefront_init_structured_data();
+    ?>
 
 </article><!-- #post-## -->
 

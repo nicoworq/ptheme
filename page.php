@@ -10,9 +10,11 @@
  * @package storefront
  */
 get_header();
+global $post;
+$post_slug = $post->post_name;
 ?>
 
-<div id="primary" class="content-area worq-page">
+<div id="primary" class="content-area worq-page <?php echo $post_slug; ?>">
     <main id="main" class="site-main" role="main">
 
         <?php
@@ -37,7 +39,7 @@ get_header();
 
 <div class="clearfix"></div>
 <?php
-if (!is_cart()) {
+if (!is_cart() && $post_slug != 'mi-cuenta') {
     do_action('storefront_sidebar');
 }
 get_footer();

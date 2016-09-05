@@ -112,61 +112,69 @@
                 <div class="col-md-12">
                     <div class="footer-inner">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
+                                <div class="newsletter-footer">
+                                    <h3 class="form-newsletter-title">Ofertas y descuentos</h3>
+                                    <form id="form-suscribir-footer">
+                                        <input type="hidden" name="suscribir" value="<?php echo wp_create_nonce('news-nonce') ?>"/>
+                                        <input type="hidden" name="action" value="newsletter"/>
+                                        <input type="text" name="sexo" placeholder="Sexo" value=""/>
+                                        <input type="email" placeholder="Ingresa tu email..." name="email"/>
+                                        <button class="bt-site bt-site-violet">Suscribirme</button>
+                                    </form><br/>
+                                    <h5 id="form-suscribe-label">Recibí descuentos especiales y ofertas exclusivas en tu email.</h5>
+                                </div>
 
-                                <h3 class="form-newsletter-title">Ofertas y descuentos</h3>
-                                <form id="form-suscribir-footer">
-                                    <input type="hidden" name="suscribir" value="<?php echo wp_create_nonce('news-nonce') ?>"/>
-                                    <input type="hidden" name="action" value="newsletter"/>
-                                    <input type="text" name="sexo" placeholder="Sexo" value=""/>
-                                    <input type="email" placeholder="Ingresa tu email..." name="email"/>
-                                    <button class="bt-site bt-site-violet">Suscribirme</button>
-                                </form><br/>
-                                <h5 id="form-suscribe-label">Recibí descuentos especiales y ofertas exclusivas en tu email.</h5>
 
-                                <a id="fiscal-data" href="#">
+                                <a href="#" class="client-atention client-atention-mobile">
+                                    Atención al cliente
+                                    <span>+54(341)424-2129 <br/> +54(341)449-3917</span>
+                                </a>
+
+
+                                <a class="fiscal-data fiscal-data-desktop" href="#">
                                     <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/data-fiscal.jpg'; ?>" alt="Data Fiscal"/>
                                 </a>
 
                             </div>
-                            <div class="col-md-6">
-                                <ul class="nav-footer color">
+                            <div class="col-md-7">
+                                <ul class="nav-footer color bottom-nav">
                                     <ul>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?php echo get_site_url(); ?>">
                                                 Home
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?php echo get_permalink(get_page_by_title('Mi Cuenta')) ?>">
                                                 Mis pedidos
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?php echo get_permalink(get_page_by_title('Carro')) ?>">
                                                 Carrito
                                             </a>
                                         </li>
                                     </ul>
-                                </ul><ul class="nav-footer">
+                                </ul><ul class="nav-footer bottom-nav">
                                     <ul>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?php echo get_permalink(get_page_by_title('Institucional')) ?>">
                                                 Institucional
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?php echo get_permalink(get_page_by_title('Como Comprar')) ?>">
                                                 Cómo comprar
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?php echo get_permalink(get_page_by_title('Terminos y condiciones')) ?>">
                                                 Términos y condiciones
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?php echo get_permalink(get_page_by_title('Sucursales')) ?>">
                                                 Sucursales
                                             </a>
                                         </li>
@@ -174,9 +182,9 @@
                                 </ul>
                                 <ul class="nav-footer last-col">
                                     <li>
-                                        <a href="" class="client-atention">
+                                        <a href="#" class="client-atention client-atention-desktop">
                                             Atención al cliente
-                                            <span>0800-444-3567</span>
+                                            <span>+54(341)424-2129 +54(341)449-3917</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -190,17 +198,24 @@
                 <div class="col-md-6">
                     <div class="copyright">
 
-                        Copyright - 2000 - 2016 www.pascalonline.com.ar, TODOS LOS DERECHOS RESERVADOS.<br/>
-                        Está prohibida la reproducción total o parcial, sin la expresa autorización de la administradora de la tienda virtual.<br/>
-                        NS3 INTERNET S.A. - CUIT: 30-71164420-9 – Suipacha 1111 - Piso 11 (C1008AAW) Capital Federal – Argentina.
+                        <a class="fiscal-data fiscal-data-mobile" href="#">
+                            <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/data-fiscal.jpg'; ?>" alt="Data Fiscal"/>
+                        </a>
+
+                        <p>
+                            Copyright - 2000 - 2016 www.pascalonline.com.ar, TODOS LOS DERECHOS RESERVADOS.<br/>
+                            Está prohibida la reproducción total o parcial, sin la expresa autorización de la administradora de la tienda virtual.<br/>
+                        </p>
+
+
 
 
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="worq">
-                        <a href="http://worq.com.ar">Desarrolla WORQ</a> -
-                        <a href="http://worq.com.ar">Impulsa Proyecto Beta</a>
+                        <a href="https://worq.com.ar" class="footer-worq">Desarrolla WORQ</a> -
+                        <a href="http://proyectobeta.com.ar">Impulsa Proyecto Beta</a>
                     </div>
                 </div>
             </div>

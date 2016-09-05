@@ -15,12 +15,7 @@ $storefront_version = $theme['Version'];
  * Initialize all the things.
  */
 require 'inc/class-storefront.php';
-//require 'inc/jetpack/class-storefront-jetpack.php';
-//require 'inc/customizer/class-storefront-customizer.php';
-
-require 'inc/storefront-functions.php';
-require 'inc/storefront-template-hooks.php';
-require 'inc/storefront-template-functions.php';
+require 'inc/storefront-legacy.php';
 
 
 require 'inc/php/worq.php';
@@ -31,8 +26,9 @@ require 'inc/php/mobile-detect.php';
 
 if (is_woocommerce_activated()) {
     require 'inc/woocommerce/class-storefront-woocommerce.php';
-    require 'inc/woocommerce/storefront-woocommerce-template-hooks.php';
-    require 'inc/woocommerce/storefront-woocommerce-template-functions.php';
+    require 'inc/woocommerce/storefront-woocommerce-legacy.php';
+
+ 
 }
 
 if (is_admin()) {

@@ -34,8 +34,8 @@
                             $image = get_field('imagen');
                             ?>
 
-                            <a class="destacado-home" id="destacado-secundario1" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
-                                <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
+                            <a class="destacado-home" id="destacado-secundario1" style="background-image:url(<?php echo $image['url'] ?>);" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+
                             </a>
 
                             <?php
@@ -77,8 +77,8 @@
                                     $image = get_field('imagen');
                                     ?>
 
-                                    <a class="destacado-home" id="destacado-secundario2" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
-                                        <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
+                                    <a class="destacado-home" id="destacado-secundario2" style="background-image:url(<?php echo $image['url'] ?>);" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                                        
                                     </a>
 
                                     <?php
@@ -117,8 +117,8 @@
                                     $image = get_field('imagen');
                                     ?>
 
-                                    <a class="destacado-home" id="destacado-secundario3" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
-                                        <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
+                                    <a class="destacado-home" id="destacado-secundario3" style="background-image:url(<?php echo $image['url'] ?>);" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                                        
                                     </a>
 
                                     <?php
@@ -158,8 +158,8 @@
                                 $image = get_field('imagen');
                                 ?>
 
-                                <a class="destacado-home" id="destacado-secundario4" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
-                                    <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
+                                <a class="destacado-home" id="destacado-secundario4" style="background-image:url(<?php echo $image['url'] ?>);" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                                    
                                 </a>
 
                                 <?php

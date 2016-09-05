@@ -8,10 +8,26 @@
     $(document).ready(function () {
 
 
+
+        /* -----------
+         *  BACK TOP
+         * ----------- */
+
+        $("#back-top").click(function () {
+            $('html, body').animate({
+                scrollTop: $("body").offset().top
+            }, 2000);
+        });
+
+
+
         /* -----------
          *  FORM SUSCRIBIR NEWS
          * ----------- */
-
+        $('form input').keypress(function () {
+            $(this).removeClass('input-error');
+            $(this).parent().removeClass('input-error');
+        });
 
         $('#form-suscribir-blog, #form-suscribir-footer').submit(function (event) {
             event.preventDefault();
@@ -91,6 +107,24 @@
         });
 
 
+        function debounce(func, wait, immediate) {
+            var timeout;
+            return function () {
+                var context = this, args = arguments;
+                var later = function () {
+                    timeout = null;
+                    if (!immediate)
+                        func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow)
+                    func.apply(context, args);
+            };
+        }
+        ;
+
 
         /* -----------
          *  MAPA
@@ -150,7 +184,14 @@
         ];
 
         if ($('#offices-map').length > 0) {
-            var mapOptions = {center: new google.maps.LatLng(-32.9484227, -60.6848268), zoom: 13, mapTypeId: google.maps.MapTypeId.ROADMAP, scrollwheel: false, disableDefaultUI: true};
+
+
+            var zoom = 13;
+            if ($(window).width() < 991) {
+                zoom = 12;
+            }
+
+            var mapOptions = {center: new google.maps.LatLng(-32.9484227, -60.6848268), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP, scrollwheel: false, disableDefaultUI: true};
             var map = new google.maps.Map(document.getElementById("offices-map"), mapOptions);
 
             var markers = [];
@@ -195,16 +236,26 @@
 
 
 
-            $('.office-data-close').click(function () {
+            $('.office-data-close , #offices-mobile-back').click(function () {
                 disableBounce();
                 $('.office-data').stop().velocity('transition.slideLeftOut', 150, function () {
                     $('.office-data').removeClass('visible');
                 });
 
+                if ($(window).width() < 991) {
+                    $('#offices-mobile-back').fadeOut();
+                }
+
             });
 
 
             function showOfficeData(sucursal) {
+
+                if ($(window).width() < 991) {
+                    $('#offices-mobile-back').fadeIn();
+                }
+
+
 
                 if (!$('.office-data').hasClass('visible')) {
                     $('.office-data').stop().velocity('transition.slideLeftIn', 250, function () {
@@ -218,19 +269,59 @@
                 $('#office-email').html(sucursal.email);
                 $('#office-hours').html(sucursal.horarios);
             }
-
-
-
         }
-
-
-
 
         /* -----------
          *  SLIDER MARCAS
          * ----------- */
 
-        $('#home-brands-list').slick({arrows: true, dots: false, slidesToShow: 6, autoplay: true, nextArrow: '#brand-arrow-next', prevArrow: '#brand-arrow-prev', lazyLoad: 'progressive'});
+        $('#home-brands-list').slick({
+            arrows: true,
+            dots: false,
+            slidesToShow: 6,
+            autoplay: true,
+            nextArrow: '#brand-arrow-next',
+            prevArrow: '#brand-arrow-prev',
+            lazyLoad: 'progressive',
+            responsive: [
+                {breakpoint: 1300,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                },
+                {breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                },
+                {breakpoint: 640,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                },
+                {breakpoint: 460,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+
+        });
+
+
+        /* -----------
+         *  SLIDER TARJETAS
+         * ----------- */
+
+        $('.credit-card-slider').slick({
+            arrows: false,
+            dots: false,
+            autoplaySpeed:2000,
+            slidesToShow: 1,
+            autoplay: true,            
+            lazyLoad: 'progressive'
+
+        });
 
         /* -----------
          *  SLIDER HOME
@@ -244,14 +335,28 @@
          *  SECONDARY MENU DISPLAY
          * ----------- */
 
+        $('#secondary-navigation-back , #secondary-navigation-back2, #secondary-nav-close').click(function () {
+
+            $('#nav-secondary-toggle-bt').click();
+        });
+
         $('#nav-secondary-toggle-bt').click(function () {
 
             var btMenu = $(this);
             var secondaryNav = $('#secondary-navigation')
-            var navCols = secondaryNav.find('.col-nav-menu , #secondary-nav-special-cats li');
+            var navCols = secondaryNav.find('.col-nav-menu , #secondary-nav-special-cats-header li');
             var navColsLi = navCols.find('.sub-menu li');
+            var menuBack = $('#secondary-navigation-back');
             if (!secondaryNav.hasClass('visible')) {
+
+                if ($(window).width() < 640) {
+                    $('body').addClass('no-scroll');
+                }
+
                 btMenu.addClass('active');
+                menuBack.velocity('fadeIn', function () {
+                    menuBack.addClass('visible');
+                });
                 secondaryNav.velocity('transition.slideDownIn', 200, function () {
                     secondaryNav.addClass('visible');
                 });
@@ -266,6 +371,13 @@
 
             } else {
 
+                if ($(window).width() < 640) {
+                    $('body').removeClass('no-scroll');
+                }
+
+                menuBack.velocity('fadeOut', function () {
+                    menuBack.removeClass('visible');
+                });
                 btMenu.removeClass('active');
 
                 secondaryNav.velocity('transition.slideUpOut', 200, function () {
@@ -277,6 +389,96 @@
 
 
         });
+
+        /* -----------
+         *  SECONDARY NAV SUB MENU MOBILE
+         * ----------- */
+
+        $('.nav-secondary li .sub-menu li a').click(function (event) {
+
+            if ($(window).width() < 640) {
+
+                var subMenu = $(this);
+
+                if (subMenu.siblings('.sub-menu').length) {
+                    event.preventDefault();
+                }
+
+                if (subMenu.hasClass('active')) {
+
+                    subMenu.siblings('.sub-menu').fadeOut(100);
+                    subMenu.removeClass('active');
+                    return false;
+                }
+
+                $('.nav-secondary li .sub-menu li a').removeClass('active');
+                subMenu.addClass('active');
+
+                if ($('.nav-secondary li .sub-menu li .sub-menu:visible').length) {
+
+                    $('.nav-secondary li .sub-menu li .sub-menu:visible').fadeOut(100, function () {
+                        subMenu.siblings('.sub-menu').fadeIn(200);
+
+                    });
+                } else {
+
+                    subMenu.siblings('.sub-menu').fadeIn(200);
+                }
+
+
+            }
+
+        });
+
+
+        /* -----------
+         *  HEADER FIXED
+         * ----------- */
+
+        /*
+         * SCROLL SHOW NAV
+         */
+
+
+        var myEfficientFn = debounce(function () {
+            var scrolledDistance = $(window).width() > 768 ? 600 : 200;
+
+            var scrollTop = $(document).scrollTop();
+            var body = $('body');
+            if (scrollTop >= scrolledDistance) {
+                body.addClass('nav-fixed');
+            } else {
+                body.removeClass('nav-fixed');
+            }
+
+
+            /* back top display*/
+
+            var scrolledDistanceBackTop = 1000;
+            var backTop = $('#back-top');
+            if (scrollTop >= scrolledDistanceBackTop) {
+
+                if (!backTop.hasClass('visible')) {
+                    backTop.velocity('fadeIn');
+                    backTop.addClass('visible');
+                }
+
+            } else {
+                if (backTop.hasClass('visible')) {
+                    backTop.velocity('fadeOut');
+                    backTop.removeClass('visible');
+                }
+
+            }
+
+
+        }, 10);
+
+        window.addEventListener('scroll', myEfficientFn);
+
+
+
+
 
         /* -----------
          *  CATEGORY PREVIEW HOME

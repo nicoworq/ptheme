@@ -31,15 +31,14 @@
                 $image_hover = get_field('imagen_hover');
                 ?>
 
-                <a class="destacado-home" id="destacado-primario1" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                <a class="destacado-home" id="destacado-primario1" style="background-image: url(<?php echo $image['url'] ?>);" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
                     <?php
                     if ($image_hover) {
                         ?>
-                        <div class="destacado-home-img-hover">
-                            <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                        <div class="destacado-home-img-hover" style="background-image: url(<?php echo $image_hover['url'] ?>);">
+
                         </div>
-                    <?php } ?>
-                    <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
+                    <?php } ?>                    
                 </a>
 
                 <?php
@@ -83,15 +82,15 @@
                         $image_hover = get_field('imagen_hover');
                         ?>
 
-                        <a class="destacado-home" id="destacado-primario2" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                        <a class="destacado-home" id="destacado-primario2" style="background-image: url(<?php echo $image['url'] ?>);" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
                             <?php
                             if ($image_hover) {
                                 ?>
-                                <div class="destacado-home-img-hover">
-                                    <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                                <div class="destacado-home-img-hover" style="background-image: url(<?php echo $image_hover['url'] ?>);">
+
                                 </div>
                             <?php } ?>
-                            <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
+
                         </a>
 
                         <?php
@@ -131,15 +130,15 @@
                         $image_hover = get_field('imagen_hover');
                         ?>
 
-                        <a class="destacado-home" id="destacado-primario3" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                        <a class="destacado-home" id="destacado-primario3" style="background-image: url(<?php echo $image['url'] ?>);" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
                             <?php
                             if ($image_hover) {
                                 ?>
-                                <div class="destacado-home-img-hover">
-                                    <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                                <div class="destacado-home-img-hover" style="background-image: url(<?php echo $image_hover['url'] ?>);">
+
                                 </div>
                             <?php } ?>
-                            <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
+
                         </a>
 
                         <?php
@@ -181,15 +180,15 @@
                         $image_hover = get_field('imagen_hover');
                         ?>
 
-                        <a class="destacado-home" id="destacado-primario4" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                        <a class="destacado-home" id="destacado-primario4"  style="background-image: url(<?php echo $image['url'] ?>);" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
                             <?php
                             if ($image_hover) {
                                 ?>
-                                <div class="destacado-home-img-hover">
-                                    <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                                <div class="destacado-home-img-hover"  style="background-image: url(<?php echo $image_hover['url'] ?>);">
+
                                 </div>
                             <?php } ?>
-                            <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
+
                         </a>
 
                         <?php
@@ -229,15 +228,15 @@
                         $image_hover = get_field('imagen_hover');
                         ?>
 
-                        <a class="destacado-home" id="destacado-primario5" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
+                        <a class="destacado-home" id="destacado-primario5" style="background-image: url(<?php echo $image['url'] ?>);" href="<?php echo get_field('link'); ?>" title="<?php the_title(); ?>">
                             <?php
                             if ($image_hover) {
                                 ?>
-                                <div class="destacado-home-img-hover">
-                                    <img src="<?php echo $image_hover['url'] ?>" alt="<?php the_title(); ?>"/>
+                                <div class="destacado-home-img-hover" style="background-image: url(<?php echo $image_hover['url'] ?>);">
+                                    
                                 </div>
                             <?php } ?>
-                            <img src="<?php echo $image['url'] ?>" alt="<?php the_title(); ?>"/>
+                          
                         </a>
 
                         <?php

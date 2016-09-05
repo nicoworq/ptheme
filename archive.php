@@ -13,19 +13,13 @@ get_header();
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <section id="primary" class="content-area archive">
+            <section id="primary" class="content-area blog-page">
                 <main id="main" class="site-main" role="main">
 
-                    <?php if (have_posts()) : ?>
+                    <?php
+                    if (have_posts()) :
 
-                        <header class="page-header">
-                            <?php
-                            the_archive_title('<h1 class="page-title">', '</h1>');
-                            the_archive_description('<div class="taxonomy-description">', '</div>');
-                            ?>
-                        </header><!-- .page-header -->
 
-                        <?php
                         get_template_part('loop');
 
                     else :
@@ -37,8 +31,7 @@ get_header();
 
                 </main><!-- #main -->
             </section><!-- #primary -->
-            <?php
-            do_action('storefront_sidebar'); ?>
+            <?php do_action('storefront_sidebar'); ?>
         </div>
     </div>
 </div>
@@ -46,5 +39,4 @@ get_header();
 
 
 <?php
-
 get_footer();

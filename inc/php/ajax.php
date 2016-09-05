@@ -46,8 +46,7 @@ function suscribir_newsletter() {
     $replyName = 'Contacto';
 
 
-    $email_body = "<h3>Nueva Suscripcion a Newsletter</h3>
-                                       
+    $email_body = "<h3>Nueva Suscripcion a Newsletter Pascal</h3>                                       
                     <p>Email: <b>{$email}</b></p>";
 
     $sent = send_email($to, $toName, $toBCC, $toBCCName, $reply, $replyName, $email_body);
@@ -61,7 +60,6 @@ function suscribir_newsletter() {
 }
 
 function enviar_mail_contacto() {
-
 
     header('Content-type: application/json');
 
@@ -105,7 +103,7 @@ function enviar_mail_contacto() {
     $replyName = 'Contacto';
 
 
-    $email_body = "<h3>Nueva Consulta desde el Formulario Web</h3>
+    $email_body = "<h3>Nueva Consulta desde el Formulario Web Pascal</h3>
                     <p>Nombre: <b>{$nombre}</b> </p>                    
                     <p>Email: <b>{$email}</b></p>
                     <p>Telefono: <b>{$telefono}</b></p>

@@ -4,11 +4,15 @@
  * MOSTRAR % DESCUENTO
  */
 
-add_filter('woocommerce_sale_price_html', 'woocommerce_custom_sales_price', 10, 2);
+add_filter('woocommerce_get_price_html', 'editar_price_html_sale', 100, 2);
 
-function woocommerce_custom_sales_price($price, $product) {
-    $percentage = round(( ( $product->regular_price - $product->sale_price ) / $product->regular_price ) * 100);
-    return $price . sprintf(__('<span class="price-off"> %s off </span>', 'woocommerce'), $percentage . '%');
+function editar_price_html_sale($price, $product) {
+
+    if ($product->is_on_sale()) {
+
+        return str_replace('<del>', ' <del>Antes', $price);
+    }
+    return $price;
 }
 
 /*
@@ -128,8 +132,6 @@ if (!function_exists('worq_page_title')) {
                 $page_title = sprintf('Lo sentimos, pero no encontramos resultados para tu búsqueda <span> &ldquo;%s&rdquo; </span>', get_search_query());
             }
 
-
-
             if (get_query_var('paged'))
                 $page_title .= sprintf(__('&nbsp;&ndash; Page %s', 'woocommerce'), get_query_var('paged'));
         } elseif (is_tax()) {
@@ -169,7 +171,7 @@ add_filter('wp_nav_menu_items', 'worq_login_menu_link', 10, 2);
 function worq_login_menu_link($items, $args) {
     if ($args->theme_location == 'primary') {
         if (is_user_logged_in()) {
-            $items .= '<li class="login-menu-item"><a href="' . wp_logout_url() . '">Salir</a></li>';
+            $items .= '<li class="login-menu-item"><a href="' . get_permalink(get_page_by_title('Mi Cuenta')) . '">Mi Cuenta</a></li>';
         } else {
             $items .= '<li class="login-menu-item"><a href="' . get_permalink(get_page_by_title('Mi Cuenta')) . '">Ingresar</a></li>';
         }

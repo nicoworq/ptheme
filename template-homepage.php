@@ -18,6 +18,7 @@ get_header();
 do_shortcode('[slider-worq]');
 
 wc_get_template_part('content', 'credit-cards');
+wc_get_template_part('content', 'back-top');
 ?>
 
 
@@ -33,13 +34,13 @@ wc_get_template_part('content', 'credit-cards');
 
                     //excluir promos
                     $promociones = get_term_by('slug', 'promociones', 'product_cat');
-                    
+
 
                     $args = array(
                         'taxonomy' => 'product_cat',
                         'hide_empty' => false,
                         'parent' => 0,
-                        'exclude' => array($marcas->term_id , $promociones->term_id)
+                        'exclude' => array($marcas->term_id, $promociones->term_id)
                     );
                     $categories = get_terms($args);
                     $i = 0;
@@ -143,7 +144,7 @@ wc_get_template_part('content', 'credit-cards');
             $image = wp_get_attachment_url($thumbnail_id);
             $link = get_term_link($brand);
             ?>
-            <a href="<?php echo $link; ?>" class="pascal-brand"  >
+            <a href="<?php echo $link; ?>" class="pascal-brand">
                 <div class="pascal-brand-bg" style="background-image: url(<?php echo $image; ?>);"></div>
             </a>
             <?php

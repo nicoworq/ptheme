@@ -85,8 +85,8 @@
         $urlThumb = wp_get_attachment_image_url(get_post_thumbnail_id(), 'full');
         ?>
 
-        <a href="<?php the_permalink(); ?>" class="entry-thumbnail" style="background-image: url(<?php echo $urlThumb; ?>);">
-
+        <a href="<?php the_permalink(); ?>" class="entry-thumbnail">
+            <div class="entry-thumbnail-bg"  style="background-image: url(<?php echo $urlThumb; ?>);"></div>
         </a>
 
         <a href="<?php the_permalink(); ?>" class="entry-excerpt">

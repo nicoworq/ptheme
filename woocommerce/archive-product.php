@@ -75,19 +75,25 @@ if (is_search()) {
     $categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'full');
     $background = "background-image:url({$categoryImgSrc[0]})";
 }
+
+$catTitle = '';
+
+if ($isSpecial) {
+    $catTitle = 'cat-special-title';
+}
 ?>
+
+
 
 <section id="archive-header" style="<?php echo $background; ?>">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
                 <div id="archive-header-content">
-                    <h1>
-                        <?php
-                        if (!$isSpecial) {
-                            worq_page_title();
-                        }
-                        ?>
+                    <h1 class="<?php echo $catTitle; ?>">
+                        <span>
+                            <?php worq_page_title(); ?>
+                        </span>
                     </h1> 
                 </div>
             </div>
@@ -184,7 +190,7 @@ if (is_search()) {
                     <div id="primary">
                         <?php woocommerce_product_loop_start(); ?>
 
-                        <?php //woocommerce_product_subcategories();            ?>
+                        <?php //woocommerce_product_subcategories();             ?>
 
 
 
@@ -192,7 +198,7 @@ if (is_search()) {
 
                             <?php wc_get_template_part('content', 'product'); ?>
 
-                        <?php endwhile; // end of the loop.                ?>
+                        <?php endwhile; // end of the loop.                 ?>
 
                         <?php woocommerce_product_loop_end(); ?>
 

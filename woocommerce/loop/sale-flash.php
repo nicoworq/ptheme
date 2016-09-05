@@ -14,16 +14,47 @@
  * @package 	WooCommerce/Templates
  * @version     1.6.4
  */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
 }
 
 global $post, $product;
-
 ?>
-<?php if ( $product->is_on_sale() ) : ?>
+<?php
+if ($product->is_on_sale()) :
 
-	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . __( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
+    $percentage = round(( ( $product->regular_price - $product->sale_price ) / $product->regular_price ) * 100);
+    ?>
 
-<?php endif; ?>
+    <div class="flip-container">
+        <div class="flipper">
+            <div class="front">
+                <div class="price-off-container">
+                    <div class="price-off">
+                        <span class="price-off-circle"></span>
+                        <span class="price-off-bg"></span>
+                        <span class="price-off-number"> <?php echo $percentage; ?>% <strong>off</strong> 
+                        </span>    
+                    </div>
+                </div>
+            </div>
+            <div class="back">
+                <div class="price-off-container">
+                    <div class="price-off">
+                        <span class="price-off-circle"></span>
+                        <span class="price-off-bg"></span>
+                        <span class="price-off-number"> <?php echo $percentage; ?>% <strong>off</strong> 
+                        </span>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <?php
+
+
+
+
+ endif; 

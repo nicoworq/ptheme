@@ -49,55 +49,62 @@ if (!defined('ABSPATH')) {
 
                 <?php wc_get_template('single-product/title.php'); ?>
 
-                <?php
-                /**
-                 * woocommerce_before_single_product_summary hook.
-                 *
-                 * @hooked woocommerce_show_product_sale_flash - 10
-                 * @hooked woocommerce_show_product_images - 20
-                 */
-                // do_action('woocommerce_before_single_product_summary');
 
-                wc_get_template('single-product/sale-flash.php');
-                wc_get_template('single-product/product-image.php')
-                ?>
-
-                <div class="summary entry-summary">
-
+                <div class="pascal-single-product">
                     <?php
                     /**
-                     * woocommerce_single_product_summary hook.
+                     * woocommerce_before_single_product_summary hook.
                      *
-                     * @hooked woocommerce_template_single_title - 5
-                     * @hooked woocommerce_template_single_rating - 10
-                     * @hooked woocommerce_template_single_price - 10
-                     * @hooked woocommerce_template_single_excerpt - 20
-                     * @hooked woocommerce_template_single_add_to_cart - 30
-                     * @hooked woocommerce_template_single_meta - 40
-                     * @hooked woocommerce_template_single_sharing - 50
+                     * @hooked woocommerce_show_product_sale_flash - 10
+                     * @hooked woocommerce_show_product_images - 20
                      */
-                    //do_action('woocommerce_single_product_summary');
-                    //wc_get_template('single-product/rating.php');
-                    wc_get_template('single-product/price.php');
+                    // do_action('woocommerce_before_single_product_summary');
 
-                    //cuotas
-                    $cantidadCuotas = get_option('cantidad_cuotas');
-                    global $product;
-                    $cuotaValor = $product->get_price() / $cantidadCuotas;
-                    ?>
-                    <div class="product-quotes">
-                        <span class="quote-quantity"><?php echo get_option('cantidad_cuotas'); ?></span> sin interes de <?php echo wc_price($cuotaValor); ?> <span class="quote-separator">|</span> <a target="blank" href="https://www.mercadopago.com.ar/promociones">Ver todas las promociones</a>
 
-                    </div>
-                    <?php
-                    //wc_get_template('single-product/short-description.php');
-                    global $product;
-                    do_action('woocommerce_' . $product->product_type . '_add_to_cart');
-                    //wc_get_template('single-product/meta.php');
-                    //wc_get_template('single-product/share.php');
+                    wc_get_template('single-product/product-image.php')
                     ?>
 
-                </div><!-- .summary -->
+                    <div class="summary entry-summary">
+                        <?php
+                        /**
+                         * woocommerce_single_product_summary hook.
+                         *
+                         * @hooked woocommerce_template_single_title - 5
+                         * @hooked woocommerce_template_single_rating - 10
+                         * @hooked woocommerce_template_single_price - 10
+                         * @hooked woocommerce_template_single_excerpt - 20
+                         * @hooked woocommerce_template_single_add_to_cart - 30
+                         * @hooked woocommerce_template_single_meta - 40
+                         * @hooked woocommerce_template_single_sharing - 50
+                         */
+                        //do_action('woocommerce_single_product_summary');
+                        //wc_get_template('single-product/rating.php');
+                        wc_get_template('single-product/sale-flash.php');
+                        wc_get_template('single-product/price.php');
+
+                        //cuotas
+                        $cantidadCuotas = get_option('cantidad_cuotas');
+                        global $product;
+                        $cuotaValor = $product->get_price() / $cantidadCuotas;
+                        ?>
+                        <div class="product-quotes">
+                            <span class="quote-quantity"><?php echo get_option('cantidad_cuotas'); ?></span> sin interes de <?php echo wc_price($cuotaValor); ?> <span class="quote-separator">|</span> <a target="blank" href="https://www.mercadopago.com.ar/promociones">Ver todas las promociones</a>
+
+                        </div>
+                        <?php
+                        //wc_get_template('single-product/short-description.php');
+                        global $product;
+                        do_action('woocommerce_' . $product->product_type . '_add_to_cart');
+                        //wc_get_template('single-product/meta.php');
+                        //wc_get_template('single-product/share.php');
+                        ?>
+
+                    </div><!-- .summary -->
+                </div>
+
+
+
+
             </div>
         </div>
     </div>
@@ -126,12 +133,20 @@ if (!defined('ABSPATH')) {
                     ?>
                 </div>
 
-                <div class="pascal-product-info">
-                    <h2>Especificaciones</h2>
-                    <?php
-                    $product->list_attributes();
+                <?php
+                if ($product->get_attributes()) {
                     ?>
-                </div>
+                    <div class="pascal-product-info">
+                        <h2>Especificaciones</h2>
+                        <?php
+                        $product->list_attributes();
+                        ?>
+                    </div>
+
+                    <?php
+                }
+                ?>
+
 
 
 
@@ -152,14 +167,10 @@ if (!defined('ABSPATH')) {
             'columns' => 5,
             'orderby' => 'rand'
         );
-
         woocommerce_related_products($args);
         ?>
 
     </section>
-
-
-
 
     <?php
     $args = apply_filters('woocommerce_upsell_display_args', array(
@@ -171,30 +182,7 @@ if (!defined('ABSPATH')) {
     wc_get_template('single-product/up-sells.php', $args);
     ?>
 
-
-
-    <section id="home-navigation-bottom">
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <?php
-                    wp_nav_menu(
-                            array(
-                                'theme_location' => 'secondary',
-                                'container' => '',
-                                'menu_id' => 'nav-secondary-bottom',
-                                'menu_class' => 'nav-secondary'
-                            )
-                    );
-                    ?>
-                </div>
-            </div>
-
-        </div>
-
-
-    </section>
+    <?php wc_get_template_part('content', 'navigation-bottom'); ?>
 </div>
 
 
