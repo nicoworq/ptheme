@@ -91,9 +91,9 @@ if ($isSpecial) {
             <div class="col-md-5">
                 <div id="archive-header-content">
                     <h1 class="<?php echo $catTitle; ?>">
-                        <span>
-                            <?php worq_page_title(); ?>
-                        </span>
+
+                        <?php worq_page_title(); ?>
+
                     </h1> 
                 </div>
             </div>

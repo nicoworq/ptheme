@@ -12,7 +12,6 @@
         <meta charset="<?php bloginfo('charset'); ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
         <link rel="profile" href="http://gmpg.org/xfn/11">
-
         <?php wp_head(); ?>
     </head>
 
@@ -21,7 +20,6 @@
             <?php do_action('storefront_before_header'); ?>
 
             <header id="masthead" class="site-header" role="banner" style="<?php storefront_header_styles(); ?>">
-
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -37,12 +35,9 @@
                                         )
                                 );
                                 ?>
-
                                 <div class="fb-like-container">
                                     <div class="fb-like" data-href="https://www.facebook.com/pascalcomputadoras/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
                                 </div>
-
-
                             </nav><!-- #site-navigation -->
 
 
@@ -71,7 +66,9 @@
                                 </div>
 
                                 <div class="site-search">
-                                    <form role="search" method="get" id="form-search-header" action="<?php echo site_url(); ?>">
+                                    <?php dynamic_sidebar( 'sidebar-header' ); ?>
+                                    
+                                    <!--<form role="search" method="get" id="form-search-header" class="wc_ps_form" data-ps-id="2" data-ps-cat_align="left" data-ps-cat_max_wide="30" data-ps-popup_wide="input_wide" data-ps-widget_template="sidebar" action="<?php echo site_url(); ?>">
                                         <input type="search" id="woocommerce-product-search-field" class="search-field" placeholder="Estoy buscando..." value="" name="s" title="Estoy buscando...">
                                         <button>
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 52.966 52.966" style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve" >
@@ -80,7 +77,7 @@
                                             </svg>
                                         </button>
                                         <input type="hidden" name="post_type" value="product">
-                                    </form>
+                                    </form>-->
                                 </div>
 
                                 <?php
@@ -165,8 +162,12 @@
                                     foreach ($catsMagic as $cat) {
                                         $color = get_field('color_categoria', $cat);
                                         $link = esc_url(get_term_link($cat));
-                                        echo "<li><a href='{$link}' style='background-color:{$color}'>{$cat->name}</a></li>";
-                                    }
+                                        $img = get_field('imagen_categoria_menu',$cat);                                      
+                                        echo "<li>"
+                                            . "<a href='{$link}' style='background-color:{$color}' title='{$cat->name}'>"
+                                            . "<div class='cat-especial-header-bg' style='background-image:url({$img['sizes']['medium']});'></div><span>{$cat->name}</span></a>"
+                                            . "</li>";
+                                        }
                                     ?>
                                     </ul>
                                 </div>

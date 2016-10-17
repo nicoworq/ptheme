@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-md-4" col-xs-12>
                     <div class="row">
-                        <div class="col-md-5 col-xs-6">
+                        <div class="col-md-5 col-xs-12">
                             <div class="institutional-block2">
                                 <div class="institutional-block-img">
                                     <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/quality.png'; ?>"/> 
@@ -56,7 +56,7 @@
                                 <h3>Calidad y precio</h3>
                             </div>
                         </div>
-                        <div class="col-md-5 col-xs-6">
+                        <div class="col-md-5 col-xs-12">
                             <div class="institutional-block2">
                                 <div class="institutional-block-img">
                                     <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/truck.png'; ?>"/> 
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-5 col-xs-6">
+                        <div class="col-md-5 col-xs-12">
                             <div class="institutional-block2">
                                 <div class="institutional-block-img">
                                     <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/credit-card.png'; ?>"/> 
@@ -75,7 +75,7 @@
                                 <h3>Pagos seguros</h3>
                             </div>
                         </div>
-                        <div class="col-md-5 col-xs-6">
+                        <div class="col-md-5 col-xs-12">
                             <div class="institutional-block2">
                                 <div class="institutional-block-img">
                                     <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/shopping-cart.png'; ?>"/> 

@@ -31,7 +31,7 @@
         </a>
 
     </header><!-- .entry-header -->
-    <aside class="entry-meta">
+   <!-- <aside class="entry-meta">
         <?php if ('post' == get_post_type()) : // Hide category and tag text for pages on Search.
             ?>
             <div class="author">
@@ -77,7 +77,7 @@
                 <span class="comments-link"><?php comments_popup_link(__('Leave a comment', 'storefront'), __('1 Comment', 'storefront'), __('% Comments', 'storefront')); ?></span>
             </div>
         <?php endif; ?>
-    </aside>
+    </aside> -->
 
     <div class="entry-content">
 

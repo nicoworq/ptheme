@@ -1,5 +1,9 @@
 <?php
 
+function empty_content($str) {
+    return trim(str_replace('&nbsp;', '', strip_tags($str))) == '';
+}
+
 /*
  * MOSTRAR % DESCUENTO
  */
@@ -30,8 +34,43 @@ add_filter('woocommerce_create_account_default_checked', function ($checked) {
 add_filter('woocommerce_checkout_fields', 'editar_campos_checkout');
 
 function editar_campos_checkout($fields) {
+    //sacamos los labels
+
+    //unset($fields['billing']['billing_first_name']['label']);
+    $fields['billing']['billing_first_name']['placeholder'] = 'Nombre *';
+
+    //unset($fields['billing']['billing_last_name']['label']);
+    $fields['billing']['billing_last_name']['placeholder'] = 'Apellido *';
+
+    //unset($fields['billing']['billing_email']['label']);
+    $fields['billing']['billing_email']['placeholder'] = 'Email *';
+
+    //unset($fields['billing']['billing_phone']['label']);
+    $fields['billing']['billing_phone']['placeholder'] = 'Teléfono *';
 
 
+    //unset($fields['billing']['billing_address_1']['label']);
+    $fields['billing']['billing_address_1']['placeholder'] = 'Dirección *';
+
+    //unset($fields['billing']['billing_city']['label']);
+    $fields['billing']['billing_city']['placeholder'] = 'Localidad / Ciudad *';
+   
+    //unset($fields['billing']['billing_postcode']['label']);
+    $fields['billing']['billing_postcode']['placeholder'] = 'Código postal *';
+    
+    //unset($fields['billing']['billing_state']['label']);
+    $fields['billing']['billing_state']['placeholder'] = 'Provincia *';
+
+
+   // unset($fields['order']['order_comments']['label']);
+    $fields['order']['order_comments']['placeholder'] = 'Notas sobre tu pedido, por ejemplo, notas especiales para la entrega o pedidos de facturación A, B, C';
+
+
+    //unset($fields['account']['account_password']['label']);
+    $fields['account']['account_password']['placeholder'] = 'Contraseña de tu cuenta *';
+
+
+    unset($fields['billing']['billing_company']);
     unset($fields['billing']['billing_address_2']);
     unset($fields['billing']['billing_country']);
 
@@ -50,24 +89,13 @@ function editar_campos_checkout($fields) {
       "billing_postcode",
       "billing_state"
       );
-      foreach ($order as $field) {
-      $ordered_fields[$field] = $fields["billing"][$field];
-      }
 
-      $fields["billing"] = $ordered_fields;
      */
 
     $fields['billing']['billing_state']['label'] = 'Provincia';
     $fields['shipping']['billing_state']['label'] = 'Provincia';
 
-    //$fields['billing']['billing_email']['label'] = 'E-mail';
-    //$fields['shipping']['billing_email']['label'] = 'E-mail';
-    //$fields['billing']['billing_city']['class'] = array('form-row-first');
-    //$fields['shipping']['billing_city']['class'] = array('form-row-first');
-    //$fields['billing']['billing_postcode']['class'] = array('form-row-last');
-    //$fields['shipping']['billing_postcode']['class'] = array('form-row-last');
-    //$fields['billing']['billing_state']['class'] = array('form-row-wide');
-    //$fields['shipping']['billing_state']['class'] = array('form-row-wide');
+
 
     return $fields;
 }
@@ -185,8 +213,6 @@ function worq_login_menu_link($items, $args) {
 
 add_option('cantidad_cuotas', 6);
 
-
-
 /*
  * DESTACADOS HOME POST TYPE
  */
@@ -246,4 +272,35 @@ function destacados_home() {
 
 add_action('init', 'destacados_home', 0);
 
+/**
+ *  OPEN GRAPH
+ * 
+ */
+//Adding the Open Graph in the Language Attributes
+function add_opengraph_doctype($output) {
+    return $output . ' xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"';
+}
 
+add_filter('language_attributes', 'add_opengraph_doctype');
+
+//Lets add Open Graph Meta Info
+
+function insert_fb_in_head() {
+    global $post;
+    if (!is_singular()) //if it is not a post or a page
+        return;
+
+    echo '<meta property="og:title" content="' . get_the_title() . '"/>';
+    echo '<meta property="og:type" content="article"/>';
+    echo '<meta property="og:url" content="' . get_permalink() . '"/>';
+    echo '<meta property="og:site_name" content="Federación Gremial"/>';
+    if (!has_post_thumbnail($post->ID)) { //the post does not have featured image, use a default image
+        $default_image = get_template_directory_uri() . '/assets/images/sitio/sucursal1.jpg'; //replace this with a default image on your server or an image in your media library
+        echo '<meta property="og:image" content="' . $default_image . '"/>';
+    } else {
+        $thumbnail_src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
+        echo '<meta property="og:image" content="' . esc_attr($thumbnail_src[0]) . '"/>';
+    }
+}
+
+add_action('wp_head', 'insert_fb_in_head', 5);

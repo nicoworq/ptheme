@@ -20,15 +20,15 @@ require 'inc/storefront-legacy.php';
 
 require 'inc/php/worq.php';
 require 'inc/php/ajax.php';
-require 'inc/php/worq-slider.php';
 require 'inc/php/mobile-detect.php';
+require 'inc/php/worq-slider.php';
+
 
 
 if (is_woocommerce_activated()) {
     require 'inc/woocommerce/class-storefront-woocommerce.php';
     require 'inc/woocommerce/storefront-woocommerce-legacy.php';
 
- 
 }
 
 if (is_admin()) {

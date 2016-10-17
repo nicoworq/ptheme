@@ -3,11 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+var shareWorq = {
+    shareLink: document.URL,
+    shareMedia: null,
+    shareTitle: document.title,
+    shareDescription: '',
+    shareFacebook: function () {
+        window.open('//www.facebook.com/share.php?m2w&s=100&p[url]=' + encodeURIComponent(shareWorq.shareLink) + '&p[images][0]=' + encodeURIComponent(shareWorq.shareMedia) + '&p[title]=' + encodeURIComponent(shareWorq.shareTitle) + '&p[summary]=' + encodeURIComponent(shareWorq.shareDescription), 'Facebook', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    },
+    shareTwitter: function () {
+        window.open('https://twitter.com/intent/tweet?original_referer=' + encodeURIComponent(shareWorq.shareLink) + '&text=' + encodeURIComponent(shareWorq.shareTitle) + '%20' + encodeURIComponent(shareWorq.shareLink), 'Twitter', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    },
+    shareGooglePlus: function () {
+        window.open('//plus.google.com/share?url=' + encodeURIComponent(shareWorq.shareLink), 'GooglePlus', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    }
+};
+
+
 (function ($) {
 
     $(document).ready(function () {
 
+        /* -----------
+         *  COMPARTIR
+         * ----------- */
 
+        jQuery('.compartir-nota-fb').click(function (e) {
+            e.preventDefault();
+            shareWorq.shareFacebook();
+        });
+        jQuery('.compartir-nota-tw').click(function (e) {
+            e.preventDefault();
+            shareWorq.shareTwitter();
+        });
+        jQuery('.compartir-nota-gp').click(function (e) {
+            e.preventDefault();
+            shareWorq.shareGooglePlus();
+        });
 
         /* -----------
          *  BACK TOP
@@ -296,12 +329,12 @@
                 },
                 {breakpoint: 640,
                     settings: {
-                        slidesToShow: 2
+                        slidesToShow: 3
                     }
                 },
                 {breakpoint: 460,
                     settings: {
-                        slidesToShow: 1
+                        slidesToShow: 3
                     }
                 }
             ]
@@ -316,9 +349,10 @@
         $('.credit-card-slider').slick({
             arrows: false,
             dots: false,
-            autoplaySpeed:2000,
+            fade: true,
+            autoplaySpeed: 2000,
             slidesToShow: 1,
-            autoplay: true,            
+            autoplay: true,
             lazyLoad: 'progressive'
 
         });
@@ -328,9 +362,29 @@
          * ----------- */
 
 
-        //$('#slider-worq-slides').slick({arrows: false, dots: true, appendDots: '#dots-container', slidesToShow: 1});
+        $('#slider-worq-slides').slick({arrows: true, prevArrow: '#arrow-prev', nextArrow: '#arrow-next', dots: true, slidesToShow: 1, autoplay: true, });
+        //$('#slider-worq-slides').slick({arrows: false, dots: false, appendDots: '#dots-container', slidesToShow: 1});
 
 
+
+        /*
+         * ABRIR VENTANA MP AUTOMATICAMENTE
+         */
+
+        if ($('#submit-payment').length) {
+
+
+            var interval = setInterval(function () {
+
+                if (typeof $MPC === 'function') {
+                    var e = jQuery.Event('click');
+                    e.target = jQuery('#submit-payment').get(0);
+                    $MPC.fire(e);
+                    clearInterval(interval);
+                }
+
+            }, 500);
+        }
         /* -----------
          *  SECONDARY MENU DISPLAY
          * ----------- */

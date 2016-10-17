@@ -29,7 +29,11 @@
                     foreach ($catsMagic as $cat) {
                         $color = get_field('color_categoria', $cat);
                         $link = esc_url(get_term_link($cat));
-                        echo "<li><a href='{$link}' style='background-color:{$color}'>{$cat->name}</a></li>";
+                        $img = get_field('imagen_categoria_menu', $cat);
+                        echo "<li>"
+                        . "<a href='{$link}' style='background-color:{$color}' title='{$cat->name}'>"
+                        . "<div class='cat-especial-header-bg' style='background-image:url({$img['sizes']['medium']});'></div><span>{$cat->name}</span></a>"
+                        . "</li>";
                     }
                     ?>
                 </ul>

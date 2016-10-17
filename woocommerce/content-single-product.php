@@ -123,19 +123,34 @@ if (!defined('ABSPATH')) {
     wc_get_template_part('content', 'credit-cards');
     ?>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
 
-                <div class="pascal-product-description">
-                    <?php
-                    the_content();
-                    ?>
+
+    <?php
+    if (!empty_content(get_the_content())) {
+        ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pascal-product-description">
+                        <?php
+                        the_content();
+                        ?>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
 
-                <?php
-                if ($product->get_attributes()) {
-                    ?>
+
+
+    <?php
+    if ($product->get_attributes()) {
+        ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
                     <div class="pascal-product-info">
                         <h2>Especificaciones</h2>
                         <?php
@@ -143,18 +158,20 @@ if (!defined('ABSPATH')) {
                         ?>
                     </div>
 
-                    <?php
-                }
-                ?>
-
-
-
-
-                <meta itemprop="url" content="<?php the_permalink(); ?>" />
-
-            </div><!-- #product-<?php the_ID(); ?> -->
+                </div>
+            </div>
         </div>
-    </div>
+        <?php
+    }
+    ?>
+
+
+
+
+
+
+
+    <meta itemprop="url" content="<?php the_permalink(); ?>" />
 </div>
 
 <div id="pascal-product-bottom">
