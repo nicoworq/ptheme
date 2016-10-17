@@ -15,14 +15,14 @@ get_header();
             <div class="row">
                 <div class="col-md-12">
                     <h1>
-                        
+
                         <?php the_title(); ?>
 
                         <a class="bt-site bt-site-yellow pull-right" href="<?php echo get_site_url(); ?>">Seguir comprando</a>
 
                     </h1>
 
-                  
+
                 </div>
             </div>
         </div>
@@ -30,16 +30,11 @@ get_header();
     </div>
 
     <div id="pascal-checkout-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">               
 
-                    <?php
-                    echo do_shortcode('[woocommerce_checkout]')
-                    ?>
-                </div>
-            </div>
-        </div>
+        <?php
+        echo do_shortcode('[woocommerce_checkout]')
+        ?>
+
 
     </div>
 

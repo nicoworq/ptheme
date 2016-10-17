@@ -5242,6 +5242,7 @@ table.cart td.product-remove a.remove:before{
     padding: 40px;
     vertical-align: top;
     /* border-left:none; */
+    max-width: 420px;
 }
 
 #pascal-cart-total h2{
@@ -5980,13 +5981,149 @@ td#envio-options{
  *  ORDEN RECIBIDA 
  * ----------- */
 
-.woocommerce-order-received{
 
+
+
+.woocommerce-thankyou-order-header{
+    background: #fed700;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0 !Important;
+    padding: 76px 0;
+}
+.woocommerce-thankyou-order-header h3{
+    color: #424242;
+    font-size: 48px;
+    margin: 0;
+    font-weight: 300;
+}
+.woocommerce-thankyou-order-header h4{
+    color: #424242;
+    font-size: 32px;
+    margin: 0;
+    font-weight: 300;
+}
+
+.woocommerce-order-received #pascal-checkout-header{
+    display: none;
 }
 .woocommerce-order-received .woocommerce-thankyou-order-received{
     text-align: center;
     font-size: 34px;
     margin: 80px 0;
+}
+
+
+
+.pascal-detalle-compra{
+    background: white;
+    padding: 18px 0;
+}
+
+.pascal-detalle-compra h4{
+    font-size: 24px;
+    color: #4d4d4d;
+    font-weight: 300;
+    margin: 0;
+}
+.pascal-detalle-compra h4 span{
+    float: right;
+    font-weight: 400;
+    color: #4d4d4d;
+    font-size: 14px;
+    display: block;
+    margin-top: 6px;
+}
+
+
+
+.pascal-detalle-compra-productos{
+    background: #f4f4f4;
+    padding-top: 35px;
+    padding-bottom: 5px;
+}
+
+.pascal-detalle-compra-productos .order_details{
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.pascal-detalle-compra-productos .order_details .product-name, .pascal-detalle-compra-productos .order_details .product-total{padding: 8px 0;}
+
+.pascal-detalle-compra-productos .order_details .product-total , .pascal-detalle-compra-productos .order_details tfoot td{text-align: right;font-weight: 400;}
+
+
+.pascal-detalle-compra-productos .order_details tfoot tr:last-child td, .pascal-detalle-compra-productos .order_details tfoot tr:last-child th{
+    border-bottom: none;
+}
+
+.pascal-detalle-compra-productos .order_details td{
+    font-size: 17px;
+    color: #424242;
+    font-weight: 400;
+}
+
+.pascal-detalle-compra-productos .order_details td strong{
+    font-weight: 400;
+}
+.pascal-detalle-compra-productos .order_details td a{
+    color: #424242;
+}
+.pascal-detalle-compra-productos .order_details th{
+    font-size: 17px;
+    color: #424242;
+    font-weight: 600;
+    font-family: Source Sans Pro;
+    padding: 8px 0;
+}
+
+.pascal-detalle-compra-productos .order_details td , .pascal-detalle-compra-productos .order_details th{
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+.pascal-orden-total{
+    background: white;
+    text-align: right;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 3px 0;
+}
+
+.pascal-orden-total strong{
+    color: #582e7c;
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 5px;
+}
+
+
+.pascal-datos-cliente{
+    font-size: 17px;
+    color: #424242;
+    font-weight: 400;
+    font-style: normal;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+}
+.pascal-datos-cliente address{
+    font-style: normal;
+}
+
+.pascal-datos-cliente h4{
+    font-size: 24px;
+    font-weight: 300;
+    color: #424242;
+    margin: 0;
+}
+
+.pascal-instrucciones{
+    font-size: 17px;
+    padding-bottom: 60px;
+}
+.pascal-volver-tienda{
+    text-align: center;
+    padding-bottom: 60px;
 }
 
 .woocommerce-thankyou-order-details{
