@@ -27,6 +27,41 @@ add_filter('woocommerce_create_account_default_checked', function ($checked) {
     return true;
 });
 
+
+/*
+ * CONFIRMACION AGREGAR AL CARRO
+ */
+
+function mostrar_popup_agregado_carro() {
+    echo 'agregado'
+    ?>
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+
+
+            swal({
+                title: 'Producto Agregado',
+                text: "Has agregado un producto al carro",
+                type: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#82277f',
+                cancelButtonColor: '#7c7c7c',
+                confirmButtonText: "Ver mi Carro",
+                cancelButtonText: "Seguir comprando!"
+            }).then(function () {
+                window.location = '/carro';
+            });
+
+
+        });
+
+
+    </script>
+    <?php
+
+}
+
 /*
  * CHECKOUT FIELDS
  */
@@ -35,7 +70,6 @@ add_filter('woocommerce_checkout_fields', 'editar_campos_checkout');
 
 function editar_campos_checkout($fields) {
     //sacamos los labels
-
     //unset($fields['billing']['billing_first_name']['label']);
     $fields['billing']['billing_first_name']['placeholder'] = 'Nombre *';
 
@@ -54,15 +88,15 @@ function editar_campos_checkout($fields) {
 
     //unset($fields['billing']['billing_city']['label']);
     $fields['billing']['billing_city']['placeholder'] = 'Localidad / Ciudad *';
-   
+
     //unset($fields['billing']['billing_postcode']['label']);
     $fields['billing']['billing_postcode']['placeholder'] = 'Código postal *';
-    
+
     //unset($fields['billing']['billing_state']['label']);
     $fields['billing']['billing_state']['placeholder'] = 'Provincia *';
 
 
-   // unset($fields['order']['order_comments']['label']);
+    // unset($fields['order']['order_comments']['label']);
     $fields['order']['order_comments']['placeholder'] = 'Notas sobre tu pedido, por ejemplo, notas especiales para la entrega o pedidos de facturación A, B, C';
 
 

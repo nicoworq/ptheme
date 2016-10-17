@@ -3366,6 +3366,7 @@ FORM CART
     text-align: center;
     font-size: 15px;
     color: #6a6a6a;
+    width: 50px;
 }
 .single-product div.product form.cart .button{
     float: none;
