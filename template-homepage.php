@@ -29,9 +29,7 @@ wc_get_template_part('content', 'back-top');
             <div class="col-md-15">
                 <ul class="category-list">
                     <?php
-                    //excluir marcas
-                    $marcas = get_term_by('slug', 'marcas', 'product_cat');
-
+                    
                     //excluir promos
                     $promociones = get_term_by('slug', 'promociones', 'product_cat');
 
@@ -40,7 +38,7 @@ wc_get_template_part('content', 'back-top');
                         'taxonomy' => 'product_cat',
                         'hide_empty' => false,
                         'parent' => 0,
-                        'exclude' => array($marcas->term_id, $promociones->term_id)
+                        'exclude' => array( $promociones->term_id)
                     );
                     $categories = get_terms($args);
                     $i = 0;
@@ -79,7 +77,6 @@ wc_get_template_part('content', 'back-top');
                         <div class="clearfix"></div>
                         <a href="<?php echo get_term_link($cat->term_id, 'product_cat') ?>" class="category-preview-all bt-site">Ver más productos</a>
                     </div>
-
                     <?php
                     $i++;
                 }
@@ -134,18 +131,17 @@ wc_get_template_part('content', 'back-top');
     <div id="home-brands-list">
         <?php
         $args2 = array(
-            'taxonomy' => 'product_cat',
+            'taxonomy' => 'pa_marca',
             'hide_empty' => false,
-            'parent' => $marcas->term_id,
         );
         $brands = get_terms($args2);
         foreach ($brands as $brand) {
-            $thumbnail_id = get_woocommerce_term_meta($brand->term_id, 'thumbnail_id', true);
-            $image = wp_get_attachment_url($thumbnail_id);
+
+            $thumb = get_field('imagen_thumbnail', $brand);
             $link = get_term_link($brand);
             ?>
             <a href="<?php echo $link; ?>" class="pascal-brand">
-                <div class="pascal-brand-bg" style="background-image: url(<?php echo $image; ?>);"></div>
+                <div class="pascal-brand-bg" style="background-image: url(<?php echo $thumb['url']; ?>);"></div>
             </a>
             <?php
         }

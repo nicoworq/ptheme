@@ -32,8 +32,7 @@ add_filter('woocommerce_create_account_default_checked', function ($checked) {
  * CONFIRMACION AGREGAR AL CARRO
  */
 
-function mostrar_popup_agregado_carro() {
-    echo 'agregado'
+function mostrar_popup_agregado_carro() {    
     ?>
     <script type="text/javascript">
 

@@ -249,7 +249,7 @@ header#masthead{
     z-index: 300;
     transition: all 0.3s;
     padding-top: 32px;
-    z-index: 100000;
+    z-index: 1000;
 }
 
 
@@ -1661,7 +1661,7 @@ header .site-search {
     margin: 0 !important;
     /* width: 33.3%; */
 }
-.pascal-product a{
+.pascal-product .pascal-product-container{
     background: #adadad;
     display: block;
     border-radius: 3px;
@@ -1669,7 +1669,7 @@ header .site-search {
     transition: .2s all ease-in-out;
     position: relative;
 }
-.pascal-product a:hover{
+.pascal-product .pascal-product-container:hover{
     box-shadow: 0px 0px 20px rgba(5,5,5,0.2);
     transform: translateY(-3px);
 }
@@ -1700,7 +1700,7 @@ header .site-search {
     background-position: 50%;
     border-bottom: 1px solid #bac4c8;
     background-color: white;
-    background-size: auto;
+    background-size: contain;
 }
 
 .pascal-product-price{
@@ -1727,6 +1727,7 @@ header .site-search {
 .pascal-product-categories{
     text-align: left;
     margin-top: 10px;
+    min-height: 34px;
 }
 
 .pascal-product-category{
@@ -1734,6 +1735,10 @@ header .site-search {
     color: #505050;
     margin-right: 4px;
 }  
+.pascal-product-category:hover{
+    color: #82277f;
+    text-decoration: underline;
+}
 .pascal-product-category.special{
     width: 15px;
     height: 15px;
@@ -2929,11 +2934,10 @@ input[name=sexo]{position: absolute; top: -2000px; left: -9999px}
 }
 
 .single-product div.product .images .woocommerce-main-image{
-    min-height: 350px;
-    background-size: auto;
+    min-height: 400px;    
     background-repeat: no-repeat;
     background-position: 50%;
-    background-size: auto;
+    background-size: contain;
     display: inline-block;
     width: 100%;
     background-color: white;
@@ -3248,6 +3252,7 @@ input[name=sexo]{position: absolute; top: -2000px; left: -9999px}
     width: 100%;
     z-index: 10;
     padding: 23px 43px;
+    display: none;
 }
 
 /* -----------
@@ -4338,7 +4343,7 @@ aside.entry-meta a{
 .widget-title{
     margin: 0;
     color: #000000;
-    font-size: 17px;
+    font-size: 13px;
     border-bottom: 1px solid #ececec;
     padding-bottom: 25px;
     margin-bottom: 15px;
@@ -4347,6 +4352,8 @@ aside.entry-meta a{
 .widget-area aside.widget{
     margin-bottom: 25px;
 }
+
+.widget_layered_nav{}
 
 /* -----------
  *  CARRO SIDEBAR
@@ -4605,6 +4612,10 @@ aside.widget_shopping_cart p.buttons{
 
 .storefront-sorting{display: none;}
 
+
+#archive-header {
+    background: url(../images/sitio/pattern-categorias.png)repeat white;
+}
 
 @media(max-width:1366px){
 
@@ -4908,7 +4919,7 @@ aside.widget_shopping_cart p.buttons{
     padding: 20px 0;
     border-bottom: none;
     margin-bottom: 0;
-    padding-left: 20px;
+
 }
 
 .widget_layered_nav .chosen:before{content: '';}
@@ -4918,7 +4929,7 @@ aside.widget_shopping_cart p.buttons{
 .wc-layered-nav-term{
     text-align: left;
     overflow: hidden;
-    padding-left: 20px;
+    padding-left: 0;
     padding-right: 5px;
 }
 .wc-layered-nav-term a{
@@ -6471,12 +6482,173 @@ ul.order_details.woocommerce-thankyou-order-details li{
 
 
 /* -----------
+ *  MERCADO PAGO 
+ * ----------- */
+
+.woocommerce-order-pay #pascal-checkout-header ,.woocommerce-order-pay  .order_details{display: none;}
+
+
+.woocommerce-order-pay .woocommerce{
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 140px;
+}
+.woocommerce-order-pay .woocommerce img{
+    margin-bottom: 30px;
+}
+.woocommerce-order-pay #pascal-checkout-body h3{
+    font-size: 48px;
+    font-weight: 300;
+    color: #424242;
+    text-align: center;
+    margin: 0;
+}
+.woocommerce-order-pay  #pascal-checkout-body{
+    background: url(../images/sitio/mercado-pago-screen-bg.png)no-repeat 100% 100% white;
+}
+.woocommerce-order-pay #pascal-checkout-body h4{
+    font-size: 32px;
+    font-weight: 300;
+    color: #424242;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 40px;
+}
+
+.woocommerce-order-pay #pascal-checkout-body h4 span{
+    font-weight: 600;
+}
+
+.botones-pago-mp{
+    text-align: center;
+}
+
+.woocommerce-order-pay .botones-pago-mp  .button{
+    font-size: 14px;
+}
+.woocommerce-order-pay .botones-pago-mp  .button#submit-payment{
+    margin-right: 10px;
+}
+
+
+
+/* -----------
+ *  COMO COMPRAR
+ * ----------- */
+
+
+.como-comprar{
+    padding-bottom: 60px;
+    text-align: center;
+}
+.como-comprar h1{
+    font-weight: 400;
+    font-size: 72px;
+    margin: 20px 0;
+}
+.como-comprar h2{
+    margin-bottom: 40px;
+    font-weight: 300;
+    font-size: 24px;
+}
+.como-comprar p{
+    margin-bottom: 40px;
+    font-weight: 300;
+    font-size: 24px;
+}
+
+.como-comprar-paso{
+    background: white;
+    padding: 50px 20px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 20px rgba(5,5,5,0.2);
+}
+.como-comprar-paso  h3{
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 68px;
+    margin: 0;
+    color: #82277f;
+    margin-bottom: 25px;
+}
+.como-comprar-paso h4{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: 0;
+    color: #582e7c;
+}
+.como-comprar-paso p{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 24px;
+    min-height: 96px;
+    padding: 0 25px;
+}
+
+@media(max-width: 1200px){
+    .como-comprar-paso{
+        padding: 30px 20px;
+    }
+    .como-comprar-paso p{
+        margin-bottom: 3px;
+        min-height: 120px;}
+}
+
+
+@media(max-width:991px){
+    .como-comprar-paso{
+        padding: 20px 20px;
+        margin-bottom: 30px;
+    }
+    .como-comprar-paso p{
+        margin-bottom: 30px;
+        min-height: 0;}
+}   
+
+@media(max-width:680px){
+    .como-comprar h1{
+        font-size: 60px;
+    }
+    .como-comprar h2 br{
+        display: none;
+    }
+    .como-comprar h2{
+        font-size: 20px;
+        padding: 0 20px;
+    }
+}   
+
+@media(max-width:420px){
+    .como-comprar h1{
+        font-size: 42px;
+        line-height: 60px;
+    }
+    .como-comprar h2{
+        font-size: 18px;
+        padding: 0 10px;
+    }
+
+    .como-comprar-paso h3{
+        font-size: 50px;
+        margin-bottom: 0;
+    }
+}   
+
+/* -----------
  *  FONT AWESOME
  * ----------- */
 
 
 /*  Font Awesome 4.6.1 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
- */@font-face{font-family:FontAwesome;src:url(../fonts/fontawesome-webfont.eot?v=4.6.1);src:url(../fonts/fontawesome-webfont.eot?#iefix&v=4.6.1) format("embedded-opentype"),url(../fonts/fontawesome-webfont.woff2?v=4.6.1) format("woff2"),url(../fonts/fontawesome-webfont.woff?v=4.6.1) format("woff"),url(assets/fonts/fontawesome-webfont.ttf?v=4.6.1) format("truetype"),url(assets/fonts/fontawesome-webfont.svg?v=4.6.1#fontawesomeregular) format("svg");font-weight:400;font-style:normal}
-
-
+ */@font-face{
+    font-family:FontAwesome;
+    src:url(../fonts/fontawesome-webfont.eot?v=4.6.1);
+    src:url(../fonts/fontawesome-webfont.eot?#iefix&v=4.6.1) format("embedded-opentype"),url(../fonts/fontawesome-webfont.woff2?v=4.6.1) format("woff2"),url(../fonts/fontawesome-webfont.woff?v=4.6.1) format("woff"),url(assets/fonts/fontawesome-webfont.ttf?v=4.6.1) format("truetype"),url(assets/fonts/fontawesome-webfont.svg?v=4.6.1#fontawesomeregular) format("svg");
+    font-weight:400;
+    font-style:normal;}

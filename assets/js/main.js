@@ -25,6 +25,36 @@ var shareWorq = {
 
     $(document).ready(function () {
 
+
+        /* -----------
+         *  PREVIEW CATEGORY AUTO SWITCH
+         * ----------- */
+
+        var categorias = $('#home-category-preview .category-list li a');
+
+        var catActiva = 1;
+
+        var timer = setInterval(loopCategorias, 2500);
+
+        function loopCategorias() {
+            $(categorias[catActiva]).click();
+            catActiva++;
+
+            if (catActiva > categorias.length) {
+                catActiva = 0;
+            }            
+        }
+
+        $('#home-category-preview .container, #home-category-preview .pascal-product-container').mouseover(function () {
+            clearInterval(timer);
+            
+        });
+        $('#home-category-preview .container').mouseleave(function () {
+            timer = setInterval(loopCategorias, 2500);
+            
+        });
+
+
         /* -----------
          *  COMPARTIR
          * ----------- */

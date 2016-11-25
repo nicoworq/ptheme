@@ -73,13 +73,27 @@ if (is_search()) {
 } else {
     $categoryImgThumbID = get_woocommerce_term_meta($idCategoryImg, 'thumbnail_id', true);
     $categoryImgSrc = wp_get_attachment_image_src($categoryImgThumbID, 'full');
-    $background = "background-image:url({$categoryImgSrc[0]})";
+    if($categoryImgSrc){
+        $background = "background-image:url({$categoryImgSrc[0]})";
+    }else{
+        $background = "";
+    }
+    
 }
 
 $catTitle = '';
 
 if ($isSpecial) {
     $catTitle = 'cat-special-title';
+}
+
+if (is_tax('pa_marca')) {
+    $img = get_field('imagen_portada', $category->term_id);
+    if ($img) {
+        $background = "background-image:url({$img['url']})";
+    } else {
+        $background = "";
+    }
 }
 ?>
 

@@ -30,25 +30,17 @@ if (empty(WC()->cart->applied_coupons)) {
 ?>
 
 <div id="pascal-cupon-checkout">    
-
     <h3>¿Tenés un código de descuento? <a href="#" class="showcoupon">Ingresalo</a></h3>
-
     <div id="form-cupon-container">
         <form class="checkout_coupon" method="post" style="display:none">
-
             <p class="form-row form-row-first">
                 <input type="text" name="coupon_code" class="input-text" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" id="coupon_code" value="" />
             </p>
-
             <p class="form-row form-row-last">
                 <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e('Apply Coupon', 'woocommerce'); ?>" />
             </p>
-
             <div class="clear"></div>
         </form>
     </div>
-
-
-
 </div>
 

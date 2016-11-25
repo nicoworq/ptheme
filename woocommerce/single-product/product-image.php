@@ -47,7 +47,7 @@ global $post, $product;
             $imageThumbSrc = get_the_post_thumbnail_url($post->ID, 'shop_single');
 
 
-            echo "<a href='{$imageFullSrc}' itemprop='image' class='woocommerce-main-image' title='{$props['title']}' data-rel='prettyPhoto' {$gallery} style='background-image:url({$imageThumbSrc});' ></a>";
+            echo "<a href='{$imageFullSrc}' itemprop='image' class='woocommerce-main-image' title='{$props['title']}' data-rel='prettyPhoto{$gallery}'  style='background-image:url({$imageThumbSrc});' ></a>";
 
             //echo apply_filters('woocommerce_single_product_image_html', sprintf('<a href="%s" itemprop="image" class="woocommerce-main-image zoom" title="%s" data-rel="prettyPhoto' . $gallery . '">%s</a>', $props['url'], $props['caption'], $image), $post->ID);
         } else {
