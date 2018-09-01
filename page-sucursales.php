@@ -86,7 +86,7 @@ get_header();
 
 </section>
 
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDTCJD4YGJl8JCUN9tqmGUyh1aLUHRJz7Y"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTCJD4YGJl8JCUN9tqmGUyh1aLUHRJz7Y"></script>
 
 <?php
 get_footer();

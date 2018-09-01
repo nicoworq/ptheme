@@ -127,7 +127,7 @@ function mostrar_slider_worq() {
                     $link = get_field('link_slide');
                     $linkHref = $link ? "href='{$link}'" : '#';
                     ?>
-                    <a href="<?php echo $linkHref ?>" class="slide-home <?php echo $slideClass; ?>">
+                    <a <?php echo $linkHref ?> class="slide-home <?php echo $slideClass; ?>">
                         <img src="<?php echo $imgBg['url'] ?>"/>
                     </a>
 
@@ -189,14 +189,8 @@ if (function_exists("register_field_group")) {
                 'key' => 'field_56f971e196393',
                 'label' => 'Link slide',
                 'name' => 'link_slide',
-                'type' => 'page_link',
-                'post_type' => array(
-                    0 => 'post',
-                    1 => 'page',
-                    2 => 'product',
-                ),
-                'allow_null' => 0,
-                'multiple' => 0,
+                'type' => 'text',
+             
             ),
             array(
                 'key' => 'field_56f974b715091',

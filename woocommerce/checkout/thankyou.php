@@ -13,7 +13,7 @@
  * @see 	    https://docs.woothemes.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.2.0
+ * @version     3.0.0
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -76,8 +76,8 @@ if ($order) :
                 <div class="row">
                     <div class="col-md-12">
                         <?php
-                        if ($order->id) {
-                            $order = wc_get_order($order->id);
+                        if ($order->get_id()) {
+                            $order = wc_get_order($order->get_id());
 
                             $show_purchase_note = $order->has_status(apply_filters('woocommerce_purchase_note_order_statuses', array('completed', 'processing')));
                             $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_current_user_id();
@@ -100,7 +100,7 @@ if ($order) :
                                             'item_id' => $item_id,
                                             'item' => $item,
                                             'show_purchase_note' => $show_purchase_note,
-                                            'purchase_note' => $product ? get_post_meta($product->id, '_purchase_note', true) : '',
+                                            'purchase_note' => $product ? get_post_meta($product->get_id(), '_purchase_note', true) : '',
                                             'product' => $product,
                                         ));
                                     }
@@ -175,7 +175,7 @@ if ($order) :
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <?php do_action('woocommerce_thankyou_' . $order->payment_method, $order->id); ?>
+                    <?php do_action('woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id()); ?>
                 </div>
             </div>
         </div>

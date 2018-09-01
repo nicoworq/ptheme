@@ -24,15 +24,13 @@ wc_print_notices();
 
 <div class="cart-empty">
     <img src="<?php echo get_template_directory_uri() ?>/assets/images/sitio/empty_cart.png"/>
-    <p class="">
-        <?php _e('Your cart is currently empty.', 'woocommerce') ?>
-    </p>
+    
     <?php do_action('woocommerce_cart_is_empty'); ?>
 
     <?php if (wc_get_page_id('shop') > 0) : ?>
         <p class="return-to-shop">
             <a class="bt-site" href="<?php echo esc_url(apply_filters('woocommerce_return_to_shop_redirect', get_site_url())); ?>">
-                <?php _e('Return To Shop', 'woocommerce') ?>
+                <?php _e('Volver a la página principal', 'woocommerce') ?>
             </a>
         </p>
     <?php endif; ?>

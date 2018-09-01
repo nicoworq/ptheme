@@ -38,13 +38,12 @@ function suscribir_newsletter() {
         die();
     }
 
-    $to = 'nicolas@worq.com.ar';
-    $toName = 'nicolas@worq.com.ar';
-    $toBCC = '';
-    $toBCCName = '';
-    $reply = 'contact@worq.com.ar';
-    $replyName = 'Contacto';
-
+    $to = 'yair@proyectobeta.com.ar';
+    $toName = 'Yair';
+    $toBCC = 'nicolas@worq.com.ar';
+    $toBCCName = 'Nico';
+    $reply = $email;
+    $replyName = 'Email';
 
     $email_body = "<h3>Nueva Suscripcion a Newsletter Pascal</h3>                                       
                     <p>Email: <b>{$email}</b></p>";

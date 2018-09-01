@@ -23,7 +23,7 @@ global $post, $product;
 <?php
 if ($product->is_on_sale()) :
 
-    $percentage = round(( ( $product->regular_price - $product->sale_price ) / $product->regular_price ) * 100);
+    $percentage = round(( ( $product->get_regular_price() - $product->get_sale_price() ) / $product->get_regular_price() ) * 100);
     ?>
 
     <div class="price-off-container price-off-single">

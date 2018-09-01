@@ -13,7 +13,7 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.6.3
+ * @version 3.0.2
  */
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
@@ -24,7 +24,7 @@ global $post, $product;
 <div class="pascal-product-images images">
 
     <?php
-    $attachment_ids = $product->get_gallery_attachment_ids();
+    $attachment_ids = $product->get_gallery_image_ids();
     $imagePascalClass = 'no-thumbnail';
 
     if ($attachment_ids) {
@@ -35,7 +35,7 @@ global $post, $product;
     <div class="pascal-product-main-image-container <?php echo $imagePascalClass; ?>">
         <?php
         if (has_post_thumbnail()) {
-            $attachment_count = count($product->get_gallery_attachment_ids());
+            $attachment_count = count($product->get_gallery_image_ids());
             $gallery = $attachment_count > 0 ? '[product-gallery]' : '';
             $props = wc_get_product_attachment_props(get_post_thumbnail_id(), $post);
             /* $image = get_the_post_thumbnail($post->ID, apply_filters('single_product_large_thumbnail_size', 'shop_single'), array(

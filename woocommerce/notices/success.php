@@ -24,7 +24,7 @@ if (!$messages) {
 }
 
 if (is_single()) {
-    add_action('wp_footer', 'mostrar_popup_agregado_carro');
+    add_action('wp_footer', 'mostrar_popup_agregado_carro',20);
 }
 ?>
 

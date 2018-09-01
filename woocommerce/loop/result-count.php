@@ -14,7 +14,7 @@
  * @see 	    http://docs.woothemes.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.0.0
+ * @version     3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,12 +34,12 @@ if ( ! woocommerce_products_will_display() )
 	$first    = ( $per_page * $paged ) - $per_page + 1;
 	$last     = min( $total, $wp_query->get( 'posts_per_page' ) * $paged );
 
-	if ( 1 === $total ) {
-		echo 'Mostrando el unico resultado';
-	} elseif ( $total <= $per_page || -1 === $per_page ) {
-		printf( 'Mostrando %d resultados', $total );
+	if ( $total <= $per_page || -1 === $per_page ) {
+		/* translators: %d: total results */
+		printf( _n( 'Mostrando el unico resultado', 'Mostrando todos los %d resultados', $total, 'woocommerce' ), $total );
 	} else {
-		printf( _x( 'Mostrando %1$d&ndash;%2$d de %3$d resultados', '%1$d = first, %2$d = last, %3$d = total', 'woocommerce' ), $first, $last, $total );
+		/* translators: 1: first result 2: last result 3: total results */
+		printf( _nx( 'Mostrando el unico resultado', 'Mostrando %1$d&ndash;%2$d de %3$d resultados', $total, 'con primer y ultimo resultado', 'woocommerce' ), $first, $last, $total );
 	}
 	?>
 </p>

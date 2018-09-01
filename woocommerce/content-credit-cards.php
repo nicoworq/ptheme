@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-12">
-                <h3>Comprá en <span>hasta 6 coutas sin interés,</span><br/>
-                    con todas estas tarjetas.</h3>
+                <h3>Comprá en <span>hasta 12 cuotas fijas,</span><br/>
+                    con nuestras promociones de MercadoPago.</h3>
             </div>
             <div class="col-md-9 col-sm-12">
 

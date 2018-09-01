@@ -13,7 +13,7 @@
  * @see 	    https://docs.woothemes.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     1.6.4
+ * @version     3.0.0
  */
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
@@ -40,7 +40,7 @@ if (!defined('ABSPATH')) {
     </div>
 </div>
 
-<div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div itemscope itemtype="Product" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 
     <div class="container">
@@ -87,18 +87,23 @@ if (!defined('ABSPATH')) {
                         global $product;
                         $cuotaValor = $product->get_price() / $cantidadCuotas;
                         ?>
+                        <!--
                         <div class="product-quotes">
-                            <span class="quote-quantity"><?php echo get_option('cantidad_cuotas'); ?></span> sin interes de <?php echo wc_price($cuotaValor); ?> <span class="quote-separator">|</span> <a target="blank" href="https://www.mercadopago.com.ar/promociones">Ver todas las promociones</a>
+                            <span class="quote-quantity"><?php echo get_option('cantidad_cuotas'); ?></span>cuotas sin interés de <?php echo wc_price($cuotaValor); ?> con MercadoPago<br/> <a target="blank" href="https://www.mercadopago.com.ar/promociones">Ver promociones vigentes</a>
 
+                        </div>-->
+                        <div class="product-quotes">
+                            <span>Precio de Contado</span><br/>
+                            Pagá en cuotas fijas con MercadoPago<br/> <a target="blank" href="https://www.mercadopago.com.ar/cuotas">Ver promociones vigentes</a>
                         </div>
                         <?php
                         //wc_get_template('single-product/short-description.php');
                         global $product;
-                        do_action('woocommerce_' . $product->product_type . '_add_to_cart');
+                        do_action('woocommerce_' . $product->get_type() . '_add_to_cart');
                         //wc_get_template('single-product/meta.php');
                         //wc_get_template('single-product/share.php');
                         ?>
-
+                        <span></span>
                     </div><!-- .summary -->
                 </div>
 
@@ -146,7 +151,7 @@ if (!defined('ABSPATH')) {
 
 
     <?php
-    if ($product->get_attributes()) {
+    if (count($product->get_attributes()) > 1) {
         ?>
         <div class="container">
             <div class="row">
@@ -154,7 +159,7 @@ if (!defined('ABSPATH')) {
                     <div class="pascal-product-info">
                         <h2>Especificaciones</h2>
                         <?php
-                        $product->list_attributes();
+                        wc_display_product_attributes($product);
                         ?>
                     </div>
 
@@ -164,11 +169,6 @@ if (!defined('ABSPATH')) {
         <?php
     }
     ?>
-
-
-
-
-
 
 
     <meta itemprop="url" content="<?php the_permalink(); ?>" />

@@ -28,8 +28,8 @@ $cuotaValor = $product->get_price() / $cantidadCuotas;
 
 <?php if ($price_html = $product->get_price_html()) : ?>
     <div class="pascal-product-price"><?php echo $price_html; ?></div>
-    <div class="pascal-product-quota">
+    <!--<div class="pascal-product-quota">
         (<?php echo $cantidadCuotas; ?> Cuotas de <?php echo wc_price($cuotaValor); ?>)
-    </div>
+    </div>-->
 
 <?php endif; ?>

@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 global $categories;
 ?>
 
@@ -16,6 +15,11 @@ global $categories;
                     $i = 0;
                     foreach ($categories as $cat) {
                         $linkClass = $i === 0 ? 'active' : '';
+                        $listarHome = get_field('listar_home', $cat);
+                        if (!$listarHome) {
+                            continue;
+                        }
+
                         $catEspecial = get_field('categoria_especial', $cat);
                         if ($catEspecial) {
                             continue;
@@ -41,6 +45,10 @@ global $categories;
                     foreach ($categories as $cat) {
                         $catEspecial = get_field('categoria_especial', $cat);
                         if ($catEspecial) {
+                            continue;
+                        }
+                        $listarHome = get_field('listar_home', $cat);
+                        if (!$listarHome) {
                             continue;
                         }
                         $productsClass = $i === 0 ? 'active' : '';

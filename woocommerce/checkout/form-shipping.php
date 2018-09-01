@@ -13,7 +13,7 @@
  * @see     https://docs.woothemes.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 2.2.0
+ * @version 3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -33,11 +33,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>
 
-			<?php foreach ( $checkout->checkout_fields['shipping'] as $key => $field ) : ?>
-
-				<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
-
-			<?php endforeach; ?>
+			<?php foreach ( $checkout->get_checkout_fields( 'shipping' )  as $key => $field ) : ?>
+					<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+				<?php endforeach; ?>
 
 			<?php do_action( 'woocommerce_after_checkout_shipping_form', $checkout ); ?>
 
@@ -51,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php if ( ! WC()->cart->needs_shipping() || wc_ship_to_billing_address_only() ) : ?>
 
-			<h3><?php _e( 'Additional Information', 'woocommerce' ); ?></h3>
+			<h3><?php _e( 'Información adicional', 'woocommerce' ); ?></h3>
 
 		<?php endif; ?>
 

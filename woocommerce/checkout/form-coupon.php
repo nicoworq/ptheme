@@ -37,7 +37,7 @@ if (empty(WC()->cart->applied_coupons)) {
                 <input type="text" name="coupon_code" class="input-text" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" id="coupon_code" value="" />
             </p>
             <p class="form-row form-row-last">
-                <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e('Apply Coupon', 'woocommerce'); ?>" />
+                <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e('Aplicar cupón', 'woocommerce'); ?>" />
             </p>
             <div class="clear"></div>
         </form>

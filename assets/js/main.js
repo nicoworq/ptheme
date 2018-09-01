@@ -107,10 +107,10 @@ var shareWorq = {
             }
 
             var url = Pascal.ajaxUrl;
-            form.parents().find('.ajaxing').first().fadeIn();
+            $('#footer-bottom .ajaxing').fadeIn();
 
             $.post(url, form.serialize(), function (json) {
-                form.parents().find('.ajaxing').first().fadeOut();
+                $('#footer-bottom .ajaxing').fadeOut();
                 if (json.enviado) {
                     swal("Gracias!", "Te has suscrito a nuestro newsletter!", "success");
                     form.find('input[name=suscribir]').val('');
@@ -134,7 +134,7 @@ var shareWorq = {
             // Find all YouTube videos
             var $allVideos = $("iframe[src^='https://www.youtube.com']"),
                     // The element that is fluid width
-                    $fluidEl = $(".pascal-product-description");
+                    $fluidEl = $(".pascal-product-description,.entry-content").first();
 
             // Figure out and save aspect ratio for each video
             $allVideos.each(function () {
@@ -202,14 +202,16 @@ var shareWorq = {
                 email: 'ventas@pascalonline.com.ar',
                 horarios: 'Lunes a viernes: De 9 a 19:30hs Sábados: De 9 a 13 hs.'
             },
+           
             {
-                id: 2,
-                coord: '-32.947375, -60.637396',
-                titulo: 'Galería Rosario local 79',
-                telefonos: '4493522',
-                email: 'galeria@pascalonline.com.ar',
-                horarios: 'Lunes a viernes: De 9 a 13hs y de 15 a 19:30hs Sábados: De 9 a 13 hs.'
+                id: 7,
+                coord: '-32.957294, -60.640324',
+                titulo: 'Pellegrini 1070',
+                telefonos: '2971551',
+                email: 'pellegrini@pascalonline.com.ar',
+                horarios: 'Lunes a viernes: De 9 a 13hs y de 15 a 1930 hs Sábados: De 9 a 13 hs.'
             },
+             /*
             {
                 id: 3,
                 coord: '-32.974177, -60.643550',
@@ -218,6 +220,7 @@ var shareWorq = {
                 email: 'sanmartin@pascalonline.com.ar',
                 horarios: ' Lunes a viernes: De 9 a 13hs y de 15 a 19:30hs Sábados: De 9 a 13 hs.'
             },
+            */
             {
                 id: 4,
                 coord: '-32.939076, -60.679098',
@@ -232,7 +235,7 @@ var shareWorq = {
                 titulo: 'Alberdi 999',
                 telefonos: '4724950',
                 email: 'alberdi@pascalonline.com.ar',
-                horarios: 'Lunes a viernes: De 9 a 13hs y de 15 a 19:30hs Sábados: De 9 a 13 hs.'
+                horarios: 'Lunes a viernes: De 8.30 a 13hs y de 16 a 19:30hs Sábados: De 9 a 13 hs.'
             },
             {
                 id: 6,
@@ -392,7 +395,7 @@ var shareWorq = {
          * ----------- */
 
 
-        $('#slider-worq-slides').slick({arrows: true, prevArrow: '#arrow-prev', nextArrow: '#arrow-next', dots: true, slidesToShow: 1, autoplay: true, });
+        $('#slider-worq-slides').slick({arrows: true, prevArrow: '#arrow-prev', nextArrow: '#arrow-next', dots: true, slidesToShow: 1, autoplay: true, adaptiveHeight: true});
         //$('#slider-worq-slides').slick({arrows: false, dots: false, appendDots: '#dots-container', slidesToShow: 1});
 
 

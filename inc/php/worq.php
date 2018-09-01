@@ -1,5 +1,23 @@
 <?php
 
+/*
+ * REMOVER DIFICULTAD PASSWORD
+ */
+
+function wc_ninja_remove_password_strength() {
+    if (wp_script_is('wc-password-strength-meter', 'enqueued')) {
+        wp_dequeue_script('wc-password-strength-meter');
+    }
+}
+
+add_action('wp_print_scripts', 'wc_ninja_remove_password_strength', 100);
+
+
+
+/*
+ * Remover espacios blanco contenido
+ */
+
 function empty_content($str) {
     return trim(str_replace('&nbsp;', '', strip_tags($str))) == '';
 }
@@ -32,7 +50,7 @@ add_filter('woocommerce_create_account_default_checked', function ($checked) {
  * CONFIRMACION AGREGAR AL CARRO
  */
 
-function mostrar_popup_agregado_carro() {    
+function mostrar_popup_agregado_carro() {
     ?>
     <script type="text/javascript">
 
@@ -59,6 +77,18 @@ function mostrar_popup_agregado_carro() {
     </script>
     <?php
 
+}
+
+//add_action('wp_enqueue_scripts', 'mgt_dequeue_stylesandscripts', 100);
+
+function mgt_dequeue_stylesandscripts() {
+    if (class_exists('woocommerce')) {
+        wp_dequeue_style('select2');
+        wp_deregister_style('select2');
+
+        wp_dequeue_script('select2');
+        wp_deregister_script('select2');
+    }
 }
 
 /*
@@ -103,34 +133,45 @@ function editar_campos_checkout($fields) {
     $fields['account']['account_password']['placeholder'] = 'Contraseña de tu cuenta *';
 
 
+    //Agregamos el campo dni
+
+    $fields['billing']['shipping_phone'] = array(
+        'label' => __('Dni', 'woocommerce'),
+        'placeholder' => _x('Dni', 'placeholder', 'woocommerce'),
+        'required' => TRUE,
+        'class' => array('form-row-wide field-dni'),
+        'clear' => true
+    );
+
+
+
     unset($fields['billing']['billing_company']);
     unset($fields['billing']['billing_address_2']);
-    unset($fields['billing']['billing_country']);
+    //unset($fields['billing']['billing_country']);
 
     unset($fields['shipping']['billing_address_2']);
     unset($fields['shipping']['billing_country']);
 
-    /*
-      $order = array(
-      "billing_first_name",
-      "billing_last_name",
-      "billing_company",
-      "billing_email",
-      "billing_phone",
-      "billing_address_1",
-      "billing_city",
-      "billing_postcode",
-      "billing_state"
-      );
-
-     */
+   
 
     $fields['billing']['billing_state']['label'] = 'Provincia';
-    $fields['shipping']['billing_state']['label'] = 'Provincia';
 
 
+    $fields['billing']['billing_state']['required'] = FALSE;
 
     return $fields;
+}
+
+
+/*
+ * MOSTRAMOS EL CAMPO DNI EN EL BACK
+ */
+
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
+
+function my_custom_checkout_field_display_admin_order_meta($order){
+    
+    echo '<p><strong>'.__('Dni').':</strong> ' . get_post_meta( $order->get_id(), '_shipping_phone', true ) . '</p>';
 }
 
 /*
@@ -326,7 +367,7 @@ function insert_fb_in_head() {
     echo '<meta property="og:title" content="' . get_the_title() . '"/>';
     echo '<meta property="og:type" content="article"/>';
     echo '<meta property="og:url" content="' . get_permalink() . '"/>';
-    echo '<meta property="og:site_name" content="Federación Gremial"/>';
+    echo '<meta property="og:site_name" content="Pascal Computadoras"/>';
     if (!has_post_thumbnail($post->ID)) { //the post does not have featured image, use a default image
         $default_image = get_template_directory_uri() . '/assets/images/sitio/sucursal1.jpg'; //replace this with a default image on your server or an image in your media library
         echo '<meta property="og:image" content="' . $default_image . '"/>';

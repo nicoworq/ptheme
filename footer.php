@@ -98,7 +98,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2>Medios de pago</h2>
-                    <h3>Hasta <?php echo get_option('cantidad_cuotas') ?> cuotas sin interés.</h3>
+                    <h3>Hasta 12 cuotas fijas.</h3>
                     <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/promociones.jpg'; ?>" alt="Promociones"/>
                 </div>
             </div>
@@ -125,14 +125,13 @@
                                     <h5 id="form-suscribe-label">Recibí descuentos especiales y ofertas exclusivas en tu email.</h5>
                                 </div>
 
-
                                 <a href="#" class="client-atention client-atention-mobile">
                                     Atención al cliente
                                     <span>+54(341)424-2129 <br/> +54(341)449-3917</span>
+                                    <span>info@pascalonline.com.ar</span>
                                 </a>
 
-
-                                <a class="fiscal-data fiscal-data-desktop" href="#">
+                                <a class="fiscal-data fiscal-data-desktop" target="blank" href="https://servicios1.afip.gov.ar/clavefiscal/qr/response.aspx?qr=s2_4Krg4izz9LcVC4IfKQg,,">
                                     <img src="<?php echo get_template_directory_uri() . '/assets/images/sitio/data-fiscal.jpg'; ?>" alt="Data Fiscal"/>
                                 </a>
 
@@ -182,9 +181,10 @@
                                 </ul>
                                 <ul class="nav-footer last-col">
                                     <li>
-                                        <a href="#" class="client-atention client-atention-desktop">
+                                        <a class="client-atention client-atention-desktop">
                                             Atención al cliente
                                             <span>+54(341)424-2129 +54(341)449-3917</span>
+                                            <span>info@pascalonline.com.ar</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -203,8 +203,10 @@
                         </a>
 
                         <p>
-                            Copyright - 2000 - 2016 www.pascalonline.com.ar, TODOS LOS DERECHOS RESERVADOS.<br/>
+                            Copyright - 2000 - <?php echo date('Y') ?> www.pascalonline.com.ar, TODOS LOS DERECHOS RESERVADOS.<br/>
                             Está prohibida la reproducción total o parcial, sin la expresa autorización de la administradora de la tienda virtual.<br/>
+                            Las ofertas publicadas son válidas únicamente para compras online//LOS PRECIOS PUBLICADOS SON PRECIOS DE CONTADO (EFECTIVO, DEBITO O CREDITO 1 PAGO). ESTOS PRECIOS NO APLICAN A LAS PROMOCIONES CON BANCOS, TARJETAS O SIMILARES QUE PUEDAN TENER LOS LOCALES Y QUE SON VALIDAS SOBRE PRECIOS DE LISTA". PROMOCIONES NO ACUMULABLES //<br/> Las especificaciones técnicas y descripciones están sujetas a cambios sin previo aviso // Promoción 6 cuotas sin interés según disponibilidad de MercadoPago, para ver ofertas vigentes ingresar a https://www.mercadopago.com.ar/cuotas<br/>
+                            Las imágenes son de caracter ilustrativos, pueden presentar cambios y variaciones sin previo aviso
                         </p>
 
 
@@ -243,6 +245,23 @@
 
 <?php wp_footer(); ?>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43710429-1"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+ 
+
+  gtag('config', 'UA-43710429-1');
+
+</script>
 
 
 <div id="fb-root"></div>

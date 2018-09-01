@@ -13,7 +13,7 @@
  * @see     https://docs.woothemes.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 2.3.8
+ * @version 3.0.3
  */
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
@@ -64,7 +64,7 @@ wc_print_notices();
                                 </svg>';
 
                             echo apply_filters('woocommerce_cart_item_remove_link', sprintf(
-                                            '<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s">%s</a>', esc_url(WC()->cart->get_remove_url($cart_item_key)), __('Remove this item', 'woocommerce'), esc_attr($product_id), esc_attr($_product->get_sku())
+                                            '<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s">%s</a>', esc_url(wc_get_cart_remove_url($cart_item_key)), __('Remove this item', 'woocommerce'), esc_attr($product_id), esc_attr($_product->get_sku())
                                             , $iconCross), $cart_item_key);
                             ?>
                         </td>
@@ -95,7 +95,7 @@ wc_print_notices();
                                 }
 
                                 // Meta data
-                                echo WC()->cart->get_item_data($cart_item);
+                                echo wc_get_formatted_cart_item_data($cart_item);
 
                                 // Backorder notification
                                 if ($_product->backorders_require_notification() && $_product->is_on_backorder($cart_item['quantity'])) {
@@ -151,7 +151,7 @@ wc_print_notices();
     <div id="pascal-cart-actions">
 
         <div id="pascal-cart-update">
-            <input type="submit" class="bt-site bt-site-yellow" name="update_cart" value="<?php esc_attr_e('Update Cart', 'woocommerce'); ?>" />
+            <input type="submit" class="bt-site bt-site-yellow" name="update_cart" value="<?php esc_attr_e('Actualizar Carro', 'woocommerce'); ?>" />
         </div>
         <div id="pascal-cart-coupons">
             <?php if (wc_coupons_enabled()) { ?>
@@ -159,7 +159,7 @@ wc_print_notices();
                     <h4>¿Tenés un código<br/> promocional?</h4>
                     <h5>Escribí tu código y accede a tu descuento</h5>
                     <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" />
-                    <input type="submit" class="bt-site bt-site-black" name="apply_coupon" value="<?php esc_attr_e('Apply Coupon', 'woocommerce'); ?>" />
+                    <input type="submit" class="bt-site bt-site-black" name="apply_coupon" value="<?php esc_attr_e('Aplicar Cupón', 'woocommerce'); ?>" />
                     <?php do_action('woocommerce_cart_coupon'); ?>
                 </div>
             <?php } ?>

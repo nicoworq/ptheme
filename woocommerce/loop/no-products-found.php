@@ -34,7 +34,7 @@ if (!defined('ABSPATH')) {
     global $categories;
 
     //excluir marcas
-    $marcas = get_term_by('slug', 'marcas', 'product_cat');
+    //$marcas = get_term_by('slug', 'marcas', 'product_cat');
 
     //excluir promos
     $promociones = get_term_by('slug', 'promociones', 'product_cat');
@@ -44,7 +44,7 @@ if (!defined('ABSPATH')) {
         'taxonomy' => 'product_cat',
         'hide_empty' => false,
         'parent' => 0,
-        'exclude' => array($marcas->term_id, $promociones->term_id)
+        'exclude' => array( $promociones->term_id)
     );
     $categories = get_terms($args);
        

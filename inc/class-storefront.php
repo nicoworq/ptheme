@@ -92,6 +92,7 @@ if (!class_exists('Storefront')) :
                 'primary' => __('Primary Menu', 'storefront'),
                 'secondary' => __('Secondary Menu', 'storefront'),
                 'handheld' => __('Handheld Menu', 'storefront'),
+                'categorias' => "Menu categorias Pascal"
             ));
 
             /*
@@ -152,7 +153,7 @@ if (!class_exists('Storefront')) :
                 'before_title' => '<h3 class="widget-title">',
                 'after_title' => '</h3>',
             ));
-       
+
             register_sidebar(array(
                 'name' => 'Subcategorías',
                 'id' => 'sidebar-subcategorias',
@@ -162,7 +163,7 @@ if (!class_exists('Storefront')) :
                 'before_title' => '<h3 class="widget-title">',
                 'after_title' => '</h3>',
             ));
-          
+
             register_sidebar(array(
                 'name' => 'Header',
                 'id' => 'sidebar-header',
@@ -172,23 +173,23 @@ if (!class_exists('Storefront')) :
                 'before_title' => '<h3 class="widget-title">',
                 'after_title' => '</h3>',
             ));
-            
-            /*
-            $footer_widget_regions = apply_filters('storefront_footer_widget_regions', 0);
 
-            for ($i = 1; $i <= intval($footer_widget_regions); $i++) {
-                register_sidebar(array(
-                    'name' => sprintf(__('Footer %d', 'storefront'), $i),
-                    'id' => sprintf('footer-%d', $i),
-                    'description' => sprintf(__('Widgetized Footer Region %d.', 'storefront'), $i),
-                    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-                    'after_widget' => '</aside>',
-                    'before_title' => '<h3>',
-                    'after_title' => '</h3>',
-                        )
-                );
-            }
-            */
+            /*
+              $footer_widget_regions = apply_filters('storefront_footer_widget_regions', 0);
+
+              for ($i = 1; $i <= intval($footer_widget_regions); $i++) {
+              register_sidebar(array(
+              'name' => sprintf(__('Footer %d', 'storefront'), $i),
+              'id' => sprintf('footer-%d', $i),
+              'description' => sprintf(__('Widgetized Footer Region %d.', 'storefront'), $i),
+              'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+              'after_widget' => '</aside>',
+              'before_title' => '<h3>',
+              'after_title' => '</h3>',
+              )
+              );
+              }
+             */
         }
 
         /**
@@ -226,8 +227,6 @@ if (!class_exists('Storefront')) :
              */
             //wp_enqueue_script('storefront-navigation', get_template_directory_uri() . '/assets/js/navigation.min.js', array('jquery'), '20120206', true);
             //wp_enqueue_script('storefront-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.min.js', array(), '20130115', true);
-
-
             // Remove WP Version From Styles
             add_filter('style_loader_src', 'sdt_remove_ver_css_js', 9999);
 

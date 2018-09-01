@@ -13,7 +13,7 @@
  * @see     https://docs.woothemes.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 2.1.2
+ * @version 3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -56,13 +56,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php do_action( 'woocommerce_before_checkout_registration_form', $checkout ); ?>
 
-		<?php if ( ! empty( $checkout->checkout_fields['account'] ) ) : ?>
+		<?php if ( $checkout->get_checkout_fields( 'account' ) ) : ?>
 
 			<div class="create-account">
 
-				<p><?php _e( 'Create an account by entering the information below. If you are a returning customer please login at the top of the page.', 'woocommerce' ); ?></p>
-
-				<?php foreach ( $checkout->checkout_fields['account'] as $key => $field ) : ?>
+				<p><?php _e( 'Por favor ingresa una contraseña para tu cuenta', 'woocommerce' ); ?></p>
+				
+				<?php foreach ( $checkout->get_checkout_fields( 'account' ) as $key => $field ) : ?>
 
 					<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
 

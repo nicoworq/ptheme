@@ -13,7 +13,7 @@
  * @see 	https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 2.4.0
+ * @version 3.0.0
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -26,26 +26,26 @@ if (!defined('ABSPATH')) {
         <h4>Datos del cliente</h4>
         <ul class="customer_details">
 
-            <?php if ($order->customer_note) : ?>
+            <?php if ($order->get_customer_note()) : ?>
 
                 <li>
-                    <span><?php _e('Note:', 'woocommerce'); ?></span><?php echo wptexturize($order->customer_note); ?>
+                    <span><?php _e('Note:', 'woocommerce'); ?></span><?php echo wptexturize($order->get_customer_note()); ?>
                 </li>
 
 
             <?php endif; ?>
 
-            <?php if ($order->billing_email) : ?>
+            <?php if ($order->get_billing_email()) : ?>
 
                 <li>
-                    <span><?php _e('Email:', 'woocommerce'); ?></span><?php echo esc_html($order->billing_email); ?>
+                    <span><?php _e('Email:', 'woocommerce'); ?></span><?php echo esc_html($order->get_billing_email()); ?>
                 </li>
 
             <?php endif; ?>
 
-            <?php if ($order->billing_phone) : ?>
+            <?php if ($order->get_billing_phone()) : ?>
                 <li>
-                    <span><?php _e('Telephone:', 'woocommerce'); ?></span><?php echo esc_html($order->billing_phone); ?>
+                    <span><?php _e('Telephone:', 'woocommerce'); ?></span><?php echo esc_html($order->get_billing_phone()); ?>
                 </li>
 
             <?php endif; ?>
