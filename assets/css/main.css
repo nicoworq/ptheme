@@ -3242,10 +3242,21 @@ input[name=sexo]{position: absolute; top: -2000px; left: -9999px}
 .quote-separator{margin:0 10px;}
 
 .single-product .pascal-product-description{
-    padding-top: 40px;
+    padding-top: 0px;
     background: white;
     padding-bottom: 40px;
     min-height: 350px;
+    margin-bottom: 20px;
+}
+
+.single-product .pascal-product-short-description{
+    padding-top: 40px;
+    background: white;
+    padding-bottom: 20px;
+    min-height: 0;
+    margin-bottom: 20px;
+    font-size: 17px;
+    line-height: 26px;
 }
 
 .single-product .pascal-product-description iframe { width: 100%; margin: 0 0 20px 0; }
@@ -3455,10 +3466,16 @@ input[name=sexo]{position: absolute; top: -2000px; left: -9999px}
     padding-bottom: 50px;
 }
 .pascal-product-info h2{
-    font-size: 48px;
+    font-size: 28px;
     color: #212b2e;
     font-weight: 400;
-    margin-bottom: 0;
+    margin-bottom: 20px;
+}
+.pascal-product-info table.shop_attributes th {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    padding-bottom: 0;
 }
 
 @media(max-width:480px){
@@ -5918,6 +5935,7 @@ ul#shipping_method li label{
     text-transform: none;
     position: relative;
     padding-left: 24px;
+    display: inline-block;
 }
 ul#shipping_method li label:before{
     display: inline-block;
@@ -6992,6 +7010,119 @@ ul.order_details.woocommerce-thankyou-order-details li{
     }
 }
 
+/* -----------
+ *  MODAL CUOTAS
+ * ----------- */
+
+#modal-cuotas {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    display: none;
+}
+#modal-cuotas-bg{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #0006;
+    z-index: 100;
+}
+#modal-cuotas img{
+    border-radius: 19px;
+    border: 2px solid #676767;
+    max-width: 190px;
+    margin-bottom: 15px;
+}
+#modal-cuotas-relative{
+    position: relative;
+    text-align: center;
+}
+#modal-cuotas-relative .col-md-12{
+    /* position: absolute; */
+    /* top: 0; */
+}
+#modal-cuotas-inner {
+    position: absolute;
+    top: 234px;
+    left: 50%;
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    width: 500px;
+    height: auto;
+    margin-left: -250px;
+    z-index: 100;
+}
+#result_installments{
+    font-size: 14px;
+    line-height: 25px;
+    margin-top: 26px;
+    border-top: 1px solid #EEE;
+    padding-top: 20px;
+    max-height: 100px;
+    overflow-y: scroll;
+}
+
+#modal-cuotas-inner b{
+    font-size: 16px;
+    margin-bottom: 0;
+    display: block;
+    /* position: absolute; */
+    top: 0;
+    font-weight: 300;
+    left: 0;
+    max-width: 65%;
+    margin: 0px auto 10px;
+}
+
+#modal-cuotas-inner input{
+    width: 300px;
+    display: inline-block;
+    border-radius: 3px;
+    border: 2px solid #b5b5b5;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+    padding: 3px 4px!important;
+}
+#modal-cuotas-inner button{
+    display: block;
+    margin: 0 auto;
+    padding: 12px 38px;
+    font-size: 18px;
+    color: white;
+    background: #683692;
+    border: none;
+    border-radius: 3px;
+}
+#modal-cuotas-cerrar{
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    padding: 10px;
+}
+#modal-cuotas-cerrar img{border:none;/* position: absolute; *//* top: 0; *//* right: 0; *//* cursor: pointer; */}
+
+#ver-cuotas{
+    margin-top: 10px;
+    color: #7c437b;
+    letter-spacing: -1px;
+    color: #5c145a;
+    font-size: 15px;
+    font-weight: 400;
+}
+#ver-cuotas a{
+    color: #6a6a6a;
+    text-decoration: underline;
+    cursor: pointer;
+}
 /* -----------
  *  FONT AWESOME
  * ----------- */

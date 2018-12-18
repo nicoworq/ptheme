@@ -27,6 +27,21 @@ var shareWorq = {
 
 
         /* -----------
+         *  MODAL CUOTAS
+         * ----------- */
+
+        $("#ver-cuotas").click(function () {
+
+            $('#modal-cuotas').show();
+
+        });
+
+        $("#modal-cuotas-bg, #modal-cuotas-cerrar").click(function () {
+            $('#modal-cuotas').hide();
+        });
+
+
+        /* -----------
          *  PREVIEW CATEGORY AUTO SWITCH
          * ----------- */
 
@@ -42,16 +57,16 @@ var shareWorq = {
 
             if (catActiva > categorias.length) {
                 catActiva = 0;
-            }            
+            }
         }
 
         $('#home-category-preview .container, #home-category-preview .pascal-product-container').mouseover(function () {
             clearInterval(timer);
-            
+
         });
         $('#home-category-preview .container').mouseleave(function () {
             timer = setInterval(loopCategorias, 2500);
-            
+
         });
 
 
@@ -202,7 +217,6 @@ var shareWorq = {
                 email: 'ventas@pascalonline.com.ar',
                 horarios: 'Lunes a viernes: De 9 a 19:30hs Sábados: De 9 a 13 hs.'
             },
-           
             {
                 id: 7,
                 coord: '-32.957294, -60.640324',
@@ -211,16 +225,16 @@ var shareWorq = {
                 email: 'pellegrini@pascalonline.com.ar',
                 horarios: 'Lunes a viernes: De 9 a 13hs y de 15 a 1930 hs Sábados: De 9 a 13 hs.'
             },
-             /*
-            {
-                id: 3,
-                coord: '-32.974177, -60.643550',
-                titulo: 'San Martin 3151',
-                telefonos: ' 4728490 / 4448680',
-                email: 'sanmartin@pascalonline.com.ar',
-                horarios: ' Lunes a viernes: De 9 a 13hs y de 15 a 19:30hs Sábados: De 9 a 13 hs.'
-            },
-            */
+            /*
+             {
+             id: 3,
+             coord: '-32.974177, -60.643550',
+             titulo: 'San Martin 3151',
+             telefonos: ' 4728490 / 4448680',
+             email: 'sanmartin@pascalonline.com.ar',
+             horarios: ' Lunes a viernes: De 9 a 13hs y de 15 a 19:30hs Sábados: De 9 a 13 hs.'
+             },
+             */
             {
                 id: 4,
                 coord: '-32.939076, -60.679098',
@@ -235,13 +249,13 @@ var shareWorq = {
                 titulo: 'Alberdi 999',
                 telefonos: '4724950',
                 email: 'alberdi@pascalonline.com.ar',
-                horarios: 'Lunes a viernes: De 8.30 a 13hs y de 16 a 19:30hs Sábados: De 9 a 13 hs.'
+                horarios: 'Lunes a viernes: De 8.30 a 13hs y de 16 a 20hs Sábados: De 9 a 13 hs.'
             },
             {
                 id: 6,
                 coord: '-32.945326, -60.666618',
                 titulo: 'Francia 1102',
-                telefonos: '5571612',
+                telefonos: '4775612',
                 email: 'ventasfrancia@pascalonline.com.ar',
                 horarios: ' Lunes a viernes: De 8 a 18:30hs Sabado: De 9 a 13 hs.'
             }

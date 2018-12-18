@@ -13,7 +13,7 @@
 
 
 <footer class="site-footer" role="contentinfo">
-    <section id="institutional-module">
+    <!--<section id="institutional-module">
 
         <div class="container">
             <div class="row">
@@ -90,7 +90,7 @@
 
         </div>
 
-    </section>
+    </section>-->
 
     <section id="payments">
 
@@ -246,23 +246,14 @@
 <?php wp_footer(); ?>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43710429-1"></script>
-
 <script>
-
   window.dataLayer = window.dataLayer || [];
-
   function gtag(){dataLayer.push(arguments);}
-
   gtag('js', new Date());
 
- 
-
   gtag('config', 'UA-43710429-1');
-
 </script>
-
 
 <div id="fb-root"></div>
 <script>(function (d, s, id) {

@@ -112,44 +112,51 @@ function mostrar_slider_worq() {
     ?>
 
     <?php if ($slides->have_posts()): ?>
-        <div id="slider-worq">
-            <div class="ajaxing"><span></span></div>
-            <div id="slider-worq-slides">
-                <?php
-                while ($slides->have_posts()) : $slides->the_post();
-                    $img_mobile = get_field('imagen_mobile');
-                    $img_desktop = get_field('imagen_de_fondo');
-                    if (!$img_mobile) {
-                        $img_mobile = $img_desktop;
-                    }
-                    $imgBg = $detect->isMobile() ? $img_mobile : $img_desktop;
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="slider-worq">
+                        <div class="ajaxing"><span></span></div>
+                        <div id="slider-worq-slides">
+                            <?php
+                            while ($slides->have_posts()) : $slides->the_post();
+                                $img_mobile = get_field('imagen_mobile');
+                                $img_desktop = get_field('imagen_de_fondo');
+                                if (!$img_mobile) {
+                                    $img_mobile = $img_desktop;
+                                }
+                                $imgBg = $detect->isMobile() ? $img_mobile : $img_desktop;
 
-                    $link = get_field('link_slide');
-                    $linkHref = $link ? "href='{$link}'" : '#';
-                    ?>
-                    <a <?php echo $linkHref ?> class="slide-home <?php echo $slideClass; ?>">
-                        <img src="<?php echo $imgBg['url'] ?>"/>
-                    </a>
+                                $link = get_field('link_slide');
+                                $linkHref = $link ? "href='{$link}'" : '#';
+                                ?>
+                                <a <?php echo $linkHref ?> class="slide-home <?php echo $slideClass; ?>">
+                                    <img src="<?php echo $imgBg['url'] ?>"/>
+                                </a>
 
-                <?php endwhile; ?>
-            </div>
-            <div id="slider-worq-next-prev">
-                <div id="arrow-prev" class="slider-arrow">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 404.258 404.258" style="enable-background:new 0 0 404.258 404.258;" xml:space="preserve">
-                        <polygon points="138.331,0 114.331,18 252.427,202.129 114.331,386.258 138.331,404.258 289.927,202.129 "/>
+                            <?php endwhile; ?>
+                        </div>
+                        <div id="slider-worq-next-prev">
+                            <div id="arrow-prev" class="slider-arrow">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 404.258 404.258" style="enable-background:new 0 0 404.258 404.258;" xml:space="preserve">
+                                    <polygon points="138.331,0 114.331,18 252.427,202.129 114.331,386.258 138.331,404.258 289.927,202.129 "/>
 
-                    </svg>
-                </div>
-                <div id="arrow-next" class="slider-arrow">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 404.258 404.258" style="enable-background:new 0 0 404.258 404.258;" xml:space="preserve">
-                        <polygon points="138.331,0 114.331,18 252.427,202.129 114.331,386.258 138.331,404.258 289.927,202.129 "/>
+                                </svg>
+                            </div>
+                            <div id="arrow-next" class="slider-arrow">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 404.258 404.258" style="enable-background:new 0 0 404.258 404.258;" xml:space="preserve">
+                                    <polygon points="138.331,0 114.331,18 252.427,202.129 114.331,386.258 138.331,404.258 289.927,202.129 "/>
 
-                    </svg>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <?php
     endif;
@@ -190,7 +197,6 @@ if (function_exists("register_field_group")) {
                 'label' => 'Link slide',
                 'name' => 'link_slide',
                 'type' => 'text',
-             
             ),
             array(
                 'key' => 'field_56f974b715091',

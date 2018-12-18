@@ -47,7 +47,6 @@
     </noscript>
     <!-- End Facebook Pixel Code -->
 
-
 </head>
 
 <body <?php body_class(); ?>>

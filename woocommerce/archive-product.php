@@ -98,7 +98,7 @@ if (is_tax('pa_marca')) {
 ?>
 
 
-
+<!--
 <section id="archive-header" style="<?php echo $background; ?>">
     <div class="container">
         <div class="row">
@@ -114,7 +114,7 @@ if (is_tax('pa_marca')) {
         </div>
     </div>
 </section>
-
+-->
 <?php
 /**
  * woocommerce_archive_description hook.

@@ -197,7 +197,7 @@ foreach ($brands as $brand) {
 
 <?php wc_get_template_part('content', 'featured-1'); ?>
 <?php //wc_get_template_part('content', 'products-bottom');  ?>
-<?php wc_get_template_part('content', 'navigation-bottom'); ?>
+<?php// wc_get_template_part('content', 'navigation-bottom'); ?>
 <?php wc_get_template_part('content', 'featured-2'); ?>
 
 <?php
