@@ -249,7 +249,7 @@ header#masthead{
     z-index: 300;
     transition: all 0.3s;
     padding-top: 32px;
-    z-index: 1001;
+    z-index: 101;
 }
 
 
@@ -1538,7 +1538,9 @@ header .site-search {
 }
 #slider-worq-slides .slide-home{
     display: none;
-    min-height: 300px;    
+    min-height: 200px;
+    background-position: 50%;
+    background-size: cover;
 }
 #slider-worq-slides .slide-home:first-child , #slider-worq-slides .slide-home.slick-slide{
     display: block;
@@ -4167,9 +4169,7 @@ header.entry-header {
 
 
 #blog-suscribe{
-    padding: 10px 0 ;
-    background: url(../images/sitio/blog-suscribir-bg.jpg) #51437c 50% no-repeat;
-    background-size: cover;
+
     position: relative;
 }
 #blog-suscribe h4{
@@ -4185,6 +4185,12 @@ header.entry-header {
     color: #fed700;
 }
 
+
+#contenedor-suscribir{
+    overflow: hidden;
+    padding: 10px 30px;
+    background: url(../images/sitio/blog-suscribir-bg.jpg) #51437c 50% no-repeat;
+}
 
 
 #form-suscribir-blog{
@@ -7020,7 +7026,7 @@ ul.order_details.woocommerce-thankyou-order-details li{
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 100;
+    z-index: 105;
     display: none;
 }
 #modal-cuotas-bg{
@@ -7033,29 +7039,77 @@ ul.order_details.woocommerce-thankyou-order-details li{
     z-index: 100;
 }
 #modal-cuotas img{
-    border-radius: 19px;
-    border: 2px solid #676767;
-    max-width: 190px;
-    margin-bottom: 15px;
+    /* border-radius: 19px; */
+    /* border: 2px solid #676767; */
+    /* max-width: 190px; */
+    /* margin-bottom: 15px; */
+}
+#pascal-mp-cuotas label{
+    display: inline-block;
+    cursor: pointer;
+    min-width: 100px;
+    margin-bottom: 30px;
+    margin-right: 10px;
+    vertical-align: top;
+    /* border: 2px solid #676161; */
+}
+#pascal-mp-cuotas label:hover h4{
+    color: #772374;
+    text-decoration: underline;
+}
+#pascal-mp-cuotas label h4{
+    margin: 2px 0 5px;
+    font-weight: 400;
+    font-size: 14px;
+    max-width: 100px;
+    line-height: 20px;
+    transition: .2s all ease;
+}
+.tarjeta_mp:checked + h4{
+    color: #772374;
+    text-decoration: underline;
+}
+
+#pascal-mp-cuotas label .cont-img{min-height: 25px;}
+#pascal-mp-cuotas label img{
+}
+#pascal-mp-cuotas label input{
+    margin-top: 7px;
+    cursor: pointer;
 }
 #modal-cuotas-relative{
     position: relative;
     text-align: center;
 }
+#simulator-installment-result h3{
+    font-size: 27px;
+    max-width: 66%;
+    margin: 60px auto;
+}
+#simulator-issuer-container{display: none;text-align: left;padding-left: 30px;padding-bottom: 30px;}
 #modal-cuotas-relative .col-md-12{
     /* position: absolute; */
     /* top: 0; */
 }
+
+.resultado-cuota{
+    margin-bottom: 10px;
+}
+.resultado-cuota span{
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
 #modal-cuotas-inner {
     position: absolute;
-    top: 234px;
+    top: 100px;
     left: 50%;
     background: white;
     border-radius: 5px;
-    padding: 20px;
-    width: 500px;
+    padding: 50px 70px 20px 20px;
+    width: 80%;
     height: auto;
-    margin-left: -250px;
+    margin-left: -40%;
     z-index: 100;
 }
 #result_installments{
@@ -7081,14 +7135,7 @@ ul.order_details.woocommerce-thankyou-order-details li{
 }
 
 #modal-cuotas-inner input{
-    width: 300px;
-    display: inline-block;
-    border-radius: 3px;
-    border: 2px solid #b5b5b5;
-    margin-bottom: 20px;
-    font-size: 20px;
-    text-align: center;
-    padding: 3px 4px!important;
+
 }
 #modal-cuotas-inner button{
     display: block;
@@ -7103,10 +7150,11 @@ ul.order_details.woocommerce-thankyou-order-details li{
 #modal-cuotas-cerrar{
     display: inline-block;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -40px;
+    right: -35px;
     cursor: pointer;
     padding: 10px;
+    z-index: 1000;
 }
 #modal-cuotas-cerrar img{border:none;/* position: absolute; *//* top: 0; *//* right: 0; *//* cursor: pointer; */}
 
@@ -7122,6 +7170,55 @@ ul.order_details.woocommerce-thankyou-order-details li{
     color: #6a6a6a;
     text-decoration: underline;
     cursor: pointer;
+}
+#simulator-card-mobile{display: none;}
+
+div#simulador-de-cuotas select {
+    width: 100%;
+}
+#simulator-issuer-container label{
+    margin-bottom: 10px;
+    display: block;
+}
+#simulator-installment-result{padding-bottom: 30px;}
+@media(max-width:768px){
+
+    #modal-cuotas-inner{
+        top: 30px;
+        padding: 20px 20px;
+        width: 80%;
+        margin-left: -40%;
+    }
+
+    #simulator-card-mobile{display: block;margin: 0;width: 100%;}
+
+    #simulator-card{display: none;}
+
+    #simulator-installment-result h3{
+        font-size: 20px;
+        max-width: 100%;
+        margin: 60px auto;
+    }
+    #modal-cuotas-cerrar{
+
+    }
+    #simulator-issuer-container{
+        padding-left: 0;
+        margin-top: 12px;
+    }
+    #simulator-installment-result{
+        padding: 0 20px;
+    }
+    .resultado-cuota{
+        margin-bottom: 5px;
+    }
+    .resultado-cuota big{
+        line-height: 10px;
+    }
+    .resultado-cuota big strong{
+        font-size: 10px;
+    }
+    .resultado-cuota small{}
 }
 /* -----------
  *  FONT AWESOME

@@ -26,6 +26,144 @@ var shareWorq = {
     $(document).ready(function () {
 
 
+        /*
+         *  CUOTAS MP
+         */
+
+        // CARGA TARJETAS DISPONIBLES
+        
+        var selectedCardID = '';
+
+        function simulator_get_cards()
+        {
+            Mercadopago.getAllPaymentMethods(simulatorSetPaymentMethodInfo);
+        }
+        function simulatorSetPaymentMethodInfo(status, cards)
+        {
+            var options = '';
+            var optionsMobile = '<option value="-1">Elige...</option>';
+            for (i = 0; cards && i < cards.length; i++) {
+                if (cards[i].payment_type_id == 'credit_card' && cards[i].status == 'active') {
+                    options += '<label><div class="cont-img"><img src="' + cards[i].secure_thumbnail + '"/></div><input class="tarjeta_mp" type="radio" name="tarjeta_mp" value="' + cards[i].id + '"/><h4>' + cards[i].name + '</h4> </label>';
+                    optionsMobile += '<option value="' + cards[i].id + '">' + cards[i].name + '</option>';
+                }
+            }
+            $("#simulator-card").html(options);
+            $("#simulator-card-mobile").html(optionsMobile);
+        }
+
+        // ACTUALIZO EMISORES SEGUN TARJETA
+        $("#pascal-mp-cuotas").on('change', 'input[name=tarjeta_mp]', changeTarjeta);
+        $("#pascal-mp-cuotas").on('change', '#simulator-card-mobile', changeTarjetaMobile);
+
+        function changeTarjeta() {
+            var card_id = $('.tarjeta_mp:checked').val();
+            // LIMPIO CAMPOS DEPENDIENTES
+            $("#simulator-issuer").html('');
+            $("#simulator-installment").html('');
+            $("#simulator-issuer").prop("disabled", false);
+            
+            selectedCardID = card_id;
+            
+            Mercadopago.getIssuers(card_id, simulatorSetIssuersInfo);
+        }
+        function changeTarjetaMobile() {
+            var card_id = $('#simulator-card-mobile option:selected').val();
+            // LIMPIO CAMPOS DEPENDIENTES
+            $("#simulator-issuer").html('');
+            $("#simulator-installment").html('');
+            $("#simulator-issuer").prop("disabled", false);
+            
+            selectedCardID = card_id;
+            
+            Mercadopago.getIssuers(card_id, simulatorSetIssuersInfo);
+        }
+
+        function simulatorSetIssuersInfo(status, issuers)
+        {
+            if (issuers.length) {
+                var options = '<option value="-1">Elige...</option>';
+                for (i = 0; issuers && i < issuers.length; i++) {
+                    options += '<option value="' + issuers[i].id + '">' + issuers[i].name + '</option>';
+                }
+                $("#simulator-issuer").html(options);
+                $("#simulator-issuer-container").show();
+                $("#simulator-installment-result").html('<h3>Selecciona tu banco para calcular las cuotas</h3>');
+            } else {
+
+                $("#simulator-issuer-container").hide();
+                $("#simulator-issuer").prop("disabled", true);
+                Mercadopago.getInstallments({
+                    "payment_method_id": selectedCardID,
+                    "amount": window.productPrice
+                }, simulatorSetInstallmentInfo);
+            }
+        }
+
+        // ACTUALIZO CUOTAS SEGUN EMISOR
+        $("#simulator-issuer").change(function () {
+            var issuer_id = $(this, "option:selected").val();
+            // LIMPIO CAMPOS DEPENDIENTES
+            $("#simulator-installment").html('');
+            $("#simulator-installment-result");
+            //
+            Mercadopago.getInstallments({
+                "payment_method_id": selectedCardID,
+                "issuer_id": this.value,
+                "amount": window.productPrice
+            }, simulatorSetInstallmentInfo);
+        });
+        function simulatorSetInstallmentInfo(status, installments)
+        {
+            var payer_costs = installments[0].payer_costs;
+            var options = '<option value="-1">Elige...</option>';
+
+            var htmlCuotas = '';
+
+            for (i = 0; payer_costs && i < payer_costs.length; i++) {
+                var rate_message = '';
+                var label = '';
+                var rate_style = '';
+                if (!payer_costs[i].installment_rate) {
+                    rate_message = '<span>Sin Interés !</span>';
+                    rate_style = 'style="font-weight:700;"';
+                }
+                for (j = 0; j < payer_costs[i].labels.length; j++) {
+                    if (payer_costs[i].labels[j].substring(0, 3) == "CFT")
+                        label = payer_costs[i].labels[j];
+                }
+                var regex = new RegExp('_', 'g');
+                options += '<option ' + rate_style + ' value="' + payer_costs[i].installment_amount + '" data-message="' + payer_costs[i].recommended_message + '" data-label="' + label.replace(regex, ': ').replace('|', ' | ') + '">' + payer_costs[i].installments + rate_message + '</option>';
+
+                var message = payer_costs[i].recommended_message;
+                var labelHtml = label.replace(regex, ': ').replace('|', ' | ');
+                htmlCuotas = htmlCuotas + '<div class="resultado-cuota"><big><strong>' + message + rate_message + '</strong></big><br/><small>' + labelHtml + '</small></div>';
+
+
+            }
+
+            $("#simulator-installment").html(options);
+
+            $("#simulator-installment-result").html(htmlCuotas);
+
+
+        }
+
+        // MUESTRO VALOR CUOTA
+        $("#simulator-installment").change(function () {
+            var selected = $(this).find('option:selected');
+            var message = selected.data('message');
+            var label = selected.data('label');
+            $("#simulator-installment-result").hide(function () {
+                $(this).html('<big><strong>' + message + '</strong></big><br/><small>' + label + '</small>');
+            });
+        });
+
+
+
+
+
+
         /* -----------
          *  MODAL CUOTAS
          * ----------- */
@@ -33,6 +171,7 @@ var shareWorq = {
         $("#ver-cuotas").click(function () {
 
             $('#modal-cuotas').show();
+            simulator_get_cards();
 
         });
 

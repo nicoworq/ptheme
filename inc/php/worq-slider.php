@@ -130,8 +130,8 @@ function mostrar_slider_worq() {
                                 $link = get_field('link_slide');
                                 $linkHref = $link ? "href='{$link}'" : '#';
                                 ?>
-                                <a <?php echo $linkHref ?> class="slide-home <?php echo $slideClass; ?>">
-                                    <img src="<?php echo $imgBg['url'] ?>"/>
+                                <a <?php echo $linkHref ?> class="slide-home <?php echo $slideClass; ?>" style="background-image: url(<?php echo $imgBg['url'] ?>)">
+
                                 </a>
 
                             <?php endwhile; ?>
