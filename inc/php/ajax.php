@@ -153,3 +153,37 @@ function send_email($to, $toName, $toBCC, $toBCCName, $reply, $replyName, $email
     }
     return array(TRUE);
 }
+
+//form contacto
+add_action('wp_ajax_nopriv_shipping', 'shipping');
+add_action('wp_ajax_shipping', 'shipping');
+
+function shipping() {
+    header('Content-type: application/json');
+
+    $width = filter_input(INPUT_POST, 'width', FILTER_SANITIZE_STRING);
+    $height = filter_input(INPUT_POST, 'height', FILTER_SANITIZE_STRING);
+    $depth = filter_input(INPUT_POST, 'depth', FILTER_SANITIZE_STRING);
+    $weight = filter_input(INPUT_POST, 'weight', FILTER_SANITIZE_STRING);
+    $zip = filter_input(INPUT_POST, 'zip', FILTER_SANITIZE_STRING);
+
+    $params_mp = array(
+        'dimensions' => "{$width}x{$height}x{$depth},{$weight}",
+        //'dimensions' => "10x10x10,1",
+        'zip_code' => $zip,
+        'item_price' => 2000,
+        'free_method' => '',
+    );
+
+    $shippingPrice = WC_MercadoEnviosKijam_Shipping::get_instance()->get_shipping_price($params_mp);
+
+    $response = [];
+
+    if ($shippingPrice && isset($shippingPrice['options'][0]['list_cost'])) {
+        $response = ['success' => TRUE, 'shippingPrice' => round($shippingPrice['options'][0]['list_cost'], 2)];
+    } else {
+        $response = ['success' => FALSE, 'shippingPrice' => 0];
+    }
+    echo json_encode($response);
+    die();
+}

@@ -14,6 +14,11 @@ add_action('wp_print_scripts', 'wc_ninja_remove_password_strength', 100);
 
 
 
+function jupload_scripts() {
+    echo '<style>#wplc_limited_container {    display: none !important;}</style>';
+}
+add_action( 'admin_print_scripts', 'jupload_scripts' );
+
 /*
  * Remover espacios blanco contenido
  */

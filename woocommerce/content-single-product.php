@@ -100,6 +100,7 @@ if (!defined('ABSPATH')) {
                             <a target="blank" href="https://www.mercadopago.com.ar/cuotas">Ver promociones vigentes en cuotas con MercadoPago</a>
                         </div>
 
+                        <a href="#" id="shipping-click">Click para info de envío</a>
                         <?php
                         //wc_get_template('single-product/short-description.php');
 
@@ -132,12 +133,12 @@ if (!defined('ABSPATH')) {
     wc_get_template_part('content', 'credit-cards');
     ?>
 
-    <div id="modal-cuotas">
-        <div id="modal-cuotas-bg"></div>
-        <div id="modal-cuotas-inner">
+    <div id="modal-cuotas" class="modal-pascal">
+        <div id="modal-cuotas-bg" class="modal-pascal-bg"></div>
+        <div id="modal-cuotas-inner" class="modal-pascal-inner">
 
-            <div id="modal-cuotas-relative">
-                <a id="modal-cuotas-cerrar">
+            <div id="modal-cuotas-relative" class="modal-pascal-relative">
+                <a id="modal-cuotas-cerrar" class="modal-cerrar">
                     <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ3Ljk3MSA0Ny45NzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ3Ljk3MSA0Ny45NzE7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cGF0aCBkPSJNMjguMjI4LDIzLjk4Nkw0Ny4wOTIsNS4xMjJjMS4xNzItMS4xNzEsMS4xNzItMy4wNzEsMC00LjI0MmMtMS4xNzItMS4xNzItMy4wNy0xLjE3Mi00LjI0MiwwTDIzLjk4NiwxOS43NDRMNS4xMjEsMC44OCAgIGMtMS4xNzItMS4xNzItMy4wNy0xLjE3Mi00LjI0MiwwYy0xLjE3MiwxLjE3MS0xLjE3MiwzLjA3MSwwLDQuMjQybDE4Ljg2NSwxOC44NjRMMC44NzksNDIuODVjLTEuMTcyLDEuMTcxLTEuMTcyLDMuMDcxLDAsNC4yNDIgICBDMS40NjUsNDcuNjc3LDIuMjMzLDQ3Ljk3LDMsNDcuOTdzMS41MzUtMC4yOTMsMi4xMjEtMC44NzlsMTguODY1LTE4Ljg2NEw0Mi44NSw0Ny4wOTFjMC41ODYsMC41ODYsMS4zNTQsMC44NzksMi4xMjEsMC44NzkgICBzMS41MzUtMC4yOTMsMi4xMjEtMC44NzljMS4xNzItMS4xNzEsMS4xNzItMy4wNzEsMC00LjI0MkwyOC4yMjgsMjMuOTg2eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /></a>
 
                 <div id="pascal-mp-cuotas">
@@ -147,9 +148,9 @@ if (!defined('ABSPATH')) {
                         <form id="fSimulator">
                             <div class="row">
                                 <div class="col-md-7">
-                                    
+
                                     <select class="form-control" id="simulator-card-mobile"></select>
-                                    
+
                                     <div id="simulator-card">
 
                                     </div>
@@ -174,6 +175,60 @@ if (!defined('ABSPATH')) {
 
                 </div>
 
+
+
+            </div>
+
+        </div>
+    </div>
+    <div id="modal-shipping" class="modal-pascal">
+
+        <script>
+            window.productHeight = '<?php echo $product->get_height(); ?>'
+            window.productWidth = '<?php echo $product->get_width(); ?>'
+            window.productLength = '<?php echo $product->get_length(); ?>'
+            window.productWeigth = '<?php echo $product->get_weight(); ?>'
+        </script>
+        <div class="modal-pascal-bg"></div>
+        <div id='modal-shipping-inner' class="modal-pascal-inner">
+
+            <div id="modal-shipping-relative" class="modal-pascal-relative">
+                <a id="modal-shipping-cerrar" class="modal-cerrar">
+                    <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ3Ljk3MSA0Ny45NzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ3Ljk3MSA0Ny45NzE7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cGF0aCBkPSJNMjguMjI4LDIzLjk4Nkw0Ny4wOTIsNS4xMjJjMS4xNzItMS4xNzEsMS4xNzItMy4wNzEsMC00LjI0MmMtMS4xNzItMS4xNzItMy4wNy0xLjE3Mi00LjI0MiwwTDIzLjk4NiwxOS43NDRMNS4xMjEsMC44OCAgIGMtMS4xNzItMS4xNzItMy4wNy0xLjE3Mi00LjI0MiwwYy0xLjE3MiwxLjE3MS0xLjE3MiwzLjA3MSwwLDQuMjQybDE4Ljg2NSwxOC44NjRMMC44NzksNDIuODVjLTEuMTcyLDEuMTcxLTEuMTcyLDMuMDcxLDAsNC4yNDIgICBDMS40NjUsNDcuNjc3LDIuMjMzLDQ3Ljk3LDMsNDcuOTdzMS41MzUtMC4yOTMsMi4xMjEtMC44NzlsMTguODY1LTE4Ljg2NEw0Mi44NSw0Ny4wOTFjMC41ODYsMC41ODYsMS4zNTQsMC44NzksMi4xMjEsMC44NzkgICBzMS41MzUtMC4yOTMsMi4xMjEtMC44NzljMS4xNzItMS4xNzEsMS4xNzItMy4wNzEsMC00LjI0MkwyOC4yMjgsMjMuOTg2eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+                </a>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="text-left">Envío dentro de Rosario</h4>
+                        <ul class="text-left">
+                            <li>- Envio gratuito para compras superiores a $3000</li>
+                            <li>- Envío con costo de $250 para compras menores a $3000</li>
+                            <li>- Retiro por sucursal (Previa coordinación)</li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-left">Envío fuera de Rosario</h4>
+                        <ul class="text-left">                  
+                            <li>- Envío por MercadoEnvíos</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+
+                <form id="shipping-calculator">
+                    <div class="ajaxing"><span></span></div>
+                    <h4>Calculá el costo de tu envío por MercadoEnvíos: </h4>
+                    <label>Ingresa tu código postal:<br/>
+                        <input type="text" id="input-cp"/>
+                    </label>
+                    <div id="shipping-result">
+                        <span>El envío de este producto costará:</span><br/>$178.85
+                    </div>
+                    <button id="button-cp" disabled="true">Calcular</button>
+                </form>
 
 
             </div>
@@ -272,7 +327,7 @@ if (!defined('ABSPATH')) {
     wc_get_template('single-product/up-sells.php', $args);
     ?>
 
-    <?php // wc_get_template_part('content', 'navigation-bottom'); ?>
+    <?php // wc_get_template_part('content', 'navigation-bottom');  ?>
 </div>
 
 

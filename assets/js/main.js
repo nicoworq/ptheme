@@ -31,7 +31,7 @@ var shareWorq = {
          */
 
         // CARGA TARJETAS DISPONIBLES
-        
+
         var selectedCardID = '';
 
         function simulator_get_cards()
@@ -62,9 +62,9 @@ var shareWorq = {
             $("#simulator-issuer").html('');
             $("#simulator-installment").html('');
             $("#simulator-issuer").prop("disabled", false);
-            
+
             selectedCardID = card_id;
-            
+
             Mercadopago.getIssuers(card_id, simulatorSetIssuersInfo);
         }
         function changeTarjetaMobile() {
@@ -73,9 +73,9 @@ var shareWorq = {
             $("#simulator-issuer").html('');
             $("#simulator-installment").html('');
             $("#simulator-issuer").prop("disabled", false);
-            
+
             selectedCardID = card_id;
-            
+
             Mercadopago.getIssuers(card_id, simulatorSetIssuersInfo);
         }
 
@@ -234,6 +234,64 @@ var shareWorq = {
             $('html, body').animate({
                 scrollTop: $("body").offset().top
             }, 2000);
+        });
+
+
+        /*
+         *  SHIPPINGG
+         */
+
+        $('#shipping-click').click(function (e) {
+            e.preventDefault();
+            $('#modal-shipping').show();
+
+            // vemos que esten todos los atributos
+
+            if (!((window.productWidth && window.productHeight && window.productLength && window.productWeigth) > 0)) {
+                // no tengo todo, oculto la calculadora
+                $('#shipping-calculator').hide();
+            } else {
+                $('#shipping-calculator').show();
+            }
+        });
+        $('#modal-shipping-cerrar,.modal-pascal-bg').click(function () {
+            $('#modal-shipping').hide();
+        })
+
+        $('#shipping-calculator input').keyup(function () {
+            var button = $('#shipping-calculator button');
+            if ($(this).val() === '') {
+                button.attr('disabled', true);
+            } else {
+                button.attr('disabled', false);
+            }
+        })
+        $('#shipping-calculator').submit(function (e) {
+            e.preventDefault();
+            var url = Pascal.ajaxUrl;
+            var zip = $('#input-cp').val();
+            var width = window.productWidth;
+            var height = window.productHeight;
+            var depth = window.productLength;
+            var weight = window.productWeigth;
+
+            var ajaxing = $('#shipping-calculator .ajaxing');
+
+            ajaxing.show();
+
+            $.post(url, {action: 'shipping', zip: zip, width: width, height: height, depth: depth, weight: weight}, function (json) {
+                ajaxing.hide();
+                
+                $('#shipping-result').show();
+
+                if (json.success) {
+                    $('#shipping-result').html(' <span>El envío de este producto costará:</span><br/>$' + json.shippingPrice)
+                } else {
+                    $('#shipping-result').html('<span>No pudimos determinar el costo del envío.<br/> Prueba con otro Código postal</span>');
+                }
+            });
+
+
         });
 
 
