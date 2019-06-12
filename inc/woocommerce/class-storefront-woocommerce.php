@@ -81,7 +81,7 @@ if (!class_exists('Storefront_WooCommerce')) :
             wp_style_add_data('storefront-woocommerce-style', 'rtl', 'replace');
 
             wp_enqueue_style('worq-style-ext', get_template_directory_uri() . '/assets/css/extCss.min.css');
-            wp_enqueue_style('worq-style', get_template_directory_uri() . '/assets/css/main.css?a=ehh');
+            wp_enqueue_style('worq-style', get_template_directory_uri() . '/assets/css/main.css');
 
 
             wp_register_script('storefront-sticky-payment', get_template_directory_uri() . '/assets/js/woocommerce/checkout.min.js', 'jquery', $storefront_version, true);
@@ -92,7 +92,7 @@ if (!class_exists('Storefront_WooCommerce')) :
 
 
             wp_enqueue_script('pascal-plugins', get_template_directory_uri() . '/assets/js/plugins.js', array(), '20151215', true);
-            wp_enqueue_script('pascal-scripts', get_template_directory_uri() . '/assets/js/main.min.js?a=eee', array(), '20151215', true);
+            wp_enqueue_script('pascal-scripts', get_template_directory_uri() . '/assets/js/main.min.js?casd=eee', array(), '20151215', true);
             
            
             

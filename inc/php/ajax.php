@@ -38,8 +38,8 @@ function suscribir_newsletter() {
         die();
     }
 
-    $to = 'yair@proyectobeta.com.ar';
-    $toName = 'Yair';
+    $to = 'info@pascalonline.com.ar';
+    $toName = 'Info Pascal';
     $toBCC = 'nicolas@worq.com.ar';
     $toBCCName = 'Nico';
     $reply = $email;

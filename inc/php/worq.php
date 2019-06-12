@@ -163,9 +163,44 @@ function editar_campos_checkout($fields) {
 
 
     $fields['billing']['billing_state']['required'] = FALSE;
+    
+    
+    $sucursales= array(
+        
+        "seleccionar" => "Seleccioná una sucursal para retirar",
+        "ENTRE RIOS" => "ENTRE RIOS 658",
+        "PELLEGRINI" => "PELLEGRINI 1070",
+        "FRANCIA" => "AV FRANCIA 1102",
+        "CORDOBA" => "CORDOBA 5541",
+        
+    );
+    
+    $fields['billing']['billing_sucursal'] = array(
+        'type'      => 'select',
+        'options'      => $sucursales,
+        'class'     => array(''),
+        'id'        => 'billing_sucursal',
+        'label'     => __('Sucursal donde retira', 'woocommerce'),
+        'placeholder'   => _x('Sucursal donde retira', 'placeholder', 'woocommerce'),
+        'required'  => false,
+        'clear'     => true
+    );
+    
 
     return $fields;
 }
+
+
+/**
+ * Display field value on the order edit page
+ */ 
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'sucursal_checkout', 10, 1 );
+
+function sucursal_checkout($order){
+    echo '<p><strong>'.__('Sucursal a retirar').':</strong> ' . get_post_meta( $order->get_id(), '_billing_sucursal', true ) . '</p>';
+    
+}
+
 
 
 /*

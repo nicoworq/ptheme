@@ -440,6 +440,7 @@ var shareWorq = {
                 email: 'ventasoeste@pascalonline.com.ar',
                 horarios: ' Lunes a viernes: De 9 a 13hs y de 14:30 a 19hs Sábados: De 9 a 13 hs.'
             },
+            /*
             {
                 id: 5,
                 coord: '-32.916251, -60.685018',
@@ -447,7 +448,7 @@ var shareWorq = {
                 telefonos: '4724950',
                 email: 'alberdi@pascalonline.com.ar',
                 horarios: 'Lunes a viernes: De 8.30 a 13hs y de 16 a 20hs Sábados: De 9 a 13 hs.'
-            },
+            },*/
             {
                 id: 6,
                 coord: '-32.945326, -60.666618',
